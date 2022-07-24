@@ -14,6 +14,7 @@ public class BotMoveController
     private CharacterController _characterController;
     private BotRotationController _botRotationController;
     private ButtonView _buttonVierw;
+    private RotationPositionOnGroundController _PositionOnGroundController;
     public BotMoveController(BotView botView, 
                              SOBotModel sOBotModel, 
                              CharacterController characterController,
@@ -24,9 +25,12 @@ public class BotMoveController
         _characterController = characterController;
         _buttonVierw = buttonVierw;
         _botRotationController = new BotRotationController(_buttonVierw, _characterController, this);
+        _PositionOnGroundController = new RotationPositionOnGroundController(_botView);
     }
     public void Update()
-    { }
+    {
+        _PositionOnGroundController.Update();
+    }
     public void FixedUpdate()
     {
         CharacterMove();

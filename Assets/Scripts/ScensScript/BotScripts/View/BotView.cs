@@ -5,6 +5,7 @@ public class BotView : MonoBehaviour
     [SerializeField] private GameObject _bodyBot;
     [SerializeField] private GameObject _towerBot;
     [SerializeField] private GameObject _gunBot;
+    [SerializeField] private Transform _startPointRayCast;
     [SerializeField] private ButtonView _buttonVierw;
     [SerializeField] private SOBotModel _sOBotModel;
     [SerializeField] private SOBotPosition _sOBotPosition;
@@ -12,10 +13,6 @@ public class BotView : MonoBehaviour
     private BotMoveController _botMoveController;
     private CharacterController _characterController;
 
-    
-    public GameObject BodyBot => _bodyBot;
-    public GameObject TowerBot=> _towerBot;
-    public GameObject GunBot => _gunBot;
 
     private void Start()
     {
@@ -33,5 +30,13 @@ public class BotView : MonoBehaviour
     private void FixedUpdate()
     {
         _botMoveController.FixedUpdate();
+    }
+    public GameObject BodyBot => _bodyBot;
+    public GameObject TowerBot => _towerBot;
+    public GameObject GunBot => _gunBot;
+    public Transform GetTransformPosition() => _startPointRayCast;
+    public void SetStartRayPosition(Transform pos)
+    {
+        _startPointRayCast = pos;
     }
 }
