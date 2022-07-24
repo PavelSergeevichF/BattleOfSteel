@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BotView : MonoBehaviour
 {
+    public Collider TerrainCollider;
     [SerializeField] private GameObject _bodyBot;
     [SerializeField] private GameObject _towerBot;
     [SerializeField] private GameObject _gunBot;
