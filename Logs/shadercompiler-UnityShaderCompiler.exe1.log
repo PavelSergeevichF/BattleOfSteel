@@ -1,3 +1,84 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=6328 outsize=6328 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=7016 outsize=7016 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=8448 outsize=8448 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=4861 outsize=4861 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=7663 outsize=7663 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=7016 outsize=7016 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=10015 outsize=10015 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=2992 outsize=28303 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=3909 outsize=37936 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=5025 outsize=48978 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=2992 outsize=28303 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=4738 outsize=44901 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=6116 outsize=58158 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=4290 outsize=4290 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=2677 outsize=24626 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=4735 outsize=4735 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=4689 outsize=4689 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=4689 outsize=4689 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=2935 outsize=28023 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=2909 outsize=27659 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=2909 outsize=27659 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=4807 outsize=4807 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=6284 outsize=6284 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=gles3 type=4 mask=6 insize=6238 outsize=6238 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=2914 outsize=27075 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=3844 outsize=36959 ok=1
+
+Cmd: disassembleShader
+ name=Mobile/Bumped Diffuse platform=vulkan type=25 mask=6 insize=3818 outsize=36590 ok=1
+
