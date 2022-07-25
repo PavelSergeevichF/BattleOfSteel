@@ -16,10 +16,13 @@ MonoBehaviour:
   PowerEngine: 0
   IDBot: 0
   MaxSpeedBot: 5
-  SpeedBot: 0
+  SpeedBot: 1.1500168
   Boost: 0.01
   SpeedRotatTow: 2
   SpeedRotatGun: 0.1
   Distance: 500
   HP: 100
   MaxHP: 100
+  Tracks: 0
+  Ammunition: {fileID: 11400000, guid: b95711ef480ea7740a327b3b513c2ab4, type: 2}
+  GunsModel: {fileID: 11400000, guid: bb425043734c06147a8be7579f009ffe, type: 2}
