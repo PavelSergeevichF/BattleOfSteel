@@ -5,30 +5,37 @@ public class BotRotationController
     private float _rotation = 0.0f;
     private Vector3 _moveVector;
 
-    private ButtonView _buttonVierw;
+    private JoysticView _joysticView;
     private CharacterController _characterController;
 	private BotMoveController _botMoveController;
-	public BotRotationController(ButtonView buttonVierw, CharacterController characterController, BotMoveController botMoveController)
+	public BotRotationController(JoysticView joysticView, CharacterController characterController, BotMoveController botMoveController)
     {
-        _buttonVierw = buttonVierw;
+        _joysticView = joysticView;
         _characterController = characterController;
         _botMoveController = botMoveController;
     }
 
-	public float CharacterRotation()
+	public float CharacterRotation(bool inversion)
     {
-        _rotation += _horizontal();
+        if (inversion)
+        {
+            _rotation += -_horizontal();
+        }
+        else 
+        {
+            _rotation += _horizontal();
+        }
         _rotation=_checkRotation(_rotation);
         return _rotation;
     }
     private float _horizontal()
     {
-        if (_buttonVierw.InputVector.x != 0)
+        if (_joysticView.InputVector.x != 0)
         {
-            if (   _buttonVierw.InputVector.x < -0.05
-                || _buttonVierw.InputVector.x >  0.05)
+            if (   _joysticView.InputVector.x < -0.05
+                || _joysticView.InputVector.x >  0.05)
             {
-                return _buttonVierw.InputVector.x;
+                return _joysticView.InputVector.x;
             }
             else
             {

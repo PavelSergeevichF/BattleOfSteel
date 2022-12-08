@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b153ae02a709a46a7dbcd0eb13300a, type: 3}
   m_Name: SOBotShellModelBTR40
   m_EditorClassIdentifier: 
-  ShellNum: 3
-  BulletNum: 94
+  ShellNum: 8
+  BulletNum: 87

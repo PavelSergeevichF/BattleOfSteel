@@ -15,30 +15,32 @@ public class BotMoveController
     private const float _const = 57.3f;
     private Vector3 _moveVector;
     private Vector3 _rotatePosition;
+    private Vector3 _rotate;
     private CharacterController _characterController;
     private BotRotationController _botRotationController;
-    private ButtonView _buttonVierw;
-    private RotationPositionOnGroundController _PositionOnGroundController;
+    private JoysticView _joysticView;
+    private RotationPositionOnGroundController _positionOnGroundController;
     public BotMoveController(BotView botView, 
                              SOBotModel sOBotModel, 
                              CharacterController characterController,
-                             ButtonView buttonVierw, bool pleer)
+                             JoysticView joysticView, bool pleer)
     {
         _botView = botView;
         _sOBotModel = sOBotModel;
         _characterController = characterController;
-        _buttonVierw = buttonVierw;
+        _joysticView = joysticView;
         _pleer = pleer;
-        _botRotationController = new BotRotationController(_buttonVierw, _characterController, this);
-        _PositionOnGroundController = new RotationPositionOnGroundController(_botView, this);
+        _botRotationController = new BotRotationController(_joysticView, _characterController, this);
+        _positionOnGroundController = new RotationPositionOnGroundController(_botView, this);
         if(!_pleer)
         {
             _botView.GetSOBotConnect().bot.GetComponent<Rigidbody>().useGravity = true;
         }
+        _rotatePosition = new Vector3(0, 0, 0);
     }
     public void Update()
     {
-        _PositionOnGroundController.Update();
+        _positionOnGroundController.Update();
     }
     public void FixedUpdate()
     {
@@ -49,28 +51,30 @@ public class BotMoveController
         }
     }
     public float GetSpeed()=> _sOBotModel.MaxSpeedBot;
+    public void SetDirRotate(Vector3 dir)
+    {
+        _rotate = dir;
+    }
     private void CharacterMove()
 	{
         _moveVector = Vector3.zero;
         moveLogic();
+        float cof = 1;
+        float step = 1 / _sOBotModel.MaxSpeedBot;
         if (_characterController.isGrounded)
         {
             if (Vector3.Angle(Vector3.forward, _moveVector) > 1f || Vector3.Angle(Vector3.forward, _moveVector) == 0)
             {
                 if (_sOBotModel.Tracks)
                 {
-                    _botView.transform.rotation = Quaternion.Euler(
-                    _setRotateData(_rotatePosition.x),
-                    _botRotationController.CharacterRotation(),
-                    _setRotateData(_rotatePosition.z));
+                    Rotate(cof);
                 }
                 else 
                 {
-                    float cof = 1;
-                    _botView.transform.rotation = Quaternion.Euler(
-                    _setRotateData(_rotatePosition.x),
-                    _botRotationController.CharacterRotation()* cof,
-                    _setRotateData(_rotatePosition.z));
+                    float speedMove = _sOBotModel.SpeedBot < 0.01f ? 0 : _sOBotModel.SpeedBot;
+                    cof = _sOBotModel.SpeedBot * step;
+                    Rotate(cof);
+                    //Настроить повороты!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 }
                 
             }
@@ -79,13 +83,21 @@ public class BotMoveController
         _moveVector.y = _gravitySpeed;
         _characterController.Move(_moveVector * Time.deltaTime);
     }
+    private void Rotate(float cof)
+    {
+        _rotatePosition += _rotate;
+        _botView.transform.rotation = Quaternion.Euler(
+        _setRotateData(_rotatePosition.x),
+        _botRotationController.CharacterRotation(_joysticView.InputVector.y < -0.05 && _sOBotModel.SpeedBot < 0) * cof,
+        _setRotateData(_rotatePosition.z));
+    }
     private float _setRotateData(float inData)
     {
         return _const * inData;
     }
     private void moveLogic()
     {
-        if (_buttonVierw.InputVector.y > 0.05)
+        if (_joysticView.InputVector.y > 0.05)
         {
             if (_sOBotModel.SpeedBot >= 0)
             {
@@ -98,7 +110,7 @@ public class BotMoveController
         }
         else
         {
-            if (_buttonVierw.InputVector.y < -0.05)
+            if (_joysticView.InputVector.y < -0.05)
             {
                 if (_sOBotModel.SpeedBot <= 0)
                 {
@@ -128,12 +140,12 @@ public class BotMoveController
     }
     private float _verticalOld()
     {
-        if (_buttonVierw.InputVector.y != 0)
+        if (_joysticView.InputVector.y != 0)
         {
-            if (_buttonVierw.InputVector.y > 0.05
-                || _buttonVierw.InputVector.y < -0.05)
+            if (_joysticView.InputVector.y > 0.05
+                || _joysticView.InputVector.y < -0.05)
             {
-                return _buttonVierw.InputVector.y;
+                return _joysticView.InputVector.y;
             }
             else
             {

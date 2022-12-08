@@ -1,10 +1,10 @@
 Using pre-set license
-Built from '2020.3/staging' branch; Version is '2020.3.9f1 (108be757e447) revision 1084391'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home Single Language; OS build 19043.1826; Version 2009; 64bit' Language: 'ru' Physical Memory: 11663 MB
-BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+Built from '2022.1/release' branch; Version is '2022.1.21f1 (9ac1ff5ca45b) revision 10142207'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19043) 64bit CoreSingleLanguage' Language: 'ru' Physical Memory: 11663 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
- COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2020.3.9f1\Editor\Unity.exe
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.1.21f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
@@ -15,335 +15,110 @@ C:/unityC/Battle of Steel
 -logFile
 Logs/AssetImportWorker3.log
 -srvPort
-54396
+58727
 Successfully changed project path to: C:/unityC/Battle of Steel
 C:/unityC/Battle of Steel
-Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 305.04 ms, found 2 plugins.
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 3091.28 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2020.3.9f1 (108be757e447)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data/Resources/UnitySubsystems
+Initialize engine version: 2022.1.21f1 (9ac1ff5ca45b)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.1.21f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/unityC/Battle of Steel/Assets
-GfxDevice: creating device client; threaded=0
+GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
     Renderer: AMD Radeon R5 Graphics (ID=0x9874)
-    Vendor:   
+    Vendor:   ATI
     VRAM:     5831 MB
     Driver:   27.20.1034.6
 Invalid texture used for cursor - check importer settings or texture creation. Texture must be RGBA32, readable, have alphaIsTransparency enabled and have no mip chain.
-0x00007ff7909d726c (Unity) StackWalker::GetCurrentCallstack
-0x00007ff7909df649 (Unity) StackWalker::ShowCallstack
-0x00007ff791ec24ac (Unity) GetStacktrace
-0x00007ff792fc5af3 (Unity) DebugStringToFile
-0x00007ff78ffe85dd (Unity) Cursors::ValidateCursor
-0x00007ff792ff17b0 (Unity) PlayerSettings::InitDefaultCursors
-0x00007ff792ff233f (Unity) PlayerSettings::PostInitializeClass
-0x00007ff78f9e4aab (Unity) TypeManager::CallPostInitializeTypes
-0x00007ff790123ba7 (Unity) InitializeEngineGraphics
-0x00007ff79154b8ed (Unity) Application::InitializeProject
-0x00007ff791ecfa12 (Unity) WinMain
-0x00007ff793d20ef6 (Unity) __scrt_common_main_seh
-0x00007ffee9357034 (KERNEL32) BaseThreadInitThunk
-0x00007ffeeb2c2651 (ntdll) RtlUserThreadStart
+0x00007ff6cbebf55d (Unity) StackWalker::GetCurrentCallstack
+0x00007ff6cbec6259 (Unity) StackWalker::ShowCallstack
+0x00007ff6cce60783 (Unity) GetStacktrace
+0x00007ff6cd515e73 (Unity) DebugStringToFile
+0x00007ff6cba18e44 (Unity) Cursors::ValidateCursor
+0x00007ff6cd53b130 (Unity) PlayerSettings::InitDefaultCursors
+0x00007ff6cd53b92f (Unity) PlayerSettings::PostInitializeClass
+0x00007ff6cb754d8b (Unity) TypeManager::CallPostInitializeTypes
+0x00007ff6cba8152e (Unity) InitializeEngineGraphics
+0x00007ff6cc9f32d0 (Unity) Application::InitializeProject
+0x00007ff6cce6aedb (Unity) WinMain
+0x00007ff6ce1e269e (Unity) __scrt_common_main_seh
+0x00007ff8c5b874b4 (KERNEL32) BaseThreadInitThunk
+0x00007ff8c66226a1 (ntdll) RtlUserThreadStart
 
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56032
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.1.21f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.1.21f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.1.21f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56316
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.9f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.012593 seconds.
-Native extension for LinuxStandalone target not found
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.1.21f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.241331 seconds.
 Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 209.41 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 469.11 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in 11.548 seconds
+- Completed reload, in  7.796 seconds
+Domain Reload Profiling:
+	ReloadAssembly (7799ms)
+		BeginReloadAssembly (1790ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (7ms)
+		EndReloadAssembly (4296ms)
+			LoadAssemblies (1767ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (1093ms)
+				TypeCache.Initialize (1091ms)
+					TypeCache.ScanAssembly (1084ms)
+				ResolveRequiredComponents (2ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (231ms)
+			SetupLoadedEditorAssemblies (2415ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (81ms)
+				SetLoadedEditorAssemblies (87ms)
+				RefreshPlugins (469ms)
+				BeforeProcessingInitializeOnLoad (7ms)
+				ProcessInitializeOnLoadAttributes (1271ms)
+				ProcessInitializeOnLoadMethodAttributes (500ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (1ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.041814 seconds.
+Registered in 0.049151 seconds.
 Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 2.66 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  5.379 seconds
-Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.19 seconds
-Refreshing native plugins compatible for Editor in 2.78 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2761 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 121.5 MB.
-System memory in use after: 121.6 MB.
-
-Unloading 67 unused Assets to reduce memory usage. Loaded Objects now: 3177.
-Total: 24.405200 ms (FindLiveObjects: 0.920500 ms CreateObjectMapping: 0.372600 ms MarkObjects: 22.522100 ms  DeleteObjects: 0.583800 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Models/bot/BTR-40/Materials
-  artifactKey: Guid(8276482a27d017e43bb2ce5f3e970a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials using Guid(8276482a27d017e43bb2ce5f3e970a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de0748556f853fc235936786dad047a9') in 0.026782 seconds
-  Import took 0.038485 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000656 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/d495f66b B.tga
-  artifactKey: Guid(f4b765634f5148141836ff6e9c5584d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/d495f66b B.tga using Guid(f4b765634f5148141836ff6e9c5584d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7ccbd493f8191ca466956c111fd5dcb') in 0.397128 seconds
-  Import took 0.415071 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000738 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/578baa90 B.tga
-  artifactKey: Guid(2db38dc2c5c1e6f4a892b14193d572e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/578baa90 B.tga using Guid(2db38dc2c5c1e6f4a892b14193d572e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc29fb3b871fcfb1148edfc41b1211e4') in 0.098253 seconds
-  Import took 0.114491 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000820 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/361b6f3d B.tga
-  artifactKey: Guid(7d885488b13272b48a2579724281c88c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/361b6f3d B.tga using Guid(7d885488b13272b48a2579724281c88c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c2457a89d7bcdcd5eeddb1c07df2ed2') in 0.033386 seconds
-  Import took 0.047702 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000829 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/ef7d4f02 D.tga
-  artifactKey: Guid(32de42063ec20c04db16ab3cde706094) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/ef7d4f02 D.tga using Guid(32de42063ec20c04db16ab3cde706094) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a48700bfd5e15d3551aa5cbd6f609f48') in 0.038454 seconds
-  Import took 0.051063 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.002496 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/578baa90 D.tga
-  artifactKey: Guid(93fd04b29c3c53e468f45bd0a9068c0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/578baa90 D.tga using Guid(93fd04b29c3c53e468f45bd0a9068c0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a860dde783fc3f60a08d1ad3417d6d5') in 0.074453 seconds
-  Import took 0.085735 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000651 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/a0eee270 D.tga
-  artifactKey: Guid(f277a9fd089f37d4581ba88fd133ebc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/a0eee270 D.tga using Guid(f277a9fd089f37d4581ba88fd133ebc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f6d67aa30f0170b156b4a0ee5950271') in 0.029156 seconds
-  Import took 0.048966 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000655 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/d495f66b D.tga
-  artifactKey: Guid(8ec07e27529c0ad408544c271280b5e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/d495f66b D.tga using Guid(8ec07e27529c0ad408544c271280b5e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0444af5adf2b6bf9985518547d66e8c') in 0.066616 seconds
-  Import took 0.079183 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000528 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/a0eee270.mat
-  artifactKey: Guid(bd9c8539ec036fc4baa756da0697e0f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/a0eee270.mat using Guid(bd9c8539ec036fc4baa756da0697e0f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1a97c2f2356677f5b3f13f4a3e75b77') in 0.351631 seconds
-  Import took 0.381727 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.005173 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/b1a4c165.mat
-  artifactKey: Guid(cfbbbf137ead160469dc644be5b3c8aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/b1a4c165.mat using Guid(cfbbbf137ead160469dc644be5b3c8aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2d4da8ae7505603661bb7e6d1e3e0fd') in 0.380609 seconds
-  Import took 0.398934 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000592 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/361b6f3d D.tga
-  artifactKey: Guid(1f1f3666772b9c6499265c27694ebbaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/361b6f3d D.tga using Guid(1f1f3666772b9c6499265c27694ebbaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2659fb7e211d72b270969d076d0acc77') in 0.037793 seconds
-  Import took 0.780206 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000602 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/LabelC.mat
-  artifactKey: Guid(9dc91279bfe4d1f40a574b3de29b84ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/LabelC.mat using Guid(9dc91279bfe4d1f40a574b3de29b84ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1515e1769f6ffb23acd446b5b6eac5d') in 0.072869 seconds
-  Import took 0.084804 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000793 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/BTR40_d495f66b.mat
-  artifactKey: Guid(e46c3b79fba9c3641b9d6df80565f170) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/BTR40_d495f66b.mat using Guid(e46c3b79fba9c3641b9d6df80565f170) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99b8f64aa02a662a867d77b7dfdc1ead') in 0.124219 seconds
-  Import took 0.141286 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000637 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/BTR40_578baa90 D.mat
-  artifactKey: Guid(ef71250355f3cd04b909f898db5e7434) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/BTR40_578baa90 D.mat using Guid(ef71250355f3cd04b909f898db5e7434) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20a704c244b72c0abdf3cf6a62bd454e') in 0.087798 seconds
-  Import took 0.104624 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000547 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/LabelB.mat
-  artifactKey: Guid(dec65afd5692e4545bdc2dba49587d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/LabelB.mat using Guid(dec65afd5692e4545bdc2dba49587d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '947ea1714c6ed8290d0d6983e1c81fe1') in 0.048616 seconds
-  Import took 0.061096 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000652 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/b1a4c165 D.tga
-  artifactKey: Guid(516396e04035123408af50d57c2c57b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/b1a4c165 D.tga using Guid(516396e04035123408af50d57c2c57b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07124aa2831019b12310671d91d1c167') in 0.036116 seconds
-  Import took 0.050838 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000557 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/b1a4c165 T.tga
-  artifactKey: Guid(88e16d925e0ffe54f8d69b34318b8b50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/b1a4c165 T.tga using Guid(88e16d925e0ffe54f8d69b34318b8b50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86abebbd8e77774fd6d59e04090135d0') in 0.029885 seconds
-  Import took 0.051370 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000470 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/ef7d4f02 B.tga
-  artifactKey: Guid(bb3c1d3c069b30c499764e7f9a945935) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/ef7d4f02 B.tga using Guid(bb3c1d3c069b30c499764e7f9a945935) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '887a68182473142601c0d6884fd82fc4') in 0.060385 seconds
-  Import took 0.083132 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000693 seconds.
-  path: Assets/Models/bot/BTR-40/Materials
-  artifactKey: Guid(8276482a27d017e43bb2ce5f3e970a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials using Guid(8276482a27d017e43bb2ce5f3e970a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de0748556f853fc235936786dad047a9') in 0.009202 seconds
-  Import took 0.026552 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000673 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/BTR40_361b6f3d.mat
-  artifactKey: Guid(d877005460458304bad54c8188da1389) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/BTR40_361b6f3d.mat using Guid(d877005460458304bad54c8188da1389) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b38d9412d2e5b17064237f43c5d79501') in 0.071825 seconds
-  Import took 0.085056 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000572 seconds.
-  path: Assets/Models/bot/BTR-40/Textures/58741fe5 D.tga
-  artifactKey: Guid(8f02d600cc4839b40bb465ea56baa1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Textures/58741fe5 D.tga using Guid(8f02d600cc4839b40bb465ea56baa1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0dbeefd5475fedb1042233b99754321') in 0.026355 seconds
-  Import took 0.061475 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001096 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/BTR40_ef7d4f02.mat
-  artifactKey: Guid(f93e8e528d065e547a05b0f9294fcaa5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/BTR40_ef7d4f02.mat using Guid(f93e8e528d065e547a05b0f9294fcaa5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40f5947a2b00deee59eaad0da45368d3') in 0.157535 seconds
-  Import took 0.174705 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.061935 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/New Material.mat
-  artifactKey: Guid(24e8996e2694a5d4fb1fdf43b9d14606) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/New Material.mat using Guid(24e8996e2694a5d4fb1fdf43b9d14606) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce864f5837e6457f42db48cb579dffc8') in 0.077558 seconds
-  Import took 0.110605 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 26.521867 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/361b6f3d B.mat
-  artifactKey: Guid(24e8996e2694a5d4fb1fdf43b9d14606) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/361b6f3d B.mat using Guid(24e8996e2694a5d4fb1fdf43b9d14606) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac15ae730f95890851e0cf01e660a404') in 0.036978 seconds
-  Import took 0.052905 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 97.859516 seconds.
-  path: Assets/Models/bot/BTR-40/Materials/578baa90 B.mat
-  artifactKey: Guid(367aff49f9028e5439245ffa2e8f5de5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Models/bot/BTR-40/Materials/578baa90 B.mat using Guid(367aff49f9028e5439245ffa2e8f5de5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b11350dbea2abbf6a7b9646536f1fa0') in 0.044272 seconds
-  Import took 0.056253 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.037050 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 2.35 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.985 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 2.37 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2746 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 123.0 MB.
-System memory in use after: 123.1 MB.
-
-Unloading 58 unused Assets to reduce memory usage. Loaded Objects now: 3221.
-Total: 16.149600 ms (FindLiveObjects: 0.723900 ms CreateObjectMapping: 0.267200 ms MarkObjects: 14.872500 ms  DeleteObjects: 0.281200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-========================================================================
-Received Import Request.
-  Time since last request: 550.652611 seconds.
-  path: Assets/Scenes/start_scens.unity
-  artifactKey: Guid(34895f172e1bcd94ca47d4c84b83c976) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/start_scens.unity using Guid(34895f172e1bcd94ca47d4c84b83c976) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c9f10da33a4033f9b9c5eaa17a1dcb5') in 0.046561 seconds
-  Import took 0.057989 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.732545 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 7.22 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in 24.975 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 10.51 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2746 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 123.0 MB.
-System memory in use after: 123.2 MB.
-
-Unloading 58 unused Assets to reduce memory usage. Loaded Objects now: 3223.
-Total: 26.519600 ms (FindLiveObjects: 0.970500 ms CreateObjectMapping: 0.457700 ms MarkObjects: 24.669100 ms  DeleteObjects: 0.416200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-AssetImportWorkerClient::OnTransportError - code=2 error=End of file

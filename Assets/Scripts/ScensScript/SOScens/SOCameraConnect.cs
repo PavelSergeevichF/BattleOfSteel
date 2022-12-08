@@ -4,4 +4,5 @@ using UnityEngine;
 public class SOCameraConnect : ScriptableObject
 {
     public Camera Camera;
+    public Vector3 TargetPosition;
 }

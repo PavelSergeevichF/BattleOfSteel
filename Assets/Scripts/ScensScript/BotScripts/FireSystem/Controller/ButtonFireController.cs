@@ -9,6 +9,7 @@ public class ButtonFireController
     private int _timeGun = 30;
     private const int _maxTimeMachineGun = 30;
     private int _timeMachineGun = 30;
+    private int _test = 0;
 
     public ButtonFireController(SOBotConnect bot)
     {
@@ -34,6 +35,7 @@ public class ButtonFireController
     }
     public void MachineGunFire() 
     {
+        Debug.Log($"Test= {++_test}");
         if (_timeMachineGun == _maxTimeMachineGun)
         {
             if(_sOBotShellModel.BulletNum>0)

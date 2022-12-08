@@ -15,6 +15,7 @@ public class SOBotModel : ScriptableObject
     public int HP = 100;
     public int MaxHP = 100;
     public bool Tracks = false;
+    public Transform TransformTarget;
     public SOBotShellModel Ammunition;
     public SOBotGunModel GunsModel;
 }
