@@ -48,7 +48,7 @@ public class AuthorizationView : MonoBehaviour
         }, error =>
         {
             _errorText.gameObject.SetActive(true);
-            _errorText.text = error.ErrorDetails.FirstOrDefault().Value.FirstOrDefault() ?? "" ;
+            //_errorText.text = error.ErrorDetails.FirstOrDefault().Value.FirstOrDefault() ?? "" ;
             Debug.LogError(error);
             _image.color = Color.red;
         }
