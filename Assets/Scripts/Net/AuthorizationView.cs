@@ -14,6 +14,7 @@ public class AuthorizationView : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private Text _errorText;
     [SerializeField] private Text _infoText;
+    [SerializeField] private SelectAuthorizationOrRegistrationView _selectAuthorizationOrRegistrationView;
 
     private string _userName;
     private string _userPassword;
@@ -44,11 +45,12 @@ public class AuthorizationView : MonoBehaviour
             _errorText.gameObject.SetActive(false);
             Debug.Log($"User registrated: {result.LastLoginTime}");
             _infoText.text = $"Enter last time {result.LastLoginTime}";
+            _selectAuthorizationOrRegistrationView.SelectAuthorizationOrRegistrationController.ClosePanels();
             _image.color = Color.green;
         }, error =>
         {
             _errorText.gameObject.SetActive(true);
-            //_errorText.text = error.ErrorDetails.FirstOrDefault().Value.FirstOrDefault() ?? "" ;
+            _errorText.text = error.ErrorDetails.FirstOrDefault().Value.FirstOrDefault() ?? "" ;
             Debug.LogError(error);
             _image.color = Color.red;
         }

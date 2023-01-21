@@ -40,6 +40,7 @@ public class PlayFabLogin : MonoBehaviour
 
     private void OnLoginSuccess(LoginResult result)
     {
+        Debug.Log($"LoginPlayFab!!!!!!!!!!!!!!!!!");
         Debug.Log(result.PlayFabId);
         Debug.Log((string)result.CustomData);
         Connect();
