@@ -10,7 +10,7 @@ public class AuthorizationView : MonoBehaviour
 {
     [SerializeField] private InputField _userNameField;
     [SerializeField] private InputField _userPasswordField;
-    [SerializeField] private Button _registrationButton;
+    [SerializeField] private Button _authorizatioButton;
     [SerializeField] private Image _image;
     [SerializeField] private Text _errorText;
     [SerializeField] private Text _infoText;
@@ -23,7 +23,7 @@ public class AuthorizationView : MonoBehaviour
     {
         _userNameField.onValueChanged.AddListener(SetUserName);
         _userPasswordField.onValueChanged.AddListener(SetUserPassword);
-        _registrationButton.onClick.AddListener(Submit);
+        _authorizatioButton.onClick.AddListener(Submit);
         _image.color = Color.gray;
     }
     private void SetUserName(string value)
