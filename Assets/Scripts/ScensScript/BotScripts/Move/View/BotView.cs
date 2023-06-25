@@ -18,7 +18,7 @@ public class BotView : MonoBehaviour
     [SerializeField] private GameObject _targetPointRB;
 
     [SerializeField] private JoysticView _joysticView;
-    [SerializeField] private SOBotModel _sOBotModel;
+    [SerializeField] private BotModel _sOBotModel;
     [SerializeField] private SOBotConnect _sOBotConnect;
     [SerializeField] private SOBotPosition _sOBotPosition;
     [SerializeField] private SOCameraConnect _sOCameraConnect;
@@ -73,6 +73,6 @@ public class BotView : MonoBehaviour
 
     public void GunFire() => _botFireController.GunFire();
     public void MachineGunFire() => _botFireController.MachineGunFire();
-    public SOBotModel GetSOBotModel() => _sOBotModel;
+    public BotModel GetSOBotModel() => _sOBotModel;
     public SOBotConnect GetSOBotConnect() => _sOBotConnect;
 }

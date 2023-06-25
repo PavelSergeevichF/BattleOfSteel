@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GunRotationController
 {
-    private SOBotModel _sOBotModel;
+    private BotModel _sOBotModel;
 
-    public GunRotationController(SOBotModel sOBotModel)
+    public GunRotationController(BotModel sOBotModel)
     {
         _sOBotModel = sOBotModel;
     }

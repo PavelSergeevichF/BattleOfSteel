@@ -9,7 +9,7 @@ public class BotSetDamageController
     private float _caliberMachineGun;
     private int _longMachineGun;
 
-    public BotSetDamageController(SOBotModel _sOBotModel)
+    public BotSetDamageController(BotModel _sOBotModel)
     {
         _sOBotGunModel = _sOBotModel.GunsModel;
         _caliberGun = _sOBotGunModel.CaliberGun;

@@ -14,6 +14,7 @@ public class ButtonView : MonoBehaviour
     {        
         _buttonController = new ButtonController(this, _buttonMenu);
         _buttonFireController = new ButtonFireController(Bot);
+        Debug.Log("++");
     }
     private void Update() 
     { 

@@ -4,7 +4,7 @@ using System;
 public class BotMoveController
 {
     private BotView _botView;
-    private SOBotModel _sOBotModel;
+    private BotModel _sOBotModel;
     private float _gravitySpeed;
     private float _vertical;
     private bool _pleer;
@@ -21,7 +21,7 @@ public class BotMoveController
     private JoysticView _joysticView;
     private RotationPositionOnGroundController _positionOnGroundController;
     public BotMoveController(BotView botView, 
-                             SOBotModel sOBotModel, 
+                             BotModel sOBotModel, 
                              CharacterController characterController,
                              JoysticView joysticView, bool pleer)
     {

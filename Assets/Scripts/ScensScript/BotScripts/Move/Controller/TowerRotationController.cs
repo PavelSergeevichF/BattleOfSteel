@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TowerRotationController
 {
-    private SOBotModel _sOBotModel;
+    private BotModel _sOBotModel;
 
-    public TowerRotationController(SOBotModel sOBotModel)
+    public TowerRotationController(BotModel sOBotModel)
     {
         _sOBotModel = sOBotModel;
     }

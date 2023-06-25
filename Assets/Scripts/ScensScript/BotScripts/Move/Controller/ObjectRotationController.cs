@@ -5,10 +5,10 @@ using UnityEngine;
 public class ObjectRotationController
 {
     private SOCameraConnect _sOCameraConnect;
-    private SOBotModel _sOBotModel;
+    private BotModel _sOBotModel;
     private GameObject _targetGameObject;
 
-    public ObjectRotationController(SOCameraConnect sOCameraConnect, SOBotModel sOBotModel, GameObject targetGameObject)
+    public ObjectRotationController(SOCameraConnect sOCameraConnect, BotModel sOBotModel, GameObject targetGameObject)
     {
         _sOCameraConnect = sOCameraConnect;
         _sOBotModel = sOBotModel;

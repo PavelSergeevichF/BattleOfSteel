@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BotGetDamageView : MonoBehaviour
 {
-    [SerializeField] private SOBotModel _sOBotModel;
+    [SerializeField] private BotModel _sOBotModel;
     private BotGetDamageController _botGetDamageController;
     void Start()
     {

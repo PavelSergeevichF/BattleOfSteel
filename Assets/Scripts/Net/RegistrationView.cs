@@ -13,6 +13,7 @@ public class RegistrationView : MonoBehaviour
     [SerializeField] private InputField _userCheckPasswordField;
     [SerializeField] private Button _registrationButton;
     [SerializeField] private Text _errorText;
+    [SerializeField] private SOUserData _sOUserData;
     [SerializeField] private SelectAuthorizationOrRegistrationView _selectAuthorizationOrRegistrationView;
 
     private string _userName;
@@ -53,6 +54,8 @@ public class RegistrationView : MonoBehaviour
             _errorText.gameObject.SetActive(false);
             _selectAuthorizationOrRegistrationView.SelectAuthorizationOrRegistrationController.CloseButtonPanel.SetActive(true);
             _selectAuthorizationOrRegistrationView.SelectAuthorizationOrRegistrationController.AuthorizationButtonPanel.SetActive(false);
+            _sOUserData.UserName = _userName;
+            _sOUserData.UserPassword = _userPassword;
             _errorText.text = $"User registrated: {result.Username}";
             Debug.Log($"User registrated: {result.Username}");
         }, error =>

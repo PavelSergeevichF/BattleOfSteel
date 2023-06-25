@@ -10,6 +10,7 @@ public class PlayFabLogin : MonoBehaviour
     private const string GAME_VERSION = "dev";
     private const string AUTHENTIFICATION_KEY = "AUTHENTIFICATION_KEY";
 
+    [SerializeField] private CatalogManagerView _catalogManager;
     private struct Data
     {
         public bool needCreation;
@@ -20,10 +21,6 @@ public class PlayFabLogin : MonoBehaviour
         // Here we need to check whether TitleId property is configured in settings or not
         if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId))
         {
-            /*
-            * If not we need to assign it to the appropriate variable manually
-            * Otherwise we can just remove this if statement at all
-            */
             PlayFabSettings.staticSettings.TitleId = PLAYFAB_TITLE; 
         } 
 
@@ -42,8 +39,9 @@ public class PlayFabLogin : MonoBehaviour
     {
         Debug.Log($"LoginPlayFab!!!!!!!!!!!!!!!!!");
         Debug.Log(result.PlayFabId);
-        Debug.Log((string)result.CustomData);
+        //Debug.Log((string)result.CustomData);
         Connect();
+        _catalogManager.Init();
     }
 
 

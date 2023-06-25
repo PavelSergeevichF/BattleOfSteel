@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class BotGetDamageController : MonoBehaviour
 {
-    private SOBotModel _sOBotModel;
+    private BotModel _sOBotModel;
 
-    public BotGetDamageController(SOBotModel sOBotModel)
+    public BotGetDamageController(BotModel sOBotModel)
     {
         _sOBotModel = sOBotModel;
     }
