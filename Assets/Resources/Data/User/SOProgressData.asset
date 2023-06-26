@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa0598b91e77174fab59f7f18698105, type: 3}
+  m_Name: SOProgressData
+  m_EditorClassIdentifier: 
+  VictoriesPercentages: 10
+  Victories: 0
+  Defeats: 0
+  Battles: 1
+  SkillPercentages: 5
+  "Shots\u0410ired": 0
+  DestroyEnemy: 0
+  DestroyModules: 0
+  Destroy: 0
+  Awards: 2

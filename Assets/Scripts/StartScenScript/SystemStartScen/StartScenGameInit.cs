@@ -20,6 +20,12 @@ internal sealed class StartScenGameInit
         PanelHangarController _panelHangarController = new PanelHangarController(mainController.PanelHangarView);
         controllers.Add(_panelHangarController);
 
+        PanelMenuController _panelMenuController = new PanelMenuController(mainController.PanelMenuView);
+        controllers.Add(_panelMenuController);
+
+        MenuAccountController _menuAccountController = new MenuAccountController(mainController.MenuAccountView, mainController.SOUserData, mainController.SelectAuthorizationOrRegistrationView.AuthorizOrRegPanel);
+        controllers.Add(_panelMenuController);
+
         mainController.SelectAuthorizationOrRegistrationView.AuthorizOrRegPanel.SetActive(!mainController.SOUserData.Authorization);
     }
 

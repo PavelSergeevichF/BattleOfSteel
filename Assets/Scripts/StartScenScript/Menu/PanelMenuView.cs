@@ -13,6 +13,7 @@ public class PanelMenuView : MonoBehaviour
     [SerializeField] private Button _exit;
 
     [Header("Panels")]
+    [SerializeField] private GameObject _panelMenu;
     [SerializeField] private GameObject _accountPanel;
     [SerializeField] private GameObject _storePanel;
     [SerializeField] private GameObject _legionPanel;
@@ -28,6 +29,7 @@ public class PanelMenuView : MonoBehaviour
     public Button Back => _back;
     public Button Exit => _exit;
 
+    public GameObject PanelMenu => _panelMenu;
     public GameObject AccountPanel => _accountPanel;
     public GameObject StorePanel => _storePanel;
     public GameObject LegionPanel => _legionPanel;

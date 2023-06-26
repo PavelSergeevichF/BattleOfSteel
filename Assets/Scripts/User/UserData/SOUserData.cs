@@ -9,6 +9,7 @@ public class SOUserData : ScriptableObject
     public SOEconomyData Economy;
     public SOExpData ExpData;
     public SOBotsData BotsData;
+    public SOProgressData ProgressData;
 
     public bool Authorization = false;
 }
