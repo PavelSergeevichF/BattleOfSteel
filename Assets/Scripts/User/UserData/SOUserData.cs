@@ -9,4 +9,6 @@ public class SOUserData : ScriptableObject
     public SOEconomyData Economy;
     public SOExpData ExpData;
     public SOBotsData BotsData;
+
+    public bool Authorization = false;
 }

@@ -3,51 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectAuthorizationOrRegistrationController
+public class SelectAuthorizationOrRegistrationController : IInitialization
 {
-    private GameObject _registrationPanel;
-    private GameObject _authorizationPanel;
-    private GameObject _closeButtonPanel;
-    private GameObject _authorizationButtonPanel;
-    private Button _registrationButton;
-    private Button _authorizationButton;
-    private Button _closeButton;
+    private SelectAuthorizationOrRegistrationView _selectAuthorizationOrRegistrationView;
 
-    public GameObject CloseButtonPanel => _closeButtonPanel;
-    public GameObject AuthorizationButtonPanel => _authorizationButtonPanel;
 
-    public SelectAuthorizationOrRegistrationController
-        (GameObject registrationPanel, GameObject authorizationPanel, Button registrationButton, Button authorizationButton, Button closeButton, GameObject closeButtonPanel, GameObject authorizationButtonPanel)
+    public SelectAuthorizationOrRegistrationController(SelectAuthorizationOrRegistrationView selectAuthorizationOrRegistrationView)
     {
-        _registrationPanel = registrationPanel;
-        _authorizationPanel = authorizationPanel;
-        _registrationButton = registrationButton;
-        _authorizationButton = authorizationButton;
-        _closeButton = closeButton;
-        _closeButtonPanel = closeButtonPanel;
-        _authorizationButtonPanel = authorizationButtonPanel;
-        _registrationButton.onClick.AddListener(SelectOnReg);
-        _authorizationButton.onClick.AddListener(SelectOnAuth);
-        _closeButton.onClick.AddListener(ClosePanels);
-        _authorizationButtonPanel.SetActive(true);
+        _selectAuthorizationOrRegistrationView = selectAuthorizationOrRegistrationView;
+        if (_selectAuthorizationOrRegistrationView.Authorization)
+        {
+            SelectOnReg();
+        }
+        else 
+        {
+            SelectOnAuth();
+        }
+
+        _selectAuthorizationOrRegistrationView.SelectButton.onClick.AddListener(SelectRegOrAuth);
+        _selectAuthorizationOrRegistrationView.CloseButton.onClick.AddListener(ClosePanels);
+    }
+
+    public void Init()
+    {
+    }
+
+    private void SelectRegOrAuth()
+    {
+        if (_selectAuthorizationOrRegistrationView.Authorization)
+        {
+            _selectAuthorizationOrRegistrationView.Authorization = false;
+            SelectOnReg();
+        }
+        else 
+        {
+            _selectAuthorizationOrRegistrationView.Authorization = true;
+            SelectOnAuth();
+
+        }
     }
     private void SelectOnReg()
     {
-        _registrationPanel.SetActive(true);
-        _authorizationPanel.SetActive(false);
-        _closeButtonPanel.SetActive(false);
-        _authorizationButtonPanel.SetActive(true);
+        _selectAuthorizationOrRegistrationView.CheckPasswordPanel.SetActive(true);
+        _selectAuthorizationOrRegistrationView.EmailPanel.SetActive(true);
+        _selectAuthorizationOrRegistrationView.TextSelectButton.text = "Авторизация";
     }
     private void SelectOnAuth()
     {
-        _registrationPanel.SetActive(false);
-        _authorizationPanel.SetActive(true);
-        _authorizationButtonPanel.SetActive(true);
+        _selectAuthorizationOrRegistrationView.CheckPasswordPanel.SetActive(false);
+        _selectAuthorizationOrRegistrationView.EmailPanel.SetActive(false);
+        _selectAuthorizationOrRegistrationView.TextSelectButton.text = "Регистрация";
     }
     public void ClosePanels()
     {
-        _registrationPanel.SetActive(false);
-        _authorizationPanel.SetActive(false);
+        if (_selectAuthorizationOrRegistrationView.SOUserData.Authorization)
+        {
+            _selectAuthorizationOrRegistrationView.AuthorizOrRegPanel.SetActive(false);
+        }
+        else 
+        {
+            _selectAuthorizationOrRegistrationView.ErrorText.text = "Вход или регистрация обязательны";
+        }
     }
-
 }

@@ -8,11 +8,11 @@ internal sealed class StartScenGameInit
 {
     public StartScenGameInit(StartScenControllers controllers, StartScenGameControllerView mainController)
     {
-
-        InitSingleton(controllers);
-
         StartScenButtonPanelController _startScenButtonPanelController = new StartScenButtonPanelController(mainController.MainButtonPanelView);
         controllers.Add(_startScenButtonPanelController);
+
+        SelectAuthorizationOrRegistrationController _selectAuthorizationOrRegistrationController = new SelectAuthorizationOrRegistrationController(mainController.SelectAuthorizationOrRegistrationView);
+        controllers.Add(_selectAuthorizationOrRegistrationController);
 
         PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView);
         controllers.Add(_panelAmmunitionController);
@@ -20,9 +20,7 @@ internal sealed class StartScenGameInit
         PanelHangarController _panelHangarController = new PanelHangarController(mainController.PanelHangarView);
         controllers.Add(_panelHangarController);
 
+        mainController.SelectAuthorizationOrRegistrationView.AuthorizOrRegPanel.SetActive(!mainController.SOUserData.Authorization);
     }
 
-    private void InitSingleton(StartScenControllers controllers)
-    {
-    }
 }

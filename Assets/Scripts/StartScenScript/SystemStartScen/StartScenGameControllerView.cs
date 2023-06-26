@@ -7,6 +7,7 @@ public class StartScenGameControllerView : MonoBehaviour
     [SerializeField] private PanelAmmunitionView _panelAmmunitionView;
     [SerializeField] private PanelHangarView _panelHangarView;
     [SerializeField] private SOUserData _sOUserData;
+    [SerializeField] private SelectAuthorizationOrRegistrationView _selectAuthorizationOrRegistrationView;
 
     private StartScenControllers _startScenControllers;
 
@@ -15,6 +16,7 @@ public class StartScenGameControllerView : MonoBehaviour
     public PanelAmmunitionView PanelAmmunitionView => _panelAmmunitionView;
     public PanelHangarView PanelHangarView => _panelHangarView;
     public SOUserData SOUserData => _sOUserData;
+    public SelectAuthorizationOrRegistrationView SelectAuthorizationOrRegistrationView => _selectAuthorizationOrRegistrationView;
 
     private void Awake()
     {

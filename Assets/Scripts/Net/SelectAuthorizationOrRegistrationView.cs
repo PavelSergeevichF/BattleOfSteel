@@ -5,22 +5,53 @@ using UnityEngine.UI;
 
 public class SelectAuthorizationOrRegistrationView : MonoBehaviour
 {
-    [SerializeField] private GameObject _registrationPanel;
-    [SerializeField] private GameObject _authorizationPanel;
-    [SerializeField] private GameObject _closeButtonPanel;
-    [SerializeField] private GameObject _authorizationButtonPanel;
-    [SerializeField] private Button _registrationButton;
-    [SerializeField] private Button _authorizationButton;
+    [Header("Panels")]
+    [SerializeField] private GameObject _authorizOrRegPanel;
+    [SerializeField] private GameObject _checkPasswordPanel;
+    [SerializeField] private GameObject _emailPanel;
+
+    [Header("Buttons")]
+    [SerializeField] private Button _registrationOrAuthorizationButton;
+    [SerializeField] private Button _selectButton;
     [SerializeField] private Button _closeButton;
 
-    private SelectAuthorizationOrRegistrationController _selectAuthorizationOrRegistrationController;
+    [Header("InputFields")]
+    [SerializeField] private InputField _userNameField;
+    [SerializeField] private InputField _userEmailField;
+    [SerializeField] private InputField _userPasswordField;
+    [SerializeField] private InputField _userCheckPasswordField;
 
-    public SelectAuthorizationOrRegistrationController SelectAuthorizationOrRegistrationController => _selectAuthorizationOrRegistrationController;
+    [Header("Texts")]
+    [SerializeField] private Text _errorText;
+    [SerializeField] private Text _infoText;
+    [SerializeField] private Text _textSelectButton;
 
-    void Start()
-    {
-        _selectAuthorizationOrRegistrationController = new SelectAuthorizationOrRegistrationController
-            (_registrationPanel, _authorizationPanel, _registrationButton, _authorizationButton, _closeButton, _closeButtonPanel, _authorizationButtonPanel);
-    }
+    [Header("Image")]
+    [SerializeField] private Image _image;
 
+    [Header("ScriptableObject")]
+    [SerializeField] private SOUserData _sOUserData; 
+
+    public GameObject AuthorizOrRegPanel => _authorizOrRegPanel;
+    public GameObject CheckPasswordPanel => _checkPasswordPanel;
+    public GameObject EmailPanel => _emailPanel;
+
+    public Button RegistrationOrAuthorizationButton => _registrationOrAuthorizationButton;
+    public Button SelectButton => _selectButton;
+    public Button CloseButton => _closeButton;
+
+    public InputField UserNameField => _userNameField;
+    public InputField UserEmailField => _userEmailField;
+    public InputField UserPasswordField => _userPasswordField;
+    public InputField UserCheckPasswordField => _userCheckPasswordField;
+
+    public Text ErrorText => _errorText;
+    public Text InfoText => _infoText;
+    public Text TextSelectButton => _textSelectButton;
+
+    public Image Image => _image;
+
+    public SOUserData SOUserData => _sOUserData;
+
+    public bool Authorization = true;
 }
