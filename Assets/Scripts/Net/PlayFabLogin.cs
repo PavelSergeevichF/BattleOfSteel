@@ -10,6 +10,8 @@ public class PlayFabLogin : MonoBehaviour
     private const string GAME_VERSION = "dev";
     private const string AUTHENTIFICATION_KEY = "AUTHENTIFICATION_KEY";
 
+    [SerializeField] private string PlayFab_Titel;
+
     [SerializeField] private CatalogManagerView _catalogManager;
     private struct Data
     {
@@ -21,7 +23,8 @@ public class PlayFabLogin : MonoBehaviour
         // Here we need to check whether TitleId property is configured in settings or not
         if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId))
         {
-            PlayFabSettings.staticSettings.TitleId = PLAYFAB_TITLE; 
+            PlayFabSettings.staticSettings.TitleId = PLAYFAB_TITLE;
+            PlayFab_Titel = PLAYFAB_TITLE;
         } 
 
         var needCreation = !PlayerPrefs.HasKey(AUTHENTIFICATION_KEY);
@@ -32,7 +35,7 @@ public class PlayFabLogin : MonoBehaviour
             CustomId = id,
             CreateAccount = needCreation
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure, data);
+        PlayFabClientAPI.LoginWithCustomID( request, OnLoginSuccess, OnLoginFailure, data);
     }
 
     private void OnLoginSuccess(LoginResult result)

@@ -7,6 +7,7 @@ public class StartScenGameControllerView : MonoBehaviour
     [SerializeField] private PanelAmmunitionView _panelAmmunitionView;
     [SerializeField] private PanelHangarView _panelHangarView;
     [SerializeField] private MenuAccountView _menuAccountView;
+    [SerializeField] private LicenseView _licenseView;
     [SerializeField] private SOUserData _sOUserData;
     [SerializeField] private SelectAuthorizationOrRegistrationView _selectAuthorizationOrRegistrationView;
 
@@ -17,6 +18,7 @@ public class StartScenGameControllerView : MonoBehaviour
     public PanelAmmunitionView PanelAmmunitionView => _panelAmmunitionView;
     public PanelHangarView PanelHangarView => _panelHangarView;
     public MenuAccountView MenuAccountView => _menuAccountView;
+    public LicenseView LicenseView => _licenseView;
     public SOUserData SOUserData => _sOUserData;
     public SelectAuthorizationOrRegistrationView SelectAuthorizationOrRegistrationView => _selectAuthorizationOrRegistrationView;
 

@@ -5,12 +5,14 @@ public class MenuAccountController : IInitialization
     private MenuAccountView _menuAccountView;
     private SOUserData _sOUserData;
     private GameObject _authorizOrRegPanel;
+    private LicenseController _licenseController;
 
-    public MenuAccountController(MenuAccountView menuAccountView, SOUserData sOUserData, GameObject authorizOrRegPanel)
+    public MenuAccountController(MenuAccountView menuAccountView, SOUserData sOUserData, GameObject authorizOrRegPanel, LicenseController licenseController) 
     {
         _sOUserData = sOUserData;
-        _authorizOrRegPanel = authorizOrRegPanel; 
+        _authorizOrRegPanel = authorizOrRegPanel;
         _menuAccountView = menuAccountView;
+        _licenseController = licenseController;
         menuAccountView.ExitAccount.onClick.AddListener(ClicOnExitAccount);
         menuAccountView.ShowInfo.onClick.AddListener(ClicOnShowInfo);
         menuAccountView.CloseInfo.onClick.AddListener(ClicOnCloseInfo);
@@ -34,6 +36,7 @@ public class MenuAccountController : IInitialization
         _sOUserData.Authorization = false;
         _sOUserData.UserName="";
         _sOUserData.UserPassword = "";
+        _licenseController.SetActivePanel();
         _authorizOrRegPanel.SetActive(true);
     }
     private void ClicOnShowInfo()
