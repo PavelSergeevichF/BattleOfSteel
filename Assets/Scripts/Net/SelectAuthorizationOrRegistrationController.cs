@@ -13,15 +13,14 @@ public class SelectAuthorizationOrRegistrationController : IInitialization
         _selectAuthorizationOrRegistrationView = selectAuthorizationOrRegistrationView;
         if (_selectAuthorizationOrRegistrationView.Authorization)
         {
-            SelectOnReg();
+            SelectOnAuth();
         }
         else 
         {
-            SelectOnAuth();
+            SelectOnReg();
         }
-
+        selectAuthorizationOrRegistrationView.ClosePanelRegistrOrAuthor += ClosePanels;
         _selectAuthorizationOrRegistrationView.SelectButton.onClick.AddListener(SelectRegOrAuth);
-        _selectAuthorizationOrRegistrationView.CloseButton.onClick.AddListener(ClosePanels);
     }
 
     public void Init()

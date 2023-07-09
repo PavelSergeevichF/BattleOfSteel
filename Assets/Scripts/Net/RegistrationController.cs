@@ -13,7 +13,7 @@ public class RegistrationController : MonoBehaviour
 
     private void Awake()
     {
-        _selectAuthorizationOrRegistrationView.UserEmailField.onValueChanged.AddListener(SetUserName);
+        _selectAuthorizationOrRegistrationView.UserNameField.onValueChanged.AddListener(SetUserName);
         _selectAuthorizationOrRegistrationView.UserPasswordField.onValueChanged.AddListener(SetUserPassword);
         _selectAuthorizationOrRegistrationView.UserCheckPasswordField.onValueChanged.AddListener(SetCheckPassword);
         _selectAuthorizationOrRegistrationView.UserEmailField.onValueChanged.AddListener(SetUserEmale);
@@ -40,6 +40,7 @@ public class RegistrationController : MonoBehaviour
     }
     private void OnClickButtonRegistrationOrAuthorization()
     {
+        _selectAuthorizationOrRegistrationView.ErrorText.text = "Отправка данных, ожедайте.";
         if (!_selectAuthorizationOrRegistrationView.Authorization  && CheckPassvord() && CheckEmail())
         {
             SubmitRegistration();
@@ -47,6 +48,7 @@ public class RegistrationController : MonoBehaviour
     }
     private void SubmitRegistration()
     {
+        _selectAuthorizationOrRegistrationView.ErrorText.text = "";
         PlayFabClientAPI.RegisterPlayFabUser(new RegisterPlayFabUserRequest
         {
             Username = _userName,
@@ -61,6 +63,8 @@ public class RegistrationController : MonoBehaviour
             _selectAuthorizationOrRegistrationView.ErrorText.text = $"User registrated: {result.Username}";
             _selectAuthorizationOrRegistrationView.SOUserData.Authorization = true;
             Debug.Log($"User registrated: {result.Username}");
+            _selectAuthorizationOrRegistrationView.UpdateUserData();
+            _selectAuthorizationOrRegistrationView.ClosePanel();
         }, error =>
         {
             _selectAuthorizationOrRegistrationView.ErrorText.text = error.ErrorMessage;

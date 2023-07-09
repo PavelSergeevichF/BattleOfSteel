@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29953f1a2171b6a4ebf2baa4a142b1a5, type: 3}
   m_Name: SOUserData
   m_EditorClassIdentifier: 
-  UserName: UserName
-  UserPassword: 
+  UserName: Admin5
+  UserPassword: Admin5
   Economy: {fileID: 11400000, guid: e94ef555417b12a4eb0eeff9f07f9032, type: 2}
   ExpData: {fileID: 11400000, guid: 90cd7bf26898511408cc30b7a54f18da, type: 2}
   BotsData: {fileID: 11400000, guid: b03b4791d411af64fabd61c476ff958e, type: 2}

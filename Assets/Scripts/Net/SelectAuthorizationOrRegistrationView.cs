@@ -13,7 +13,6 @@ public class SelectAuthorizationOrRegistrationView : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private Button _registrationOrAuthorizationButton;
     [SerializeField] private Button _selectButton;
-    [SerializeField] private Button _closeButton;
 
     [Header("InputFields")]
     [SerializeField] private InputField _userNameField;
@@ -38,7 +37,6 @@ public class SelectAuthorizationOrRegistrationView : MonoBehaviour
 
     public Button RegistrationOrAuthorizationButton => _registrationOrAuthorizationButton;
     public Button SelectButton => _selectButton;
-    public Button CloseButton => _closeButton;
 
     public InputField UserNameField => _userNameField;
     public InputField UserEmailField => _userEmailField;
@@ -53,5 +51,22 @@ public class SelectAuthorizationOrRegistrationView : MonoBehaviour
 
     public SOUserData SOUserData => _sOUserData;
 
+    public delegate void InvokeUpdate();
+
+    public event InvokeUpdate InvokeUpdateUserData;
+
+    public delegate void ClosePanelRegOrAuthor();
+
+    public event ClosePanelRegOrAuthor ClosePanelRegistrOrAuthor;
+
     public bool Authorization = true;
+
+    public void UpdateUserData()
+    {
+        InvokeUpdateUserData.Invoke();
+    }
+    public void ClosePanel()
+    {
+        ClosePanelRegistrOrAuthor.Invoke();
+    }
 }

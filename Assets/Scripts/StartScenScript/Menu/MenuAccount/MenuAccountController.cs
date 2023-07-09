@@ -7,16 +7,17 @@ public class MenuAccountController : IInitialization
     private GameObject _authorizOrRegPanel;
     private LicenseController _licenseController;
 
-    public MenuAccountController(MenuAccountView menuAccountView, SOUserData sOUserData, GameObject authorizOrRegPanel, LicenseController licenseController) 
+    public MenuAccountController(MenuAccountView menuAccountView, SOUserData sOUserData, SelectAuthorizationOrRegistrationView selectAuthorizationOrRegistrationView, LicenseController licenseController) 
     {
         _sOUserData = sOUserData;
-        _authorizOrRegPanel = authorizOrRegPanel;
+        _authorizOrRegPanel = selectAuthorizationOrRegistrationView.AuthorizOrRegPanel;
         _menuAccountView = menuAccountView;
         _licenseController = licenseController;
         menuAccountView.ExitAccount.onClick.AddListener(ClicOnExitAccount);
         menuAccountView.ShowInfo.onClick.AddListener(ClicOnShowInfo);
         menuAccountView.CloseInfo.onClick.AddListener(ClicOnCloseInfo);
         menuAccountView.Back.onClick.AddListener(ClicOnBack);
+        selectAuthorizationOrRegistrationView.InvokeUpdateUserData += SetData;
         SetData();
     }
 

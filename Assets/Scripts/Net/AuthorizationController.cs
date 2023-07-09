@@ -20,6 +20,7 @@ public class AuthorizationController : MonoBehaviour
 
     private void OnClickButtonRegistrationOrAuthorization()
     {
+        _selectAuthorizationOrRegistrationView.ErrorText.text = "Отправка данных, ожедайте.";
         if (_selectAuthorizationOrRegistrationView.Authorization)
         {
             SubmitAuthorization();
@@ -49,6 +50,8 @@ public class AuthorizationController : MonoBehaviour
             _selectAuthorizationOrRegistrationView.SOUserData.UserName = _userName;
             _selectAuthorizationOrRegistrationView.SOUserData.UserPassword = _userPassword;
             _selectAuthorizationOrRegistrationView.SOUserData.Authorization = true;
+            _selectAuthorizationOrRegistrationView.UpdateUserData();
+            _selectAuthorizationOrRegistrationView.ClosePanel();
 
         }, error =>
         {
