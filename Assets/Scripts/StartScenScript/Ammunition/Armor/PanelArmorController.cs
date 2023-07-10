@@ -15,11 +15,14 @@ public class PanelArmorController
 
     private PanelArmorView _panelArmorView;
     private GameObject _armorPanel;
+    private SOBotsData _botsData;
 
-    public PanelArmorController(PanelArmorView panelArmorView, GameObject armorPanel)
+    public PanelArmorController(PanelArmorView panelArmorView, GameObject armorPanel, SOBotsData botsData)
     {
         _panelArmorView = panelArmorView;
         _armorPanel = armorPanel;
+
+        _botsData = botsData;
 
         _panelArmorView.CastArmor.onClick.AddListener(CastArmorClick);
         _panelArmorView.RolledArmor.onClick.AddListener(RolledArmorClick);
@@ -28,6 +31,7 @@ public class PanelArmorController
         _panelArmorView.Part.onClick.AddListener(PartClick);
         _armorImagePanels = _panelArmorView.ArmorImagePanels;
     }
+
 
     private void CastArmorClick() => SwitchingImage(0);
 

@@ -14,9 +14,16 @@ public class PanelAmmunitionController : IExecute
     private GameObject _infoBotPanel;
     private GameObject _panelMenuAmmunition;
 
-    private PanelArmorController _panelArmorController;
+    private SOBotsData _botsData;
 
-    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView)
+    private PanelArmorController _panelArmorController;
+    private PanelEngineController _panelEngineController;
+    private PanelGunsController _panelGunsController;
+    //private PanelArmorController _panelArmorController;
+    //private PanelArmorController _panelArmorController;
+    //private PanelArmorController _panelArmorController;
+
+    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData)
     {
         _panelAmmunitionView = panelAmmunitionView;
         _armorPanel          = panelAmmunitionView.ArmorPanel;
@@ -26,6 +33,8 @@ public class PanelAmmunitionController : IExecute
         _ammunitionPanel     = panelAmmunitionView.AmmunitionPanel;
         _infoBotPanel        = panelAmmunitionView.InfoBotPanel;
         _panelMenuAmmunition = panelAmmunitionView.PanelMenuAmmunition;
+
+        _botsData = sOUserData.BotsData;
 
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
         panelAmmunitionView.Engine    .onClick.AddListener(EnginePanelActive);
@@ -38,7 +47,7 @@ public class PanelAmmunitionController : IExecute
 
         ArmorPanelActive();
 
-        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel);
+        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData);
     }
 
     public void Execute()

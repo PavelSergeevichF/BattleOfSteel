@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379baf5fc8f11fb45a45daa6bac4a51b, type: 3}
   m_Name: SOEconomyData
   m_EditorClassIdentifier: 
-  GoldText: 
-  SilverText: 
-  CopperText: 
+  GoldText: 1
+  SilverText: 2
+  CopperText: 3

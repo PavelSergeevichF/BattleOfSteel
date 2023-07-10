@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18faf2305838a8441a23399fe169540b, type: 3}
   m_Name: SOExpData
   m_EditorClassIdentifier: 
-  ExpText: 
+  ExpText: 10

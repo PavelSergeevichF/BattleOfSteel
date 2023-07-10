@@ -6,6 +6,7 @@ public class MainButtonPanelView : MonoBehaviour
     [SerializeField] private Button _mineMenuButton;
     [SerializeField] private Button _parametrMenuButton;
     [SerializeField] private Button _hangarButton;
+    [SerializeField] private Button _showAdsButton;
 
     [SerializeField] private GameObject _mineMenuPanel;
     [SerializeField] private GameObject _parametrPanel;
@@ -15,6 +16,7 @@ public class MainButtonPanelView : MonoBehaviour
     public Button     MineMenuButton     => _mineMenuButton;
     public Button     ParametrMenuButton => _parametrMenuButton;
     public Button     HangarButton => _hangarButton;
+    public Button ShowAdsButton => _showAdsButton;
 
     public GameObject MineMenuPanel      => _mineMenuPanel;
     public GameObject ParametrPanel      => _parametrPanel;
