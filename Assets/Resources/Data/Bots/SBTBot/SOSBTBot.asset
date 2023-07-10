@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546d1ad99fe556f4592431bf2ffec206, type: 3}
   m_Name: SOSBTBot
   m_EditorClassIdentifier: 
+  BotsData:
+  - {fileID: 11400000, guid: 001738081168dd24e87fb84fc5ede174, type: 2}
+  BotActive: -1

@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546d1ad99fe556f4592431bf2ffec206, type: 3}
   m_Name: SOTTBot
   m_EditorClassIdentifier: 
+  BotsData:
+  - {fileID: 11400000, guid: de698389015528048a58fc5a63b42641, type: 2}
+  BotActive: 0

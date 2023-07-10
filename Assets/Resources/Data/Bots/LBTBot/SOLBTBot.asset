@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546d1ad99fe556f4592431bf2ffec206, type: 3}
   m_Name: SOLBTBot
   m_EditorClassIdentifier: 
+  BotsData:
+  - {fileID: 11400000, guid: 74e49d66ebc14d34c86ffe34bba6d274, type: 2}
+  - {fileID: 11400000, guid: 291359fac96daac4e85cb3efd4e3b82f, type: 2}
+  BotActive: 1

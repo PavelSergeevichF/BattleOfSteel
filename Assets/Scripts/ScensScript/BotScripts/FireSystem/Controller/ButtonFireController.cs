@@ -3,7 +3,6 @@ using UnityEngine;
 public class ButtonFireController
 {
     private SOBotConnect _bot;
-    private SOBotShellModel _sOBotShellModel;
     private BotView _botView;
     private const int _maxTimeGun= 30;
     private int _timeGun = 30;
@@ -14,7 +13,6 @@ public class ButtonFireController
     public ButtonFireController(SOBotConnect bot)
     {
         _bot = bot;
-        _sOBotShellModel = _bot.bot.GetComponent<BotView>().GetSOBotModel().Ammunition;
         _botView = _bot.bot.GetComponent<BotView>();
     }
     public void Update()
@@ -25,9 +23,9 @@ public class ButtonFireController
     {
         if(_timeGun== _maxTimeGun)
         {
-            if(_sOBotShellModel.ShellNum > 0)
+            if(_bot.bot.GetComponent<BotView>().SOBotModel.ShellNum > 0)
             {
-                _sOBotShellModel.ShellNum--;
+                _bot.bot.GetComponent<BotView>().SOBotModel.ShellNum--;
                 _timeGun = 0;
                 _botView.GunFire();
             }
@@ -38,9 +36,9 @@ public class ButtonFireController
         Debug.Log($"Test= {++_test}");
         if (_timeMachineGun == _maxTimeMachineGun)
         {
-            if(_sOBotShellModel.BulletNum>0)
+            if(_bot.bot.GetComponent<BotView>().SOBotModel.BulletNum>0)
             {
-                _sOBotShellModel.BulletNum--;
+                _bot.bot.GetComponent<BotView>().SOBotModel.BulletNum--;
                 _timeMachineGun = 0;
                 _botView.MachineGunFire();
             }

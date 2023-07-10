@@ -6,5 +6,5 @@ using UnityEngine;
 public class SOBot : ScriptableObject
 {
     public List<BotModel> BotsData;
-    public int BotActive;
+    public int BotActive=0;
 }

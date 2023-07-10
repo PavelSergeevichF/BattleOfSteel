@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BotSetDamageController 
 {
-    private SOBotGunModel _sOBotGunModel;
     private float _distancToTheEnemy;
     private float _caliberGun;
     private int _longGun;
@@ -11,11 +10,10 @@ public class BotSetDamageController
 
     public BotSetDamageController(BotModel _sOBotModel)
     {
-        _sOBotGunModel = _sOBotModel.GunsModel;
-        _caliberGun = _sOBotGunModel.CaliberGun;
-        _longGun = _sOBotGunModel.LongGun;
-        _caliberMachineGun = _sOBotGunModel.CaliberMachineGun;
-        _longMachineGun = _sOBotGunModel.LongMachineGun;
+        _caliberGun = _sOBotModel.CaliberGun;
+        _longGun = _sOBotModel.LongGun;
+        _caliberMachineGun = _sOBotModel.CaliberMachineGun;
+        _longMachineGun = _sOBotModel.LongMachineGun;
     }
     public void SetDataFire(EGunTaype taype, float dist)
     {

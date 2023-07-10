@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = nameof(BotModel), menuName = "SOGame/" + nameof(BotModel), order = 0)]
 public class BotModel : ScriptableObject
 {
+    [Header("MineData")]
+    public string NameBot="__";
     public float MassBot;
     public int PowerEngine;
     public int IDBot;
@@ -15,7 +17,22 @@ public class BotModel : ScriptableObject
     public int HP = 100;
     public int MaxHP = 100;
     public bool Tracks = false;
+
+    [Header("WeaponData")]
+    public bool Gun = false;
+    public float CaliberGun = 20;
+    public int LongGun = 200;
+
+    public bool MachineGun = false;
+    public float CaliberMachineGun = 5;
+    public int LongMachineGun = 100;
+
+    [Header("AmmunitionData")]
+    public int ShellNum = 10;
+    public int BulletNum = 100;
+
+    [Header("OtherData")]
     public Transform TransformTarget;
-    public SOBotShellModel Ammunition;
-    public SOBotGunModel GunsModel;
+    public GameObject BotGameObject;
+    public Sprite BotLabel;
 }

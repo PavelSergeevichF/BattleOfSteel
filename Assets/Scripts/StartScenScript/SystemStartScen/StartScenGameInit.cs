@@ -20,7 +20,7 @@ internal sealed class StartScenGameInit
         PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData);
         controllers.Add(_panelAmmunitionController);
 
-        PanelHangarController _panelHangarController = new PanelHangarController(mainController.PanelHangarView);
+        PanelHangarController _panelHangarController = new PanelHangarController(mainController.PanelHangarView, mainController.SOUserData);
         controllers.Add(_panelHangarController);
 
         PanelMenuController _panelMenuController = new PanelMenuController(mainController.PanelMenuView);

@@ -73,6 +73,6 @@ public class BotView : MonoBehaviour
 
     public void GunFire() => _botFireController.GunFire();
     public void MachineGunFire() => _botFireController.MachineGunFire();
-    public BotModel GetSOBotModel() => _sOBotModel;
+    public BotModel SOBotModel => _sOBotModel;
     public SOBotConnect GetSOBotConnect() => _sOBotConnect;
 }

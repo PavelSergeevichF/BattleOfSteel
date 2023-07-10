@@ -16,15 +16,14 @@ public class PanelHangarView : MonoBehaviour
     [SerializeField] private Button _selectStoreOrHangar;
     [SerializeField] private Button _back;
 
+    [SerializeField] private Button _select;
+
     [Header("Text")]
     public List<Text> TextInfo;
 
     [Header("Panels")]
     [SerializeField] private GameObject _armorPanel;
-    [SerializeField] private GameObject _type1Panel;
-    [SerializeField] private GameObject _type2Panel;
-    [SerializeField] private GameObject _type3Panel;
-    [SerializeField] private GameObject _type4Panel;
+    [SerializeField] private List<GameObject> _typePanels;
 
     public Button Type1 => _type1;
     public Button Type2 => _type2;
@@ -33,12 +32,10 @@ public class PanelHangarView : MonoBehaviour
     public Button BackBot => _backBot;
     public Button NextBot => _nextBot;
     public Button SelectStoreOrHangar => _selectStoreOrHangar;
+    public Button Select => _select;
     public Button Back => _back;
 
     public GameObject ArmorPanel => _armorPanel;
 
-    public GameObject Type1Panel => _type1Panel;
-    public GameObject Type2Panel => _type2Panel;
-    public GameObject Type3Panel => _type3Panel;
-    public GameObject Type4Panel => _type4Panel;
+    public List<GameObject> TypePanels => _typePanels;
 }
