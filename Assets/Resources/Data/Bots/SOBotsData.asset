@@ -16,3 +16,5 @@ MonoBehaviour:
   SBTBotsData: {fileID: 11400000, guid: 3e61a5d56ee739e4cb69451d209541ca, type: 2}
   LTBotsData: {fileID: 11400000, guid: 9224138aa713465418acd6c666ba2a5c, type: 2}
   TTBotsData: {fileID: 11400000, guid: 78b0d6897dd11104da7ddefedc4e893d, type: 2}
+  ActivBot: {fileID: 11400000, guid: 74e49d66ebc14d34c86ffe34bba6d274, type: 2}
+  eTypeBot: 0

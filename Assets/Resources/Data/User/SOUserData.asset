@@ -18,4 +18,4 @@ MonoBehaviour:
   ExpData: {fileID: 11400000, guid: 90cd7bf26898511408cc30b7a54f18da, type: 2}
   BotsData: {fileID: 11400000, guid: b03b4791d411af64fabd61c476ff958e, type: 2}
   ProgressData: {fileID: 11400000, guid: e637c159919c77a46b5bf2e1b3cdbd42, type: 2}
-  Authorization: 0
+  Authorization: 1

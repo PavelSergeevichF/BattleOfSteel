@@ -99,11 +99,12 @@ public class PanelHangarController : IExecute
             _sOBotsData.eTypeBot=_eTypeBot;
             switch (_sOBotsData.eTypeBot)
             {
-                case ETypeBot.LBT: _sOBotsData.ActovBot= _sOBotsData.LBTBotsData.BotsData[_sOBotsData.LBTBotsData.BotActive]; break;
-                case ETypeBot.SBT: _sOBotsData.ActovBot = _sOBotsData.SBTBotsData.BotsData[_sOBotsData.SBTBotsData.BotActive]; break;
-                case ETypeBot.LT: _sOBotsData.ActovBot= _sOBotsData.LTBotsData.BotsData[_sOBotsData.LTBotsData.BotActive]; break;
-                case ETypeBot.TT: _sOBotsData.ActovBot = _sOBotsData.TTBotsData.BotsData[_sOBotsData.TTBotsData.BotActive]; break;
+                case ETypeBot.LBT: _sOBotsData.ActivBot= _sOBotsData.LBTBotsData.BotsData[_sOBotsData.LBTBotsData.BotActive]; break;
+                case ETypeBot.SBT: _sOBotsData.ActivBot = _sOBotsData.SBTBotsData.BotsData[_sOBotsData.SBTBotsData.BotActive]; break;
+                case ETypeBot.LT: _sOBotsData.ActivBot= _sOBotsData.LTBotsData.BotsData[_sOBotsData.LTBotsData.BotActive]; break;
+                case ETypeBot.TT: _sOBotsData.ActivBot = _sOBotsData.TTBotsData.BotsData[_sOBotsData.TTBotsData.BotActive]; break;
             }
+            _sOBotsData.ActivBot.TypeBot = _sOBotsData.eTypeBot;
         }
         else
         {

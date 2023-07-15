@@ -5,6 +5,7 @@ public class SOUserData : ScriptableObject
 {
     public string UserName;
     public string UserPassword;
+    public string TitleID = "58BCD";
 
     public SOEconomyData Economy;
     public SOExpData ExpData;

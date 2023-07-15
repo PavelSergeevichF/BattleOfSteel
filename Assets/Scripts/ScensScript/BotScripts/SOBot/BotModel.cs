@@ -17,6 +17,10 @@ public class BotModel : ScriptableObject
     public int HP = 100;
     public int MaxHP = 100;
     public bool Tracks = false;
+    public ETypeBot TypeBot;
+
+    [Header("ArmorData")]
+    public ArmorDataModel ArmorModel=new ArmorDataModel();
 
     [Header("WeaponData")]
     public bool Gun = false;

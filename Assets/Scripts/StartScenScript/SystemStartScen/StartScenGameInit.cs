@@ -27,7 +27,7 @@ internal sealed class StartScenGameInit
         controllers.Add(_panelMenuController);
 
         MenuAccountController _menuAccountController = new MenuAccountController(mainController.MenuAccountView, mainController.SOUserData, mainController.SelectAuthorizationOrRegistrationView, _licenseController);
-        controllers.Add(_panelMenuController);
+        controllers.Add(_menuAccountController);
 
         mainController.SelectAuthorizationOrRegistrationView.AuthorizOrRegPanel.SetActive(!mainController.SOUserData.Authorization);
 

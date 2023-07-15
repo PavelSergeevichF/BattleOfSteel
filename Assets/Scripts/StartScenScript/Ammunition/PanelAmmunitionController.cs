@@ -36,6 +36,8 @@ public class PanelAmmunitionController : IExecute
 
         _botsData = sOUserData.BotsData;
 
+        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData);
+
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
         panelAmmunitionView.Engine    .onClick.AddListener(EnginePanelActive);
         panelAmmunitionView.Guns      .onClick.AddListener(GunsPanelActive);
@@ -47,16 +49,17 @@ public class PanelAmmunitionController : IExecute
 
         ArmorPanelActive();
 
-        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData);
     }
 
     public void Execute()
     {
+        _panelArmorController.Execute();
     }
 
     private void ComeBeack() {   _panelMenuAmmunition.SetActive(false); }
 
-    private void ArmorPanelActive() { ClearPanel(); _armorPanel     .SetActive(true); }
+    private void ArmorPanelActive() 
+    { ClearPanel(); _armorPanel.SetActive(true);  _panelArmorController.SetMaxArmor(); }
 
     private void EnginePanelActive() {  ClearPanel();  _enginePanel.SetActive(true); }
 

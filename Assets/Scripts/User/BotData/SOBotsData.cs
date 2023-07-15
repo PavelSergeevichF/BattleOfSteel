@@ -10,7 +10,7 @@ public class SOBotsData : ScriptableObject
     public SOBot LTBotsData; 
     public SOBot TTBotsData;
 
-    public BotModel ActovBot;
+    public BotModel ActivBot;
 
     public ETypeBot eTypeBot;
 }

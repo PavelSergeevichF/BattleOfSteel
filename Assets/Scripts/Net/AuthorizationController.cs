@@ -15,7 +15,6 @@ public class AuthorizationController : MonoBehaviour
         _selectAuthorizationOrRegistrationView.UserNameField.onValueChanged.AddListener(SetUserName);
         _selectAuthorizationOrRegistrationView.UserPasswordField.onValueChanged.AddListener(SetUserPassword);
         _selectAuthorizationOrRegistrationView.RegistrationOrAuthorizationButton.onClick.AddListener(OnClickButtonRegistrationOrAuthorization);
-        _selectAuthorizationOrRegistrationView.Image.color = Color.gray;
     }
 
     private void OnClickButtonRegistrationOrAuthorization()
@@ -44,9 +43,8 @@ public class AuthorizationController : MonoBehaviour
         }, result =>
         {
             _selectAuthorizationOrRegistrationView.ErrorText.text = "";
-            Debug.Log($"User registrated: {result.LastLoginTime}");
+            Debug.Log($"User registrated in Authorization: {result.LastLoginTime}");
             _selectAuthorizationOrRegistrationView.InfoText.text = $"Enter last time {result.LastLoginTime}";
-            _selectAuthorizationOrRegistrationView.Image.color = Color.green;
             _selectAuthorizationOrRegistrationView.SOUserData.UserName = _userName;
             _selectAuthorizationOrRegistrationView.SOUserData.UserPassword = _userPassword;
             _selectAuthorizationOrRegistrationView.SOUserData.Authorization = true;
@@ -56,7 +54,7 @@ public class AuthorizationController : MonoBehaviour
         }, error =>
         {
             _selectAuthorizationOrRegistrationView.ErrorText.text = "";
-            _selectAuthorizationOrRegistrationView.ErrorText.text = error.ErrorDetails.FirstOrDefault().Value.FirstOrDefault() ?? "" ;
+            //_selectAuthorizationOrRegistrationView.ErrorText.text = error.ErrorDetails.FirstOrDefault().Value.FirstOrDefault() ?? "" ;
             Debug.LogError(error);
             _selectAuthorizationOrRegistrationView.Image.color = Color.red;
             _selectAuthorizationOrRegistrationView.SOUserData.Authorization = false;

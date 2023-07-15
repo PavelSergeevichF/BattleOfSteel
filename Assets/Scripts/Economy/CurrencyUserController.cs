@@ -13,16 +13,15 @@ public class CurrencyUserController : IInitialization
     private SOUserData _sOUserData;
     private ConversionController _conversionController;
 
-    private string _myPlayFabId;
-    private bool _enterPlayFab = false;
-
     public CurrencyUserController(CurrencyUserView currencyUserView, SOUserData sOUserData)
     {
         _currencyUserView = currencyUserView;
         _sOUserData = sOUserData;
         _conversionController = new ConversionController(currencyUserView, sOUserData, this);
-
-
+        if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId))
+        {
+            PlayFabSettings.staticSettings.TitleId = _sOUserData.TitleID;
+        }
     }
 
     public void Init()
@@ -39,21 +38,26 @@ public class CurrencyUserController : IInitialization
             loginRequest.Username = _sOUserData.UserName;
             loginRequest.Password = _sOUserData.UserPassword;
             loginRequest.InfoRequestParameters = _currencyUserView.Info;
+            
             PlayFabClientAPI.LoginWithPlayFab(loginRequest,
                 result =>
             {
                 Debug.Log($"User registrated: {result.LastLoginTime}");
-                _enterPlayFab = true;
+                ChekOnAutorization();
 
             },
                 Failure
-            );
-
+            ) ;
         }
+    }
+    private void ChekOnAutorization()
+    {
+        //Debug.Log($"PlayFabClientAPI.IsClientLoggedIn(){PlayFabClientAPI.IsClientLoggedIn()}");
+        GetDataUserCurrency();
     }
     public void GetDataUserCurrency()
     {
-        if (_sOUserData.Authorization)
+        if (PlayFabClientAPI.IsClientLoggedIn())
         {
             PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(), OnGetUserInventorySuccess, Failure);
         }
