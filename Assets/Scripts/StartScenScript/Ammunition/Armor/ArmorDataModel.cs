@@ -6,4 +6,5 @@ public class ArmorDataModel
 {
     public ArmorPart ArmorTower = new ArmorPart();
     public ArmorPart ArmorBody = new ArmorPart();
+    public eTypeArmor ETypeArmor = eTypeArmor.Easy;
 }

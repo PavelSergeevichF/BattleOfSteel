@@ -54,7 +54,7 @@ public class AuthorizationController : MonoBehaviour
         }, error =>
         {
             _selectAuthorizationOrRegistrationView.ErrorText.text = "";
-            //_selectAuthorizationOrRegistrationView.ErrorText.text = error.ErrorDetails.FirstOrDefault().Value.FirstOrDefault() ?? "" ;
+            _selectAuthorizationOrRegistrationView.ErrorText.text = error.ErrorDetails.FirstOrDefault().Value.FirstOrDefault() ?? "" ;
             Debug.LogError(error);
             _selectAuthorizationOrRegistrationView.Image.color = Color.red;
             _selectAuthorizationOrRegistrationView.SOUserData.Authorization = false;

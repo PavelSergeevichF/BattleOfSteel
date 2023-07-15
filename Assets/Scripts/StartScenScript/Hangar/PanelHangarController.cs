@@ -74,6 +74,8 @@ public class PanelHangarController : IExecute
     }
     private void SwitchModel(SOBot BotsData, bool next)
     {
+        if (BotsData.BotActive < 0) BotsData.BotActive = 0;
+        if (BotsData.BotActive > BotsData.BotsData.Count - 1) BotsData.BotActive = BotsData.BotsData.Count - 1;
         if (next)
         {
             if (BotsData.BotActive < BotsData.BotsData.Count-1)
@@ -90,7 +92,7 @@ public class PanelHangarController : IExecute
         }
         _botActive = BotsData.BotActive;
         _text[0].text = BotsData.BotsData[_botActive].NameBot;
-        Debug.Log($"Type {_eTypeBot}, BotActive {BotsData.BotActive}, neme {BotsData.BotsData[BotsData.BotActive].name}");
+        //Debug.Log($"Type {_eTypeBot}, BotActive {BotsData.BotActive}, neme {BotsData.BotsData[BotsData.BotActive].name}");
     }
     private void SelectBot()
     {

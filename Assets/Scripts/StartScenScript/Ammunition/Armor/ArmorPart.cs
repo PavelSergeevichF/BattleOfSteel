@@ -9,11 +9,11 @@ public class ArmorPart
 
 public struct PlanSurface
 {
-    public PlanName PlanName;
+    public ePlanName PlanName;
     public int MM;
 }
 
-public enum PlanName
+public enum ePlanName
 {
     Top,
     Bottom,

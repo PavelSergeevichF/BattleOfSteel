@@ -17,7 +17,7 @@ internal sealed class StartScenGameInit
         SelectAuthorizationOrRegistrationController _selectAuthorizationOrRegistrationController = new SelectAuthorizationOrRegistrationController(mainController.SelectAuthorizationOrRegistrationView);
         controllers.Add(_selectAuthorizationOrRegistrationController);
 
-        PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData);
+        PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData, _startScenButtonPanelController);
         controllers.Add(_panelAmmunitionController);
 
         PanelHangarController _panelHangarController = new PanelHangarController(mainController.PanelHangarView, mainController.SOUserData);

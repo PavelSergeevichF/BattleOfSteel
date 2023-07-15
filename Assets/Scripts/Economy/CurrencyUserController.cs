@@ -76,7 +76,7 @@ public class CurrencyUserController : IInitialization
         AddCurrency(3, SelectCurrency.Gold);
     }
 
-    private void AddCurrency(int volue, SelectCurrency selectCurrency)
+    private void AddCurrency(int volue, SelectCurrency selectCurrency) // добавление
     {
         string currencyType = "EX";
         switch(selectCurrency)
@@ -102,7 +102,7 @@ public class CurrencyUserController : IInitialization
         PlayFabClientAPI.AddUserVirtualCurrency(request, OnGrantVirtualCurrencySuccess, Failure);
     }
 
-    public void ReductionCurrency(int volue, SelectCurrency selectCurrency)
+    public void ReductionCurrency(int volue, SelectCurrency selectCurrency)//убывание
     {
         string currencyType = "EX";
         switch (selectCurrency)

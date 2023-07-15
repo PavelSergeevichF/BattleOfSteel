@@ -15,15 +15,18 @@ public class PanelAmmunitionController : IExecute
     private GameObject _panelMenuAmmunition;
 
     private SOBotsData _botsData;
+    private SOEconomyData _economy;
 
     private PanelArmorController _panelArmorController;
     private PanelEngineController _panelEngineController;
     private PanelGunsController _panelGunsController;
+    private StartScenButtonPanelController _startScenButtonPanelController;
+
     //private PanelArmorController _panelArmorController;
     //private PanelArmorController _panelArmorController;
     //private PanelArmorController _panelArmorController;
 
-    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData)
+    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController)
     {
         _panelAmmunitionView = panelAmmunitionView;
         _armorPanel          = panelAmmunitionView.ArmorPanel;
@@ -34,9 +37,12 @@ public class PanelAmmunitionController : IExecute
         _infoBotPanel        = panelAmmunitionView.InfoBotPanel;
         _panelMenuAmmunition = panelAmmunitionView.PanelMenuAmmunition;
 
-        _botsData = sOUserData.BotsData;
+        _startScenButtonPanelController = startScenButtonPanelController;
 
-        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData);
+        _botsData = sOUserData.BotsData;
+        _economy = sOUserData.Economy;
+
+        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply);
 
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
         panelAmmunitionView.Engine    .onClick.AddListener(EnginePanelActive);
@@ -47,6 +53,7 @@ public class PanelAmmunitionController : IExecute
         panelAmmunitionView.Back      .onClick.AddListener(ComeBeack);
         panelAmmunitionView.Aply      .onClick.AddListener(IApply);
 
+        startScenButtonPanelController.ClickOnParametrButton +=SetMaxArmor;
         ArmorPanelActive();
 
     }
@@ -58,8 +65,14 @@ public class PanelAmmunitionController : IExecute
 
     private void ComeBeack() {   _panelMenuAmmunition.SetActive(false); }
 
+    private void SetMaxArmor() =>  _panelArmorController.SetMaxArmor();
+
     private void ArmorPanelActive() 
-    { ClearPanel(); _armorPanel.SetActive(true);  _panelArmorController.SetMaxArmor(); }
+    {
+        ClearPanel();
+        _panelArmorController.SetMaxArmor();
+        _armorPanel.SetActive(true);  
+    }
 
     private void EnginePanelActive() {  ClearPanel();  _enginePanel.SetActive(true); }
 
