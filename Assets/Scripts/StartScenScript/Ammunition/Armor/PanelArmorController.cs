@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 public class PanelArmorController
 {
     private int _numImg = 0;
+    private bool _firstStart = true;
 
     private List<GameObject> _armorImagePanels;
 
@@ -44,12 +46,36 @@ public class PanelArmorController
         _panelArmorView.Part.onClick.AddListener(PartClick);
         aply.onClick.AddListener(Apply);
         _armorImagePanels = _panelArmorView.ArmorImagePanels;
-        InitData();
         CheckArmorrNull();
         _armorDataModel = new ArmorDataModel();
-        _costArmor = new CostArmor(_ePartBotName, _ePlanName, _eTypeArmor, _armorDataModel, _economy, panelArmorView.ArmorThicknessSlider);
+        _costArmor = new CostArmor(_ePartBotName, _ePlanName, _eTypeArmor, _armorDataModel, panelArmorView.ArmorThicknessSlider, _botsData.ActivBot);
+        _costArmor.ChangesCost += ShowCost;
     }
 
+    private void ShowCost()
+    {
+        int gold=0;
+        int silver=0;
+        int copper = 0;
+        _costArmor.ShowPrice(out gold, out silver, out copper);
+        _panelArmorView.PraceView.GoldBuy.text = gold.ToString();
+        _panelArmorView.PraceView.SilverBuy.text = silver.ToString();
+        _panelArmorView.PraceView.CopperBuy.text = copper.ToString();
+
+        int goldRepair   = (int)(((float)gold) * _economy.Repair);
+        int silverRepair = (int)(((float)silver) * _economy.Repair);
+        int copperRepair = (int)(((float)copper) * _economy.Repair);
+
+        copperRepair = copperRepair < 1 ? 1 : copperRepair;
+        if (silver > 0)
+        {
+            silverRepair = silverRepair<1 ? 1 : silverRepair;
+        }
+        _panelArmorView.PraceView.GoldRepair.text = goldRepair.ToString();
+        _panelArmorView.PraceView.SilverRepair.text = silverRepair.ToString();
+        _panelArmorView.PraceView.CopperRepair.text = copperRepair.ToString();
+    }
+    
     private void InitData()
     {
         CastArmorClick();
@@ -58,7 +84,13 @@ public class PanelArmorController
     }
     public void Execute()
     {
+        if(_firstStart)
+        {
+            _firstStart = false;
+            InitData();
+        }
         SetData();
+        _costArmor.Execute();
     }
 
     private void SetData()
@@ -86,7 +118,7 @@ public class PanelArmorController
 
     private void PlanClick()
     {
-        if (_ePlanNum < 5) _ePlanNum++;
+        if (_ePlanNum < 4) _ePlanNum++;
         else _ePlanNum =  0;
         SelectPlan(_ePlanNum);
     }
@@ -120,7 +152,7 @@ public class PanelArmorController
                 _panelArmorView.PartText.text = "корпуса";
                 break;
             case 1: 
-                _ePartBotName = ePartBotName.Twer;
+                _ePartBotName = ePartBotName.Tower;
                 _panelArmorView.PartText.text = "башни";
                 break;
         };
@@ -147,12 +179,8 @@ public class PanelArmorController
                 _panelArmorView.PlanText.text = "Корма";
                 break;
             case 4: 
-                _ePlanName = ePlanName.Left;
-                _panelArmorView.PlanText.text = "Левый бок";
-                break;
-            case 5:
-                _ePlanName = ePlanName.Right;
-                _panelArmorView.PlanText.text = "Правый бок";
+                _ePlanName = ePlanName.Flank;
+                _panelArmorView.PlanText.text = "Бок";
                 break;
         };
     }
@@ -166,7 +194,7 @@ public class PanelArmorController
     }
     private void CheckArmorrNull()
     { 
-        if(_botsData.ActivBot.ArmorModel==null)
+        if(_botsData.ActivBot.ArmorModel==null || _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces[0].MM<1)
         {
             SetArmorEmpety(_botsData.ActivBot.ArmorModel.ArmorTower);
             SetArmorEmpety(_botsData.ActivBot.ArmorModel.ArmorBody);
@@ -190,54 +218,6 @@ public class PanelArmorController
         armorPart.PlanSurfaces[1].PlanName = ePlanName.Bottom;
         armorPart.PlanSurfaces[2].PlanName = ePlanName.Front;
         armorPart.PlanSurfaces[3].PlanName = ePlanName.Back;
-        armorPart.PlanSurfaces[4].PlanName = ePlanName.Left;
-        armorPart.PlanSurfaces[5].PlanName = ePlanName.Right;
+        armorPart.PlanSurfaces[4].PlanName = ePlanName.Flank;
     }
-}
-
-public enum ePartBotName
-{
-    Twer,
-    Body
-}
-
-public enum eTypeArmor
-{
-    Easy,
-    Medium,
-    Hard
-}
-
-public class CostArmor
-{
-    private ePartBotName _ePartBotName;
-    private ePlanName _ePlanName;
-    private eTypeArmor _eTypeArmor;
-    private ArmorDataModel _armorDataModel;
-    private SOEconomyData _economy;
-    private Slider _armorThicknessSlider;
-
-    public CostArmor(ePartBotName ePartBotName, ePlanName ePlanName, eTypeArmor eTypeArmor, ArmorDataModel armorDataModel, SOEconomyData economy, Slider armorThicknessSlider)
-    {
-        _ePartBotName = ePartBotName;
-        _ePlanName = ePlanName;
-        _eTypeArmor = eTypeArmor;
-        _armorDataModel = armorDataModel;
-        _economy = economy;
-        _armorThicknessSlider = armorThicknessSlider;
-    }
-
-    public void SetPart(ePartBotName ePartBotName)
-    {
-        _ePartBotName = ePartBotName;
-    }
-    public void SetPlan(ePlanName ePlanName) 
-    {
-        _ePlanName = ePlanName;
-    }
-    public void SetTypeArmor(eTypeArmor eTypeArmor) 
-    {
-        _eTypeArmor = eTypeArmor;
-    }
-
 }

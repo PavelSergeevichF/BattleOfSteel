@@ -1,6 +1,8 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class AmmunitionsElement : MonoBehaviour
 {
     [Header("Buttons")]

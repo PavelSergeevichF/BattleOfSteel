@@ -11,6 +11,7 @@ public struct PlanSurface
 {
     public ePlanName PlanName;
     public int MM;
+    public CurrencyModel Cost;
 }
 
 public enum ePlanName
@@ -19,6 +20,5 @@ public enum ePlanName
     Bottom,
     Front,
     Back,
-    Left,
-    Right
+    Flank
 }

@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PanelArmorView  : AmmunitionsElement
 {
@@ -29,4 +30,5 @@ public class PanelArmorView  : AmmunitionsElement
     public Button Part => _part;
 
     public List<GameObject> ArmorImagePanels => _armorImagePanels;
+
 }

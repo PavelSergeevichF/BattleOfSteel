@@ -65,9 +65,9 @@ public class CurrencyUserController : IInitialization
 
     private void OnGetUserInventorySuccess(GetUserInventoryResult result)
     {
-        _sOUserData.Economy.Gold = result.VirtualCurrency["GD"];
-        _sOUserData.Economy.Silver = result.VirtualCurrency["SL"];
-        _sOUserData.Economy.Copper = result.VirtualCurrency["CU"];
+        _sOUserData.Economy.CurrencyModel.Gold = result.VirtualCurrency["GD"];
+        _sOUserData.Economy.CurrencyModel.Silver = result.VirtualCurrency["SL"];
+        _sOUserData.Economy.CurrencyModel.Copper = result.VirtualCurrency["CU"];
         _sOUserData.ExpData.Exp = result.VirtualCurrency["EX"];
     }
 

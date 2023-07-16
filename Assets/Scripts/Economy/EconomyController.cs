@@ -61,9 +61,9 @@ public class EconomyController : IExecute
 
     private void SetEconomyData()
     {
-        _goldText.text   = _sOUserData.Economy.Gold.ToString();
-        _silverText.text = _sOUserData.Economy.Silver.ToString();
-        _copperText.text = _sOUserData.Economy.Copper.ToString();
+        _goldText.text   = _sOUserData.Economy.CurrencyModel.Gold.ToString();
+        _silverText.text = _sOUserData.Economy.CurrencyModel.Silver.ToString();
+        _copperText.text = _sOUserData.Economy.CurrencyModel.Copper.ToString();
         _expText.text    = _sOUserData.ExpData.Exp.ToString();
     }
     private void ClearErrorChar()
