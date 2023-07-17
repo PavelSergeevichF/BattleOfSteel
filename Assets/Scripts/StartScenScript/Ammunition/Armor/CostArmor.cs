@@ -101,7 +101,7 @@ public class CostArmor : Costs
             _armorThicknessSlider.value = _tempArmorDataModel.ArmorTower.PlanSurfaces[_ePlanName].MM;
         }
     }
-
+    public ArmorDataModel GetArmorDataModel() => _tempArmorDataModel;
     private void SetCost()
     {
         SetArmorPlanSlider(_ePartBotName, _ePlanName, _tempSliderVolue);
@@ -120,7 +120,6 @@ public class CostArmor : Costs
             SetCostPart(_eTypeArmor, _botModel.TypeBot, ePartBotName.Body, planSurfaces.Key, _tempArmorDataModel.ArmorBody.PlanSurfaces[planSurfaces.Key].MM);
             AddCost(_tempArmorDataModel.ArmorBody.PlanSurfaces[planSurfaces.Key].Cost);
         }
-        ///--------------------------------------
 
         FinishCost = new CurrencyModel();
         FinishCost.SetCurrencyModel(base._finishCost.Gold, base._finishCost.Silver, base._finishCost.Copper);

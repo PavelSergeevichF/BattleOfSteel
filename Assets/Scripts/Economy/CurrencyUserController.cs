@@ -87,6 +87,12 @@ public class CurrencyUserController : IInitialization
         if (cost.Silver > _sOUserData.Economy.CurrencyModel.Silver) { canBay = false; needS = true; }
         if (cost.Copper > _sOUserData.Economy.CurrencyModel.Copper) { canBay = false; needC = true; }
     }
+    public void Bay(int g, int s, int c)
+    {
+        ReductionCurrency(g, SelectCurrency.Gold);
+        ReductionCurrency(s, SelectCurrency.Silver);
+        ReductionCurrency(c, SelectCurrency.Copper);
+    }
 
     private void AddCurrency(int volue, SelectCurrency selectCurrency) // добавление
     {

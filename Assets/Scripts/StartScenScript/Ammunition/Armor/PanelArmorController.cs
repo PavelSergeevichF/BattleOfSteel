@@ -138,10 +138,36 @@ public class PanelArmorController
     
     private void Apply()
     {
-        CheckIsCanBay();
+        BayArmorr();
         UnityEngine.Debug.Log("Применить");
     }
-    private void CheckIsCanBay()
+    private void BayArmorr()
+    {
+        if(CheckIsCanBay())
+        {
+            _currencyUserController.Bay(_costArmor.FinishCost.Gold, _costArmor.FinishCost.Silver, _costArmor.FinishCost.Copper);
+            SetBotArmor();
+            ShowCost();
+        }
+    }
+    private void SetBotArmor()
+    {
+        foreach (var planSurfaces in _costArmor.GetArmorDataModel().ArmorTower.PlanSurfaces)
+        {
+            PlanSurface tempPlanSurface = new PlanSurface(planSurfaces.Key, planSurfaces.Value.MM, planSurfaces.Value.Cost);
+            _botsData.ActivBot.ArmorModel.ArmorTower.PlanSurfaces.Remove(planSurfaces.Key);
+            _botsData.ActivBot.ArmorModel.ArmorTower.PlanSurfaces.Add(planSurfaces.Key, tempPlanSurface);
+        }
+        foreach (var planSurfaces in _costArmor.GetArmorDataModel().ArmorBody.PlanSurfaces)
+        {
+            PlanSurface tempPlanSurface = new PlanSurface(planSurfaces.Key, planSurfaces.Value.MM, planSurfaces.Value.Cost);
+            _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces.Remove(planSurfaces.Key);
+            _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces.Add(planSurfaces.Key, tempPlanSurface);
+        }
+        _botsData.ActivBot.ArmorModel.ArmorTower.SetListForShowe();
+        _botsData.ActivBot.ArmorModel.ArmorBody.SetListForShowe();
+    }
+    private bool CheckIsCanBay()
     {
         bool canBay;
         bool needG;
@@ -152,6 +178,7 @@ public class PanelArmorController
         if (needG) { _economyController.GoldError(); }
         if (needS) { _economyController.SilverError(); }
         if (needC) { _economyController.CopperError(); }
+        return canBay;
     }
     private void WorkErrorBay()
     {
