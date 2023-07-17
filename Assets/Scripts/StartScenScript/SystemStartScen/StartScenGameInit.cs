@@ -17,9 +17,6 @@ internal sealed class StartScenGameInit
         SelectAuthorizationOrRegistrationController _selectAuthorizationOrRegistrationController = new SelectAuthorizationOrRegistrationController(mainController.SelectAuthorizationOrRegistrationView);
         controllers.Add(_selectAuthorizationOrRegistrationController);
 
-        PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData, _startScenButtonPanelController);
-        controllers.Add(_panelAmmunitionController);
-
         PanelHangarController _panelHangarController = new PanelHangarController(mainController.PanelHangarView, mainController.SOUserData);
         controllers.Add(_panelHangarController);
 
@@ -36,6 +33,9 @@ internal sealed class StartScenGameInit
 
         EconomyController _economyController = new EconomyController(mainController.EconomyView, _currencyUserController, mainController.SOUserData, mainController.MainButtonPanelView);
         controllers.Add(_economyController);
+
+        PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData, _startScenButtonPanelController, _currencyUserController, _economyController);
+        controllers.Add(_panelAmmunitionController);
     }
 
 }

@@ -66,7 +66,7 @@ public class EconomyController : IExecute
         _copperText.text = _sOUserData.Economy.CurrencyModel.Copper.ToString();
         _expText.text    = _sOUserData.ExpData.Exp.ToString();
     }
-    private void ClearErrorChar()
+    public void ClearErrorChar()
     {
         _goldTextErr.gameObject.SetActive(false);
         _silverTextErr.gameObject.SetActive(false);

@@ -76,6 +76,18 @@ public class CurrencyUserController : IInitialization
         AddCurrency(3, SelectCurrency.Gold);
     }
 
+    public void CheckIsCanBay(CurrencyModel cost, out bool needG, out bool needS, out bool needC, out bool canBay )
+    {
+        canBay = true;
+        needG = false;
+        needS = false;
+        needC = false;
+        GetDataUserCurrency();
+        if (cost.Gold > _sOUserData.Economy.CurrencyModel.Gold) { canBay = false; needG = true; }
+        if (cost.Silver > _sOUserData.Economy.CurrencyModel.Silver) { canBay = false; needS = true; }
+        if (cost.Copper > _sOUserData.Economy.CurrencyModel.Copper) { canBay = false; needC = true; }
+    }
+
     private void AddCurrency(int volue, SelectCurrency selectCurrency) // добавление
     {
         string currencyType = "EX";

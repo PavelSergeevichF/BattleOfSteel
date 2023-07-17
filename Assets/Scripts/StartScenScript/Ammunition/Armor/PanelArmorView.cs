@@ -23,6 +23,9 @@ public class PanelArmorView  : AmmunitionsElement
     public Text PartText;
     public Text ArmorThicknessText;
 
+    [Header("Text")]
+    public float GlowTime = 2f; 
+
     public Button CastArmor => _castArmor;
     public Button RolledArmor => _rolledArmor;
     public Button CompositeArmor => _compositeArmor;

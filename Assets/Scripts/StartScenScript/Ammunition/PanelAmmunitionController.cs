@@ -21,12 +21,14 @@ public class PanelAmmunitionController : IExecute
     private PanelEngineController _panelEngineController;
     private PanelGunsController _panelGunsController;
     private StartScenButtonPanelController _startScenButtonPanelController;
+    private CurrencyUserController _currencyUserController;
+    private EconomyController _economyController;
 
     //private PanelArmorController _panelArmorController;
     //private PanelArmorController _panelArmorController;
     //private PanelArmorController _panelArmorController;
 
-    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController)
+    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController, CurrencyUserController currencyUserController, EconomyController economyController)
     {
         _panelAmmunitionView = panelAmmunitionView;
         _armorPanel          = panelAmmunitionView.ArmorPanel;
@@ -38,11 +40,13 @@ public class PanelAmmunitionController : IExecute
         _panelMenuAmmunition = panelAmmunitionView.PanelMenuAmmunition;
 
         _startScenButtonPanelController = startScenButtonPanelController;
+        _currencyUserController = currencyUserController;
 
         _botsData = sOUserData.BotsData;
         _economy = sOUserData.Economy;
+        _economyController = economyController;
 
-        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply);
+        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply, _currencyUserController, _economyController);
 
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
         panelAmmunitionView.Engine    .onClick.AddListener(EnginePanelActive);

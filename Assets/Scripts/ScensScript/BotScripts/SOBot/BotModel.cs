@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = nameof(BotModel), menuName = "SOGame/" + nameof(BotModel), order = 0)]
@@ -20,7 +21,10 @@ public class BotModel : ScriptableObject
     public ETypeBot TypeBot;
 
     [Header("ArmorData")]
-    public ArmorDataModel ArmorModel=new ArmorDataModel();
+    public ArmorDataModel ArmorModel= new ArmorDataModel
+        (eTypeArmor.Easy, 0, "-", 
+        new ArmorPart(new Dictionary<ePlanName, PlanSurface>()), 
+        new ArmorPart(new Dictionary<ePlanName, PlanSurface>()));
 
     [Header("WeaponData")]
     public bool Gun = false;

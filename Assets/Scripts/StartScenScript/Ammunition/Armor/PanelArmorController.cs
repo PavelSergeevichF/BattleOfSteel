@@ -9,6 +9,7 @@ public class PanelArmorController
 {
     private int _numImg = 0;
     private bool _firstStart = true;
+    private int _timeForOffSignal = 0;
 
     private List<GameObject> _armorImagePanels;
 
@@ -21,6 +22,7 @@ public class PanelArmorController
     private SOBotsData _botsData;
     private SOEconomyData _economy;
 
+    private CurrencyUserController _currencyUserController;
     private CostArmor _costArmor;
 
     private ArmorDataModel _armorDataModel;
@@ -30,14 +32,17 @@ public class PanelArmorController
 
     private int _ePartNum = 0;
     private int _ePlanNum = 0;
+    private EconomyController _economyController;
 
-    public PanelArmorController(PanelArmorView panelArmorView, GameObject armorPanel, SOBotsData botsData, SOEconomyData economy, Button aply)
+    public PanelArmorController(PanelArmorView panelArmorView, GameObject armorPanel, SOBotsData botsData, SOEconomyData economy, Button aply, CurrencyUserController currencyUserController, EconomyController economyController)
     {
         _panelArmorView = panelArmorView;
         _armorPanel = armorPanel;
+        _currencyUserController = currencyUserController;
 
         _botsData = botsData;
         _economy = economy;
+        _economyController = economyController;
 
         _panelArmorView.CastArmor.onClick.AddListener(CastArmorClick);
         _panelArmorView.RolledArmor.onClick.AddListener(RolledArmorClick);
@@ -74,6 +79,7 @@ public class PanelArmorController
         _panelArmorView.PraceView.GoldRepair.text = goldRepair.ToString();
         _panelArmorView.PraceView.SilverRepair.text = silverRepair.ToString();
         _panelArmorView.PraceView.CopperRepair.text = copperRepair.ToString();
+        CheckIsCanBay();
     }
     
     private void InitData()
@@ -91,6 +97,7 @@ public class PanelArmorController
         }
         SetData();
         _costArmor.Execute();
+        WorkErrorBay();
     }
 
     private void SetData()
@@ -128,9 +135,34 @@ public class PanelArmorController
         else _ePartNum = 0;
         SelectPart(_ePartNum);
     }
+    
     private void Apply()
     {
+        CheckIsCanBay();
         UnityEngine.Debug.Log("Применить");
+    }
+    private void CheckIsCanBay()
+    {
+        bool canBay;
+        bool needG;
+        bool needS;
+        bool needC;
+        _currencyUserController.CheckIsCanBay(_costArmor.FinishCost, out needG, out needS, out needC, out canBay);
+        if (_timeForOffSignal < 1 && !canBay) _timeForOffSignal = (int)(_panelArmorView.GlowTime*30);
+        if (needG) { _economyController.GoldError(); }
+        if (needS) { _economyController.SilverError(); }
+        if (needC) { _economyController.CopperError(); }
+    }
+    private void WorkErrorBay()
+    {
+        if (_timeForOffSignal > 0)
+        {
+            _timeForOffSignal--;
+        }
+        else
+        {
+            _economyController.ClearErrorChar();
+        }
     }
     public void SetMaxArmor()
     {
@@ -156,6 +188,7 @@ public class PanelArmorController
                 _panelArmorView.PartText.text = "башни";
                 break;
         };
+        _costArmor.SetPart(_ePartBotName);
     }
 
     private void SelectPlan(int num)
@@ -183,6 +216,7 @@ public class PanelArmorController
                 _panelArmorView.PlanText.text = "Бок";
                 break;
         };
+        _costArmor.SetPlan(_ePlanName);
     }
     private void SwitchingImage(int num)
     {
@@ -194,7 +228,7 @@ public class PanelArmorController
     }
     private void CheckArmorrNull()
     { 
-        if(_botsData.ActivBot.ArmorModel==null || _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces[0].MM<1)
+        if( _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces==null || _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces.Count<1)
         {
             SetArmorEmpety(_botsData.ActivBot.ArmorModel.ArmorTower);
             SetArmorEmpety(_botsData.ActivBot.ArmorModel.ArmorBody);
@@ -203,6 +237,7 @@ public class PanelArmorController
     private void SetArmorEmpety(ArmorPart armorPart)
     {
         int minArmor = 5;
+        
         switch (_botsData.ActivBot.TypeBot)
         {
             case ETypeBot.LBT: minArmor = 5; break;
@@ -210,14 +245,10 @@ public class PanelArmorController
             case ETypeBot.LT: minArmor = 15;  break;
             case ETypeBot.TT: minArmor = 20;  break;
         }
-        for (int i = 0; i < armorPart.PlanSurfaces.Length; i++)
-        {
-            armorPart.PlanSurfaces[i].MM = minArmor;
-        }
-        armorPart.PlanSurfaces[0].PlanName = ePlanName.Top;
-        armorPart.PlanSurfaces[1].PlanName = ePlanName.Bottom;
-        armorPart.PlanSurfaces[2].PlanName = ePlanName.Front;
-        armorPart.PlanSurfaces[3].PlanName = ePlanName.Back;
-        armorPart.PlanSurfaces[4].PlanName = ePlanName.Flank;
+        armorPart.PlanSurfaces.Add(ePlanName.Top, new PlanSurface(ePlanName.Top, minArmor, new CurrencyModel()));
+        armorPart.PlanSurfaces.Add(ePlanName.Bottom, new PlanSurface(ePlanName.Bottom, minArmor, new CurrencyModel()));
+        armorPart.PlanSurfaces.Add(ePlanName.Front, new PlanSurface(ePlanName.Front, minArmor, new CurrencyModel()));
+        armorPart.PlanSurfaces.Add(ePlanName.Back, new PlanSurface(ePlanName.Back, minArmor, new CurrencyModel()));
+        armorPart.PlanSurfaces.Add(ePlanName.Flank, new PlanSurface(ePlanName.Flank, minArmor, new CurrencyModel()));
     }
 }
