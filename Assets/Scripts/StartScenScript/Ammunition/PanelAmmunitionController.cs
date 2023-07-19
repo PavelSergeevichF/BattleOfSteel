@@ -27,7 +27,7 @@ public class PanelAmmunitionController : IExecute
 
     //private PanelArmorController _panelArmorController;
     //private PanelArmorController _panelArmorController;
-    //private PanelArmorController _panelArmorController;
+    private PanelInformController _panelInformController;
 
     public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController, CurrencyUserController currencyUserController, EconomyController economyController, MassController massController)
     {
@@ -49,6 +49,7 @@ public class PanelAmmunitionController : IExecute
         _massController = massController;
 
         _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply, _currencyUserController, _economyController, _massController);
+        _panelInformController = new PanelInformController(_botsData, _panelAmmunitionView.InfoBotPanel.GetComponent<PanelInformView>());
 
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
         panelAmmunitionView.Engine    .onClick.AddListener(EnginePanelActive);
@@ -88,12 +89,11 @@ public class PanelAmmunitionController : IExecute
 
     private void AmmunitionPanelActive() { ClearPanel(); _ammunitionPanel.SetActive(true); }
 
-    private void InfoBotPanelActive() {  ClearPanel(); _infoBotPanel.SetActive(true); }
+    private void InfoBotPanelActive() {  ClearPanel(); _panelInformController.UpdateInform(); _infoBotPanel.SetActive(true); }
 
     private void IApply()
     {
     }
-
     private void ClearPanel()
     {
         _armorPanel     .SetActive(false);

@@ -39,6 +39,7 @@ internal sealed class StartScenGameInit
 
         PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData, _startScenButtonPanelController, _currencyUserController, _economyController, _massController);
         controllers.Add(_panelAmmunitionController);
+
     }
 
 }
