@@ -87,6 +87,7 @@ public class PanelArmorController
         CastArmorClick();
         SelectPart(0);
         SelectPlan(0);
+        CheckOnSetDatabot();
     }
     public void Execute()
     {
@@ -123,6 +124,44 @@ public class PanelArmorController
         SwitchingImage(2);
     }
 
+    private void CheckOnSetDatabot()
+    {
+        bool notSet = false;
+        if (_botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces.Count < 5)
+        {
+            notSet=true;
+        }
+        else
+        {
+            notSet = true;
+            foreach (var surface in _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces)
+            {
+                if (surface.Key == ePlanName.Front) notSet = false;
+            }
+            if (!notSet)
+            {
+                if (_botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces[ePlanName.Front].MM < 1)
+                {
+                    notSet = true;
+                }
+            }
+        }
+        if(notSet)
+        {
+            SetFirstDataBot();
+        }
+    }
+    private void SetFirstDataBot()
+    {
+        UnityEngine.Debug.Log("SetDataBot");
+        if (_botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces.Count > 0)
+        {
+            _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces.Clear();
+            _botsData.ActivBot.ArmorModel.ArmorTower.PlanSurfaces.Clear();
+        }
+        SetArmorEmpety(_botsData.ActivBot.ArmorModel.ArmorTower);
+        SetArmorEmpety(_botsData.ActivBot.ArmorModel.ArmorBody);
+    }
     private void PlanClick()
     {
         if (_ePlanNum < 4) _ePlanNum++;
@@ -139,7 +178,6 @@ public class PanelArmorController
     private void Apply()
     {
         BayArmorr();
-        UnityEngine.Debug.Log("Применить");
     }
     private void BayArmorr()
     {

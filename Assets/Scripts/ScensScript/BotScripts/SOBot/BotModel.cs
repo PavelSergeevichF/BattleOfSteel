@@ -7,6 +7,8 @@ public class BotModel : ScriptableObject
     [Header("MineData")]
     public string NameBot="__";
     public float MassBot;
+    public string MassPrototype;
+    public SizeBot SizeBot=new SizeBot(1,1,1,1,1,1,1);
     public int PowerEngine;
     public int IDBot;
     public float MaxSpeedBot;
@@ -24,6 +26,11 @@ public class BotModel : ScriptableObject
     public ArmorDataModel ArmorModel= new ArmorDataModel
         (eTypeArmor.Easy, 0, "-", 
         new ArmorPart(new Dictionary<ePlanName, PlanSurface>()), 
+        new ArmorPart(new Dictionary<ePlanName, PlanSurface>()));
+
+    public ArmorDataModel ArmorModelPrototype = new ArmorDataModel
+        (eTypeArmor.Easy, 0, "-",
+        new ArmorPart(new Dictionary<ePlanName, PlanSurface>()),
         new ArmorPart(new Dictionary<ePlanName, PlanSurface>()));
 
     [Header("WeaponData")]

@@ -14,6 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameBot: "\u0411\u0422\u042040"
   MassBot: 0
+  MassPrototype: 5,3
+  SizeBot:
+    _longBody: 1
+    _heightBody: 1
+    _widthBody: 1
+    _longTower: 1
+    _heightTower: 1
+    _widthTower: 1
+    _groundClearance: 0.4
   PowerEngine: 0
   IDBot: 0
   MaxSpeedBot: 0
@@ -25,6 +34,143 @@ MonoBehaviour:
   HP: 100
   MaxHP: 100
   Tracks: 0
+  TypeBot: 0
+  ArmorModel:
+    NameBotFofCheck: '-'
+    ArmorTower:
+      _planSurfaceShow:
+      - PlanName: 0
+        MM: 1
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 1
+        MM: 1
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 2
+        MM: 5
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 3
+        MM: 3
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 4
+        MM: 2
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+    ArmorBody:
+      _planSurfaceShow:
+      - PlanName: 0
+        MM: 1
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 1
+        MM: 1
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 2
+        MM: 5
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 3
+        MM: 3
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 4
+        MM: 2
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+    ArmorMass: 0
+    ETypeArmor: 0
+  ArmorModelPrototype:
+    NameBotFofCheck: '-'
+    ArmorTower:
+      _planSurfaceShow:
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+    ArmorBody:
+      _planSurfaceShow:
+      - PlanName: 0
+        MM: 1
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+      - PlanName: 0
+        MM: 0
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 0
+    ArmorMass: 0
+    ETypeArmor: 0
   Gun: 0
   CaliberGun: 20
   LongGun: 200
