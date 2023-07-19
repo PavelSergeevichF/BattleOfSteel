@@ -16,11 +16,11 @@ MonoBehaviour:
   MassBot: 0
   MassPrototype: 5,3
   SizeBot:
-    _longBody: 1
-    _heightBody: 1
-    _widthBody: 1
-    _longTower: 1
-    _heightTower: 1
+    _longBody: 5
+    _heightBody: 1.1
+    _widthBody: 1.9
+    _longTower: 1.2
+    _heightTower: 0.24
     _widthTower: 1
     _groundClearance: 0.4
   PowerEngine: 0
@@ -40,35 +40,35 @@ MonoBehaviour:
     ArmorTower:
       _planSurfaceShow:
       - PlanName: 0
-        MM: 1
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 1
-        MM: 1
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 2
         MM: 5
         Cost:
           Gold: 0
           Silver: 0
-          Copper: 0
+          Copper: 12
+      - PlanName: 1
+        MM: 5
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 12
+      - PlanName: 2
+        MM: 13
+        Cost:
+          Gold: 1
+          Silver: 7
+          Copper: 13
       - PlanName: 3
-        MM: 3
+        MM: 9
         Cost:
           Gold: 0
-          Silver: 0
-          Copper: 0
+          Silver: 3
+          Copper: 9
       - PlanName: 4
-        MM: 2
+        MM: 6
         Cost:
           Gold: 0
           Silver: 0
-          Copper: 0
+          Copper: 12
     ArmorBody:
       _planSurfaceShow:
       - PlanName: 0
@@ -76,99 +76,31 @@ MonoBehaviour:
         Cost:
           Gold: 0
           Silver: 0
-          Copper: 0
+          Copper: 17
       - PlanName: 1
-        MM: 1
+        MM: 4
         Cost:
           Gold: 0
           Silver: 0
-          Copper: 0
+          Copper: 17
       - PlanName: 2
-        MM: 5
+        MM: 15
         Cost:
           Gold: 0
-          Silver: 0
-          Copper: 0
+          Silver: 8
+          Copper: 20
       - PlanName: 3
-        MM: 3
+        MM: 7
         Cost:
           Gold: 0
-          Silver: 0
-          Copper: 0
+          Silver: 2
+          Copper: 14
       - PlanName: 4
-        MM: 2
+        MM: 9
         Cost:
           Gold: 0
           Silver: 0
-          Copper: 0
-    ArmorMass: 0
-    ETypeArmor: 0
-  ArmorModelPrototype:
-    NameBotFofCheck: '-'
-    ArmorTower:
-      _planSurfaceShow:
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-    ArmorBody:
-      _planSurfaceShow:
-      - PlanName: 0
-        MM: 1
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
-      - PlanName: 0
-        MM: 0
-        Cost:
-          Gold: 0
-          Silver: 0
-          Copper: 0
+          Copper: 18
     ArmorMass: 0
     ETypeArmor: 0
   Gun: 0

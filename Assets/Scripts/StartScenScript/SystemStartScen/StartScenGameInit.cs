@@ -34,7 +34,10 @@ internal sealed class StartScenGameInit
         EconomyController _economyController = new EconomyController(mainController.EconomyView, _currencyUserController, mainController.SOUserData, mainController.MainButtonPanelView);
         controllers.Add(_economyController);
 
-        PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData, _startScenButtonPanelController, _currencyUserController, _economyController);
+        MassController _massController = new MassController(mainController.SOUserData);
+        controllers.Add(_massController);
+
+        PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData, _startScenButtonPanelController, _currencyUserController, _economyController, _massController);
         controllers.Add(_panelAmmunitionController);
     }
 

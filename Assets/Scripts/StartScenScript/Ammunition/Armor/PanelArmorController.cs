@@ -24,6 +24,7 @@ public class PanelArmorController
 
     private CurrencyUserController _currencyUserController;
     private CostArmor _costArmor;
+    private SetMassArmorController _setMassArmorController;
 
     private ArmorDataModel _armorDataModel;
     private ePartBotName _ePartBotName= ePartBotName.Body;
@@ -33,16 +34,17 @@ public class PanelArmorController
     private int _ePartNum = 0;
     private int _ePlanNum = 0;
     private EconomyController _economyController;
+    private MassController _massController;
 
-    public PanelArmorController(PanelArmorView panelArmorView, GameObject armorPanel, SOBotsData botsData, SOEconomyData economy, Button aply, CurrencyUserController currencyUserController, EconomyController economyController)
+    public PanelArmorController(PanelArmorView panelArmorView, GameObject armorPanel, SOBotsData botsData, SOEconomyData economy, Button aply, CurrencyUserController currencyUserController, EconomyController economyController, MassController massController)
     {
         _panelArmorView = panelArmorView;
         _armorPanel = armorPanel;
         _currencyUserController = currencyUserController;
-
         _botsData = botsData;
         _economy = economy;
         _economyController = economyController;
+        _massController = massController;
 
         _panelArmorView.CastArmor.onClick.AddListener(CastArmorClick);
         _panelArmorView.RolledArmor.onClick.AddListener(RolledArmorClick);
@@ -53,6 +55,7 @@ public class PanelArmorController
         _armorImagePanels = _panelArmorView.ArmorImagePanels;
         CheckArmorrNull();
         _armorDataModel = new ArmorDataModel();
+        _setMassArmorController = new SetMassArmorController(botsData.ActivBot);
         _costArmor = new CostArmor(_ePartBotName, _ePlanName, _eTypeArmor, _armorDataModel, panelArmorView.ArmorThicknessSlider, _botsData.ActivBot);
         _costArmor.ChangesCost += ShowCost;
     }
@@ -150,6 +153,8 @@ public class PanelArmorController
         {
             SetFirstDataBot();
         }
+        _botsData.ActivBot.ArmorModel.ArmorBody.SetListForShowe();
+        _botsData.ActivBot.ArmorModel.ArmorTower.SetListForShowe();
     }
     private void SetFirstDataBot()
     {
@@ -161,6 +166,7 @@ public class PanelArmorController
         }
         SetArmorEmpety(_botsData.ActivBot.ArmorModel.ArmorTower);
         SetArmorEmpety(_botsData.ActivBot.ArmorModel.ArmorBody);
+        SetMassArmor();
     }
     private void PlanClick()
     {
@@ -186,7 +192,13 @@ public class PanelArmorController
             _currencyUserController.Bay(_costArmor.FinishCost.Gold, _costArmor.FinishCost.Silver, _costArmor.FinishCost.Copper);
             SetBotArmor();
             ShowCost();
+            SetMassArmor();
         }
+    }
+    private void SetMassArmor()
+    {
+        _setMassArmorController.SetDataMassArmor();
+        _massController.SetMass();
     }
     private void SetBotArmor()
     {
@@ -233,7 +245,7 @@ public class PanelArmorController
     {
         switch (_botsData.ActivBot.TypeBot)
         {
-            case ETypeBot.LBT: _panelArmorView.ArmorThicknessSlider.minValue = 5; _panelArmorView.ArmorThicknessSlider.maxValue = 15; break;
+            case ETypeBot.LBT: _panelArmorView.ArmorThicknessSlider.minValue = 1; _panelArmorView.ArmorThicknessSlider.maxValue = 15; break;
             case ETypeBot.SBT: _panelArmorView.ArmorThicknessSlider.minValue = 10; _panelArmorView.ArmorThicknessSlider.maxValue = 30; break;
             case ETypeBot.LT: _panelArmorView.ArmorThicknessSlider.minValue = 15; _panelArmorView.ArmorThicknessSlider.maxValue = 80; break;
             case ETypeBot.TT: _panelArmorView.ArmorThicknessSlider.minValue = 20; _panelArmorView.ArmorThicknessSlider.maxValue  = 200; break;

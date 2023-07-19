@@ -23,12 +23,13 @@ public class PanelAmmunitionController : IExecute
     private StartScenButtonPanelController _startScenButtonPanelController;
     private CurrencyUserController _currencyUserController;
     private EconomyController _economyController;
+    private MassController _massController;
 
     //private PanelArmorController _panelArmorController;
     //private PanelArmorController _panelArmorController;
     //private PanelArmorController _panelArmorController;
 
-    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController, CurrencyUserController currencyUserController, EconomyController economyController)
+    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController, CurrencyUserController currencyUserController, EconomyController economyController, MassController massController)
     {
         _panelAmmunitionView = panelAmmunitionView;
         _armorPanel          = panelAmmunitionView.ArmorPanel;
@@ -45,8 +46,9 @@ public class PanelAmmunitionController : IExecute
         _botsData = sOUserData.BotsData;
         _economy = sOUserData.Economy;
         _economyController = economyController;
+        _massController = massController;
 
-        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply, _currencyUserController, _economyController);
+        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply, _currencyUserController, _economyController, _massController);
 
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
         panelAmmunitionView.Engine    .onClick.AddListener(EnginePanelActive);
@@ -59,7 +61,7 @@ public class PanelAmmunitionController : IExecute
 
         startScenButtonPanelController.ClickOnParametrButton +=SetMaxArmor;
         ArmorPanelActive();
-
+        _massController.SetMass();
     }
 
     public void Execute()
