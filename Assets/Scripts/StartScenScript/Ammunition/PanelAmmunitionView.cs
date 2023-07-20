@@ -22,6 +22,9 @@ public class PanelAmmunitionView : MonoBehaviour
     [SerializeField] private GameObject _infoBotPanel;
     [SerializeField] private GameObject _panelMenuAmmunition;
 
+    [Header("Text")]
+    public float GlowTime = 2f;
+
     [Header("SO")]
     [SerializeField] private SOBotsData _sOBotsData;
 

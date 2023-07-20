@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class EconomyController : IExecute
 {
+
+    private int _timeForOffSignal = 0; 
+
     private Text _goldText;
     private Text _silverText;
     private Text _copperText;
@@ -130,6 +133,54 @@ public class EconomyController : IExecute
             case SelectCurrency.Exp:
                 { }
                 break;
+        }
+    }
+    public void ShowPrice(out string Gold, out string Silver, out string Copper, out string GoldRepair, out string SilverRepair, out string CopperRepair, CurrencyModel finishCost, float Repair)
+    {
+        int gold = finishCost.Gold;
+        int silver = finishCost.Silver;
+        int copper = finishCost.Copper;
+
+        Gold = gold.ToString();
+        Silver = silver.ToString();
+        Copper = copper.ToString();
+
+        int goldRepair = (int)(((float)gold) * Repair);
+        int silverRepair = (int)(((float)silver) * Repair);
+        int copperRepair = (int)(((float)copper) * Repair);
+
+        copperRepair = copperRepair < 1 ? 1 : copperRepair;
+        if (silver > 0)
+        {
+            silverRepair = silverRepair < 1 ? 1 : silverRepair;
+        }
+
+        GoldRepair = goldRepair.ToString();
+        SilverRepair = silverRepair.ToString();
+        CopperRepair = copperRepair.ToString();
+    }
+    public bool CheckIsCanBay(CurrencyModel finishCost, float glowTime)
+    {
+        bool canBay;
+        bool needG;
+        bool needS;
+        bool needC;
+        _currencyUserController.CheckIsCanBay(finishCost, out needG, out needS, out needC, out canBay);
+        if (_timeForOffSignal < 1 && !canBay) _timeForOffSignal = (int)(glowTime * 30);
+        if (needG) { GoldError(); }
+        if (needS) { SilverError(); }
+        if (needC) { CopperError(); }
+        return canBay;
+    }
+    public void WorkErrorBay()
+    {
+        if (_timeForOffSignal > 0)
+        {
+            _timeForOffSignal--;
+        }
+        else
+        {
+            ClearErrorChar();
         }
     }
 }

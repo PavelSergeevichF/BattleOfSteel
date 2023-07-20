@@ -45,13 +45,7 @@ public class CostArmor : Costs
         _eTypeArmor = eTypeArmor;
     }
 
-    public void ShowPrice(out int Gold, out int Silver, out int Copper)
-    {
-        Gold = base._finishCost.Gold;
-        Silver = base._finishCost.Silver;
-        Copper = base._finishCost.Copper;
-    }
-
+    public CurrencyModel GetFinishCost() => base._finishCost;
     public void Execute()
     {
         if (_tempArmorDataModel.NameBotFofCheck != _botModel.NameBot)

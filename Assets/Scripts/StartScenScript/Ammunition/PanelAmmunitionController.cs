@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PanelAmmunitionController : IExecute
 {
+    public float GlowTime;
+    private ActivePanelAmmunition _activePanelAmmunition= ActivePanelAmmunition.Armor;
     private PanelAmmunitionView _panelAmmunitionView;
 
     private GameObject _armorPanel;
@@ -26,8 +28,24 @@ public class PanelAmmunitionController : IExecute
     private MassController _massController;
 
     //private PanelArmorController _panelArmorController;
-    //private PanelArmorController _panelArmorController;
     private PanelInformController _panelInformController;
+
+    public ActivePanelAmmunition ActivePanelAmmunition => _activePanelAmmunition;
+
+    public CurrencyUserController CurrencyUserController => _currencyUserController;
+    public EconomyController EconomyController => _economyController;
+    public MassController MassController => _massController;
+    public PanelAmmunitionView PanelAmmunitionView => _panelAmmunitionView;
+
+    public GameObject ArmorPanel => _armorPanel;
+    public GameObject EnginePanel => _enginePanel;
+    public GameObject GunsPanel => _gunsPanel;
+    public GameObject EquipmentPanel => _equipmentPanel;
+    public GameObject AmmunitionPanel => _ammunitionPanel;
+    public GameObject InfoBotPanel => _infoBotPanel;
+
+    public SOBotsData BotsData => _botsData;
+    public SOEconomyData Economy => _economy;
 
     public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController, CurrencyUserController currencyUserController, EconomyController economyController, MassController massController)
     {
@@ -40,6 +58,8 @@ public class PanelAmmunitionController : IExecute
         _infoBotPanel        = panelAmmunitionView.InfoBotPanel;
         _panelMenuAmmunition = panelAmmunitionView.PanelMenuAmmunition;
 
+        GlowTime = panelAmmunitionView.GlowTime;
+
         _startScenButtonPanelController = startScenButtonPanelController;
         _currencyUserController = currencyUserController;
 
@@ -48,7 +68,8 @@ public class PanelAmmunitionController : IExecute
         _economyController = economyController;
         _massController = massController;
 
-        _panelArmorController = new PanelArmorController(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply, _currencyUserController, _economyController, _massController);
+        _panelArmorController = new PanelArmorController(this);//(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply, _currencyUserController, _economyController, _massController, _activePanelAmmunition);
+        _panelEngineController = new PanelEngineController(this);// (_enginePanel.GetComponent<PanelEngineView>(), _botsData, _economy, panelAmmunitionView.Aply, _currencyUserController, _economyController, _massController, _activePanelAmmunition);
         _panelInformController = new PanelInformController(_botsData, _panelAmmunitionView.InfoBotPanel.GetComponent<PanelInformView>());
 
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
@@ -78,18 +99,46 @@ public class PanelAmmunitionController : IExecute
     {
         ClearPanel();
         _panelArmorController.SetMaxArmor();
-        _armorPanel.SetActive(true);  
+        _armorPanel.SetActive(true);
+        _activePanelAmmunition = ActivePanelAmmunition.Armor;
     }
 
-    private void EnginePanelActive() {  ClearPanel();  _enginePanel.SetActive(true); }
+    private void EnginePanelActive() 
+    { 
+        ClearPanel(); 
+        _enginePanel.SetActive(true);
+        _activePanelAmmunition = ActivePanelAmmunition.Engine;
+    }
 
-    private void GunsPanelActive() { ClearPanel();  _gunsPanel.SetActive(true); }
+    private void GunsPanelActive() 
+    { 
+        ClearPanel();  
+        _gunsPanel.SetActive(true);
+        _activePanelAmmunition = ActivePanelAmmunition.Gans;
 
-    private void EquipmentPanelActive() { ClearPanel(); _equipmentPanel.SetActive(true); }
+    }
 
-    private void AmmunitionPanelActive() { ClearPanel(); _ammunitionPanel.SetActive(true); }
+    private void EquipmentPanelActive() 
+    { 
+        ClearPanel(); 
+        _equipmentPanel.SetActive(true);
+        _activePanelAmmunition = ActivePanelAmmunition.Equipment;
+    }
 
-    private void InfoBotPanelActive() {  ClearPanel(); _panelInformController.UpdateInform(); _infoBotPanel.SetActive(true); }
+    private void AmmunitionPanelActive() 
+    { 
+        ClearPanel(); 
+        _ammunitionPanel.SetActive(true);
+        _activePanelAmmunition = ActivePanelAmmunition.Ammunition;
+    }
+
+    private void InfoBotPanelActive() 
+    {  
+        ClearPanel();
+        _panelInformController.UpdateInform();
+        _infoBotPanel.SetActive(true);
+        _activePanelAmmunition = ActivePanelAmmunition.Inform;
+    }
 
     private void IApply()
     {
@@ -103,4 +152,14 @@ public class PanelAmmunitionController : IExecute
         _ammunitionPanel.SetActive(false);
         _infoBotPanel   .SetActive(false);
     }
+}
+
+public enum ActivePanelAmmunition
+{ 
+    Armor,
+    Engine,
+    Gans,
+    Equipment,
+    Ammunition,
+    Inform
 }

@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 326
     height: 545
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 63
+  controlID: 100
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 64
+  controlID: 18
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 32
+  controlID: 74
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1478,10 +1478,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 295}
-    m_SelectedIDs: 54a30000
-    m_LastClickedID: 41812
-    m_ExpandedIDs: 00000000dea10000e2a10000e4a10000e6a10000e8a10000eaa10000eea10000f2a10000f4a10000f6a100008ca30000
+    scrollPos: {x: 0, y: 243}
+    m_SelectedIDs: 5ca30000
+    m_LastClickedID: 41820
+    m_ExpandedIDs: 00000000eca10000eea10000f0a10000f2a10000f4a10000f6a10000f8a10000faa10000fca10000fea1000000a200008aa30000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1509,7 +1509,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000dea10000e0a10000e2a10000e4a10000e6a10000e8a10000eaa10000eca10000eea10000f0a10000f2a10000f4a10000f6a10000
+    m_ExpandedIDs: 00000000eca10000eea10000f0a10000f2a10000f4a10000f6a10000f8a10000faa10000fca10000fea1000000a20000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1534,24 +1534,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: a41f0000
-    m_LastClickedInstanceID: 8100
+    m_SelectedInstanceIDs: ac1f0000
+    m_LastClickedInstanceID: 8108
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000080ad00007cad000000000000109e0000f09d0000129e0000f29d0000269e0000309e000082ba0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: LBTBot
-      m_OriginalName: LBTBot
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 41812
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 6}
     m_CreateAssetUtility:
@@ -1639,9 +1639,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: a41f0000
+      m_SelectedIDs: ac1f0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 20fbffff56610000c08e0000109000004a920000
+      m_ExpandedIDs: 16fbffff64610000ce8e00001e900000be90000058920000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

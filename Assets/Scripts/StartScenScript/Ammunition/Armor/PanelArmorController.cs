@@ -7,18 +7,20 @@ using UnityEngine.UI;
 
 public class PanelArmorController
 {
+    private ActivePanelAmmunition _activePanelAmmunition;
+
     private int _numImg = 0;
     private bool _firstStart = true;
     private int _timeForOffSignal = 0;
 
     private List<GameObject> _armorImagePanels;
 
-    private Text _planText;
-    private Text _partText;
-    private Text _armorThicknessText;
+    //private Text _planText;
+    //private Text _partText;
+    //private Text _armorThicknessText;
 
     private PanelArmorView _panelArmorView;
-    private GameObject _armorPanel;
+    //private GameObject _armorPanel;
     private SOBotsData _botsData;
     private SOEconomyData _economy;
 
@@ -36,52 +38,54 @@ public class PanelArmorController
     private EconomyController _economyController;
     private MassController _massController;
 
-    public PanelArmorController(PanelArmorView panelArmorView, GameObject armorPanel, SOBotsData botsData, SOEconomyData economy, Button aply, CurrencyUserController currencyUserController, EconomyController economyController, MassController massController)
+    public PanelArmorController(PanelAmmunitionController panelAmmunitionController)
     {
-        _panelArmorView = panelArmorView;
-        _armorPanel = armorPanel;
-        _currencyUserController = currencyUserController;
-        _botsData = botsData;
-        _economy = economy;
-        _economyController = economyController;
-        _massController = massController;
+        _panelArmorView = panelAmmunitionController.ArmorPanel.GetComponent<PanelArmorView>();
+        //_armorPanel = panelAmmunitionController.ArmorPanel;
+        _currencyUserController = panelAmmunitionController.CurrencyUserController;
+        _botsData = panelAmmunitionController.BotsData;
+        _economy = panelAmmunitionController.Economy;
+        _economyController = panelAmmunitionController.EconomyController;
+        _massController = panelAmmunitionController.MassController;
+        _activePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
 
         _panelArmorView.CastArmor.onClick.AddListener(CastArmorClick);
         _panelArmorView.RolledArmor.onClick.AddListener(RolledArmorClick);
         _panelArmorView.CompositeArmor.onClick.AddListener(CompositeArmorClick);
         _panelArmorView.Plan.onClick.AddListener(PlanClick);
         _panelArmorView.Part.onClick.AddListener(PartClick);
-        aply.onClick.AddListener(Apply);
+        panelAmmunitionController.PanelAmmunitionView.Aply.onClick.AddListener(BayArmorr);
         _armorImagePanels = _panelArmorView.ArmorImagePanels;
         CheckArmorrNull();
         _armorDataModel = new ArmorDataModel();
-        _setMassArmorController = new SetMassArmorController(botsData.ActivBot);
-        _costArmor = new CostArmor(_ePartBotName, _ePlanName, _eTypeArmor, _armorDataModel, panelArmorView.ArmorThicknessSlider, _botsData.ActivBot);
+        _setMassArmorController = new SetMassArmorController(_botsData.ActivBot);
+        _costArmor = new CostArmor(_ePartBotName, _ePlanName, _eTypeArmor, _armorDataModel, _panelArmorView.ArmorThicknessSlider, _botsData.ActivBot);
         _costArmor.ChangesCost += ShowCost;
     }
 
     private void ShowCost()
     {
-        int gold=0;
-        int silver=0;
-        int copper = 0;
-        _costArmor.ShowPrice(out gold, out silver, out copper);
-        _panelArmorView.PraceView.GoldBuy.text = gold.ToString();
-        _panelArmorView.PraceView.SilverBuy.text = silver.ToString();
-        _panelArmorView.PraceView.CopperBuy.text = copper.ToString();
+        string GoldBuy;
+        string SilverBuy;
+        string CopperBuy;
 
-        int goldRepair   = (int)(((float)gold) * _economy.Repair);
-        int silverRepair = (int)(((float)silver) * _economy.Repair);
-        int copperRepair = (int)(((float)copper) * _economy.Repair);
+        string GoldRepair;
+        string SilverRepair;
+        string CopperRepair;
+        _economyController.ShowPrice
+            (
+            out GoldBuy, out SilverBuy, out CopperBuy,
+            out GoldRepair, out SilverRepair, out CopperRepair,
+            _costArmor.GetFinishCost() , _economy.Repair
+            );
 
-        copperRepair = copperRepair < 1 ? 1 : copperRepair;
-        if (silver > 0)
-        {
-            silverRepair = silverRepair<1 ? 1 : silverRepair;
-        }
-        _panelArmorView.PraceView.GoldRepair.text = goldRepair.ToString();
-        _panelArmorView.PraceView.SilverRepair.text = silverRepair.ToString();
-        _panelArmorView.PraceView.CopperRepair.text = copperRepair.ToString();
+        _panelArmorView.PraceView.GoldBuy.text = GoldBuy;
+        _panelArmorView.PraceView.SilverBuy.text = SilverBuy;
+        _panelArmorView.PraceView.CopperBuy.text = CopperBuy;
+
+        _panelArmorView.PraceView.GoldRepair.text = GoldRepair;
+        _panelArmorView.PraceView.SilverRepair.text = SilverRepair;
+        _panelArmorView.PraceView.CopperRepair.text = CopperRepair;
         CheckIsCanBay();
     }
     
@@ -101,7 +105,7 @@ public class PanelArmorController
         }
         SetData();
         _costArmor.Execute();
-        WorkErrorBay();
+        _economyController.WorkErrorBay();
     }
 
     private void SetData()
@@ -181,13 +185,9 @@ public class PanelArmorController
         SelectPart(_ePartNum);
     }
     
-    private void Apply()
-    {
-        BayArmorr();
-    }
     private void BayArmorr()
     {
-        if(CheckIsCanBay())
+        if(CheckIsCanBay() && _activePanelAmmunition == ActivePanelAmmunition.Armor)
         {
             _currencyUserController.Bay(_costArmor.FinishCost.Gold, _costArmor.FinishCost.Silver, _costArmor.FinishCost.Copper);
             SetBotArmor();
@@ -217,30 +217,7 @@ public class PanelArmorController
         _botsData.ActivBot.ArmorModel.ArmorTower.SetListForShowe();
         _botsData.ActivBot.ArmorModel.ArmorBody.SetListForShowe();
     }
-    private bool CheckIsCanBay()
-    {
-        bool canBay;
-        bool needG;
-        bool needS;
-        bool needC;
-        _currencyUserController.CheckIsCanBay(_costArmor.FinishCost, out needG, out needS, out needC, out canBay);
-        if (_timeForOffSignal < 1 && !canBay) _timeForOffSignal = (int)(_panelArmorView.GlowTime*30);
-        if (needG) { _economyController.GoldError(); }
-        if (needS) { _economyController.SilverError(); }
-        if (needC) { _economyController.CopperError(); }
-        return canBay;
-    }
-    private void WorkErrorBay()
-    {
-        if (_timeForOffSignal > 0)
-        {
-            _timeForOffSignal--;
-        }
-        else
-        {
-            _economyController.ClearErrorChar();
-        }
-    }
+    private bool CheckIsCanBay() =>_economyController.CheckIsCanBay(_costArmor.FinishCost, _panelArmorView.GlowTime);
     public void SetMaxArmor()
     {
         switch (_botsData.ActivBot.TypeBot)
