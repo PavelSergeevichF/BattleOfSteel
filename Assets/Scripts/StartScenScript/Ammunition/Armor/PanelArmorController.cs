@@ -9,9 +9,9 @@ public class PanelArmorController
 {
     private ActivePanelAmmunition _activePanelAmmunition;
 
-    private int _numImg = 0;
+    //private int _numImg = 0;
     private bool _firstStart = true;
-    private int _timeForOffSignal = 0;
+    //private int _timeForOffSignal = 0;
 
     private List<GameObject> _armorImagePanels;
 

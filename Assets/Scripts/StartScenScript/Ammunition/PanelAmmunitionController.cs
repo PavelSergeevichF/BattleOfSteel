@@ -81,7 +81,7 @@ public class PanelAmmunitionController : IExecute
         panelAmmunitionView.Back      .onClick.AddListener(ComeBeack);
         panelAmmunitionView.Aply      .onClick.AddListener(IApply);
 
-        startScenButtonPanelController.ClickOnParametrButton +=SetMaxArmor;
+        startScenButtonPanelController.ClickOnParametrButton += OpenPanel;
         ArmorPanelActive();
         _massController.SetMass();
     }
@@ -89,11 +89,14 @@ public class PanelAmmunitionController : IExecute
     public void Execute()
     {
         _panelArmorController.Execute();
+        _panelEngineController.Execute();
     }
-
-    private void ComeBeack() {   _panelMenuAmmunition.SetActive(false); }
-
-    private void SetMaxArmor() =>  _panelArmorController.SetMaxArmor();
+    public void OpenPanel()
+    {
+        _panelArmorController.SetMaxArmor();
+        _panelEngineController.ChenchBot();
+    }
+    private void ComeBeack() =>_panelMenuAmmunition.SetActive(false);
 
     private void ArmorPanelActive() 
     {
@@ -108,6 +111,7 @@ public class PanelAmmunitionController : IExecute
         ClearPanel(); 
         _enginePanel.SetActive(true);
         _activePanelAmmunition = ActivePanelAmmunition.Engine;
+        _panelEngineController.ChenchBot();
     }
 
     private void GunsPanelActive() 
