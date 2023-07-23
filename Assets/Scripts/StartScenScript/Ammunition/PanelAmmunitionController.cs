@@ -5,7 +5,8 @@ using UnityEngine;
 public class PanelAmmunitionController : IExecute
 {
     public float GlowTime;
-    private ActivePanelAmmunition _activePanelAmmunition= ActivePanelAmmunition.Armor;
+    private ActivePanelAmmunition _activePanelAmmunition;
+
     private PanelAmmunitionView _panelAmmunitionView;
 
     private GameObject _armorPanel;
@@ -30,7 +31,6 @@ public class PanelAmmunitionController : IExecute
     //private PanelArmorController _panelArmorController;
     private PanelInformController _panelInformController;
 
-    public ActivePanelAmmunition ActivePanelAmmunition => _activePanelAmmunition;
 
     public CurrencyUserController CurrencyUserController => _currencyUserController;
     public EconomyController EconomyController => _economyController;
@@ -46,6 +46,8 @@ public class PanelAmmunitionController : IExecute
 
     public SOBotsData BotsData => _botsData;
     public SOEconomyData Economy => _economy;
+
+    public ActivePanelAmmunition ActivePanelAmmunition =>_activePanelAmmunition;
 
     public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController, CurrencyUserController currencyUserController, EconomyController economyController, MassController massController)
     {
@@ -103,14 +105,16 @@ public class PanelAmmunitionController : IExecute
         ClearPanel();
         _panelArmorController.SetMaxArmor();
         _armorPanel.SetActive(true);
-        _activePanelAmmunition = ActivePanelAmmunition.Armor;
+        //_activePanelAmmunition = ActivePanelAmmunition.Armor;
+        SetTypePanel(ActivePanelAmmunition.Armor);
     }
 
     private void EnginePanelActive() 
     { 
         ClearPanel(); 
         _enginePanel.SetActive(true);
-        _activePanelAmmunition = ActivePanelAmmunition.Engine;
+        //_activePanelAmmunition = ActivePanelAmmunition.Engine;
+        SetTypePanel(ActivePanelAmmunition.Engine);
         _panelEngineController.ChenchBot();
     }
 
@@ -118,7 +122,6 @@ public class PanelAmmunitionController : IExecute
     { 
         ClearPanel();  
         _gunsPanel.SetActive(true);
-        _activePanelAmmunition = ActivePanelAmmunition.Gans;
 
     }
 
@@ -126,14 +129,12 @@ public class PanelAmmunitionController : IExecute
     { 
         ClearPanel(); 
         _equipmentPanel.SetActive(true);
-        _activePanelAmmunition = ActivePanelAmmunition.Equipment;
     }
 
     private void AmmunitionPanelActive() 
     { 
         ClearPanel(); 
         _ammunitionPanel.SetActive(true);
-        _activePanelAmmunition = ActivePanelAmmunition.Ammunition;
     }
 
     private void InfoBotPanelActive() 
@@ -141,7 +142,12 @@ public class PanelAmmunitionController : IExecute
         ClearPanel();
         _panelInformController.UpdateInform();
         _infoBotPanel.SetActive(true);
-        _activePanelAmmunition = ActivePanelAmmunition.Inform;
+    }
+
+    private void SetTypePanel(ActivePanelAmmunition activePanel)
+    {
+        _panelArmorController.ActivePanelAmmunition = activePanel;
+        _panelEngineController.ActivePanelAmmunition = activePanel;
     }
 
     private void IApply()

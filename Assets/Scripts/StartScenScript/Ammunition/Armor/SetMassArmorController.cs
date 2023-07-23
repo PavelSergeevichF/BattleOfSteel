@@ -10,12 +10,12 @@ public class SetMassArmorController
     {
         _activBot = activBot;
     }
-    public void SetDataMassArmor()
+    public float SetDataMassArmor(ArmorPart armorBody, ArmorPart armorTower)
     {
         float volumeBot = 0;
         _sizeBot = new SizeBot();
         ArmorPart armorPart = new ArmorPart();
-        armorPart = _activBot.ArmorModel.ArmorBody;
+        armorPart = armorBody;
         _sizeBot = _activBot.SizeBot;
         volumeBot += VolumeCalculation(armorPart.PlanSurfaces[ePlanName.Top].MM, _sizeBot.GetLongBody(), _sizeBot.GetWidthBody());
         volumeBot += VolumeCalculation(armorPart.PlanSurfaces[ePlanName.Bottom].MM, _sizeBot.GetLongBody(), _sizeBot.GetWidthBody());
@@ -24,14 +24,14 @@ public class SetMassArmorController
         volumeBot += VolumeCalculation(armorPart.PlanSurfaces[ePlanName.Flank].MM, _sizeBot.GetHeightBody(), _sizeBot.GetLongBody())*2;
 
         armorPart = new ArmorPart();
-        armorPart = _activBot.ArmorModel.ArmorTower;
+        armorPart = armorTower;
         volumeBot += VolumeCalculation(armorPart.PlanSurfaces[ePlanName.Top].MM, _sizeBot.GetLongBody(), _sizeBot.GetWidthBody());
         volumeBot += VolumeCalculation(armorPart.PlanSurfaces[ePlanName.Bottom].MM, _sizeBot.GetLongBody(), _sizeBot.GetWidthBody());
         volumeBot += VolumeCalculation(armorPart.PlanSurfaces[ePlanName.Front].MM, _sizeBot.GetHeightBody(), _sizeBot.GetWidthBody());
         volumeBot += VolumeCalculation(armorPart.PlanSurfaces[ePlanName.Back].MM, _sizeBot.GetHeightBody(), _sizeBot.GetWidthBody());
         volumeBot += VolumeCalculation(armorPart.PlanSurfaces[ePlanName.Flank].MM, _sizeBot.GetHeightBody(), _sizeBot.GetLongBody()) * 2;
 
-        _activBot.MassBotPart.MassArmor= volumeBot* _metalDensity;
+        return volumeBot* _metalDensity;
     }
     private float VolumeCalculation(int a, float b, float c)
     {

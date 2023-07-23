@@ -1,26 +1,15 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PanelArmorController
 {
-    private ActivePanelAmmunition _activePanelAmmunition;
-
-    //private int _numImg = 0;
     private bool _firstStart = true;
-    //private int _timeForOffSignal = 0;
+    private int _tempSliderVolue = 0;
 
     private List<GameObject> _armorImagePanels;
 
-    //private Text _planText;
-    //private Text _partText;
-    //private Text _armorThicknessText;
-
     private PanelArmorView _panelArmorView;
-    //private GameObject _armorPanel;
     private SOBotsData _botsData;
     private SOEconomyData _economy;
 
@@ -38,6 +27,9 @@ public class PanelArmorController
     private EconomyController _economyController;
     private MassController _massController;
 
+    public ActivePanelAmmunition ActivePanelAmmunition;
+
+
     public PanelArmorController(PanelAmmunitionController panelAmmunitionController)
     {
         _panelArmorView = panelAmmunitionController.ArmorPanel.GetComponent<PanelArmorView>();
@@ -47,7 +39,7 @@ public class PanelArmorController
         _economy = panelAmmunitionController.Economy;
         _economyController = panelAmmunitionController.EconomyController;
         _massController = panelAmmunitionController.MassController;
-        _activePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
+        ActivePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
 
         _panelArmorView.CastArmor.onClick.AddListener(CastArmorClick);
         _panelArmorView.RolledArmor.onClick.AddListener(RolledArmorClick);
@@ -98,14 +90,19 @@ public class PanelArmorController
     }
     public void Execute()
     {
+        _costArmor.Execute();
         if(_firstStart)
         {
             _firstStart = false;
             InitData();
         }
-        SetData();
-        _costArmor.Execute();
-        _economyController.WorkErrorBay();
+        if (_tempSliderVolue != (int)_panelArmorView.ArmorThicknessSlider.value)
+        {
+            _tempSliderVolue = (int)_panelArmorView.ArmorThicknessSlider.value;
+            SetData();
+            _economyController.WorkErrorBay();
+            SetMassArmor();
+        }
     }
 
     private void SetData()
@@ -162,7 +159,6 @@ public class PanelArmorController
     }
     private void SetFirstDataBot()
     {
-        UnityEngine.Debug.Log("SetDataBot");
         if (_botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces.Count > 0)
         {
             _botsData.ActivBot.ArmorModel.ArmorBody.PlanSurfaces.Clear();
@@ -187,18 +183,19 @@ public class PanelArmorController
     
     private void BayArmorr()
     {
-        if(CheckIsCanBay() && _activePanelAmmunition == ActivePanelAmmunition.Armor)
+        if (CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Armor)
         {
             _currencyUserController.Bay(_costArmor.FinishCost.Gold, _costArmor.FinishCost.Silver, _costArmor.FinishCost.Copper);
             SetBotArmor();
             ShowCost();
             SetMassArmor();
+            _botsData.ActivBot.MassBotPart.MassArmor = _setMassArmorController.SetDataMassArmor(_costArmor.GetArmorDataModel().ArmorBody, _costArmor.GetArmorDataModel().ArmorTower);
+            _massController.SetMass();
         }
     }
     private void SetMassArmor()
     {
-        _setMassArmorController.SetDataMassArmor();
-        _massController.SetMass();
+        _panelArmorView.PraceView.Mass.text = _setMassArmorController.SetDataMassArmor(_costArmor.GetArmorDataModel().ArmorBody, _costArmor.GetArmorDataModel().ArmorTower).ToString();
     }
     private void SetBotArmor()
     {

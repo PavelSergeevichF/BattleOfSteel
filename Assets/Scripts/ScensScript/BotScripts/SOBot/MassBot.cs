@@ -1,4 +1,7 @@
-﻿public struct MassBot
+﻿using System;
+
+[Serializable]
+public struct MassBot
 {
     public float MassArmor;
     public float MassEngine;

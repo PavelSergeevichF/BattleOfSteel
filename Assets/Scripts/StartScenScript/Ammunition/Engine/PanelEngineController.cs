@@ -1,12 +1,13 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
+using static UnityEditor.ShaderData;
 
 public class PanelEngineController
 {
-    private ActivePanelAmmunition _activePanelAmmunition;
     private int _tempSliderVolue = 0;
     private float _glowTime;
+    private float _tempMass;
     private Text _enginePowerText;
     private CurrencyModel _finishCost = new CurrencyModel();
     private PanelEngineView _panelEngineView;
@@ -16,6 +17,7 @@ public class PanelEngineController
     private EconomyController _economyController;
     private MassController _massController;
 
+    public ActivePanelAmmunition ActivePanelAmmunition;
 
     public PanelEngineController(PanelAmmunitionController panelAmmunitionController)
     {
@@ -25,9 +27,9 @@ public class PanelEngineController
         _currencyUserController = panelAmmunitionController.CurrencyUserController;
         _economyController = panelAmmunitionController.EconomyController;
         _massController = panelAmmunitionController.MassController;
-        _activePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
         _enginePowerText = _panelEngineView.EnginePowerText;
         _glowTime = panelAmmunitionController.GlowTime;
+        ActivePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
 
         panelAmmunitionController.PanelAmmunitionView.Aply.onClick.AddListener(BayEngine);
         SetSlider();
@@ -56,9 +58,20 @@ public class PanelEngineController
         }
     }
 
-    private static void SetMassEngine()
+    private void SetMassEngine()
     {
-        //_massController.SetMass();
+        float Coefficient = 1f;
+        float mass;
+        switch (_botsData.ActivBot.TypeBot)
+        {
+            case ETypeBot.LBT: Coefficient = 2.5f; break;
+            case ETypeBot.SBT: Coefficient = 2f; break;
+            case ETypeBot.LT: Coefficient = 1.5f; break;
+            case ETypeBot.TT: Coefficient = 1f; break;
+        }
+        mass = _tempSliderVolue * Coefficient;
+        _tempMass = mass / 1000;
+        _panelEngineView.PraceView.Mass.text = (mass / 1000).ToString();
     }
 
     private void ShowCost()
@@ -84,7 +97,7 @@ public class PanelEngineController
         _panelEngineView.PraceView.GoldRepair.text = GoldRepair;
         _panelEngineView.PraceView.SilverRepair.text = SilverRepair;
         _panelEngineView.PraceView.CopperRepair.text = CopperRepair;
-        //CheckIsCanBay();
+        CheckIsCanBay();
     }
     public void SetSlider()
     {
@@ -92,9 +105,11 @@ public class PanelEngineController
     }
     private void BayEngine()
     {
-        if (CheckIsCanBay() && _activePanelAmmunition == ActivePanelAmmunition.Engine)
+        if (CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Engine)
         {
             _currencyUserController.Bay(_finishCost.Gold, _finishCost.Silver, _finishCost.Copper);
+            _botsData.ActivBot.MassBotPart.MassEngine = _tempMass;
+            _massController.SetMass();
             SetBotEngine();
             ShowCost();
             SetMassEngine();
@@ -108,8 +123,8 @@ public class PanelEngineController
     private void SetCost()
     {
         float coefficient = 1f;
-        float tempSliderMax = _panelEngineView.EnginePowerSlider.maxValue;
-        float _power = _panelEngineView.EnginePowerSlider.value;
+        float tempSliderMax = _panelEngineView.EnginePowerSlider.maxValue/5;
+        float _power = _panelEngineView.EnginePowerSlider.value/5;
         float level80 = tempSliderMax * 0.8f;
         float level40 = tempSliderMax * 0.4f;
         CurrencyModel cost = new CurrencyModel();
@@ -117,9 +132,9 @@ public class PanelEngineController
         switch (_botsData.ActivBot.TypeBot)
         {
             case ETypeBot.LBT: coefficient += 0f; break;
-            case ETypeBot.SBT: coefficient += 0.5f; break;
-            case ETypeBot.LT: coefficient += 1f; break;
-            case ETypeBot.TT: coefficient += 1.5f; break;
+            case ETypeBot.SBT: coefficient += 0.2f; break;
+            case ETypeBot.LT: coefficient += 0.4f; break;
+            case ETypeBot.TT: coefficient += 0.6f; break;
         }
 
         cost.Copper = (int)(_power * coefficient);

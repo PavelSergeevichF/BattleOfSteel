@@ -138,12 +138,15 @@ public class CurrencyUserController : IInitialization
                 currencyType = "EX";
                 break;
         }
-        var request = new SubtractUserVirtualCurrencyRequest
+        if(volue>0)
         {
-            VirtualCurrency = currencyType,
-            Amount = volue
-        };
-        PlayFabClientAPI.SubtractUserVirtualCurrency(request, OnGrantVirtualCurrencySuccess, Failure);
+            var request = new SubtractUserVirtualCurrencyRequest
+            {
+                VirtualCurrency = currencyType,
+                Amount = volue
+            };
+            PlayFabClientAPI.SubtractUserVirtualCurrency(request, OnGrantVirtualCurrencySuccess, Failure);
+        }
     }
 
     private void OnGrantVirtualCurrencySuccess(ModifyUserVirtualCurrencyResult result)
