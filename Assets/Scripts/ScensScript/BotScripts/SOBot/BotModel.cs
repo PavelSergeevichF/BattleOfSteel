@@ -39,13 +39,7 @@ public class BotModel : ScriptableObject
         new ArmorPart(new Dictionary<ePlanName, PlanSurface>()));
 
     [Header("WeaponData")]
-    public bool Gun = false;
-    public float CaliberGun = 20;
-    public int LongGun = 200;
-
-    public bool MachineGun = false;
-    public float CaliberMachineGun = 5;
-    public int LongMachineGun = 100;
+    public GunModel GunModel= new GunModel();
 
     [Header("AmmunitionData")]
     public int ShellNum = 10;

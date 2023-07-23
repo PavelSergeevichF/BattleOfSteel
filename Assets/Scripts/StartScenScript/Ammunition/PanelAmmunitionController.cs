@@ -70,8 +70,9 @@ public class PanelAmmunitionController : IExecute
         _economyController = economyController;
         _massController = massController;
 
-        _panelArmorController = new PanelArmorController(this);//(_armorPanel.GetComponent<PanelArmorView>(), _armorPanel, _botsData, _economy, _panelAmmunitionView.Aply, _currencyUserController, _economyController, _massController, _activePanelAmmunition);
-        _panelEngineController = new PanelEngineController(this);// (_enginePanel.GetComponent<PanelEngineView>(), _botsData, _economy, panelAmmunitionView.Aply, _currencyUserController, _economyController, _massController, _activePanelAmmunition);
+        _panelArmorController = new PanelArmorController(this);
+        _panelEngineController = new PanelEngineController(this);
+        _panelGunsController = new PanelGunsController(this);
         _panelInformController = new PanelInformController(_botsData, _panelAmmunitionView.InfoBotPanel.GetComponent<PanelInformView>());
 
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
@@ -92,11 +93,13 @@ public class PanelAmmunitionController : IExecute
     {
         _panelArmorController.Execute();
         _panelEngineController.Execute();
+        _panelGunsController.Execute();
     }
     public void OpenPanel()
     {
         _panelArmorController.SetMaxArmor();
         _panelEngineController.ChenchBot();
+        _panelGunsController.ChenchBot();
     }
     private void ComeBeack() =>_panelMenuAmmunition.SetActive(false);
 

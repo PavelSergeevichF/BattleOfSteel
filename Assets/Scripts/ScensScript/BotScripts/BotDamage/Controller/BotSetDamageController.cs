@@ -10,10 +10,10 @@ public class BotSetDamageController
 
     public BotSetDamageController(BotModel _sOBotModel)
     {
-        _caliberGun = _sOBotModel.CaliberGun;
-        _longGun = _sOBotModel.LongGun;
-        _caliberMachineGun = _sOBotModel.CaliberMachineGun;
-        _longMachineGun = _sOBotModel.LongMachineGun;
+        _caliberGun = _sOBotModel.GunModel.CaliberGun;
+        _longGun = _sOBotModel.GunModel.LongGun;
+        _caliberMachineGun = _sOBotModel.GunModel.CaliberMachineGun;
+        _longMachineGun = _sOBotModel.GunModel.LongMachineGun;
     }
     public void SetDataFire(EGunTaype taype, float dist)
     {
