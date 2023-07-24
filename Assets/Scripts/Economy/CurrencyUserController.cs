@@ -52,7 +52,6 @@ public class CurrencyUserController : IInitialization
     }
     private void ChekOnAutorization()
     {
-        //Debug.Log($"PlayFabClientAPI.IsClientLoggedIn(){PlayFabClientAPI.IsClientLoggedIn()}");
         GetDataUserCurrency();
     }
     public void GetDataUserCurrency()

@@ -5,6 +5,7 @@ using static UnityEditor.ShaderData;
 
 public class PanelEngineController
 {
+    private bool _firstStart = true;
     private int _tempSliderVolue = 0;
     private float _glowTime;
     private float _tempMass;
@@ -37,6 +38,11 @@ public class PanelEngineController
 
     public void Execute()
     {
+        if(_firstStart)
+        {
+            _firstStart = false;
+            CheckOnNull();
+        }
         if (_tempSliderVolue != (int)_panelEngineView.EnginePowerSlider.value)
         {
             _tempSliderVolue = (int)_panelEngineView.EnginePowerSlider.value;
@@ -152,5 +158,19 @@ public class PanelEngineController
     {
         SetSlider();
         SetMinMaxSlider();
+        CheckOnNull();
+    }
+    private void CheckOnNull()
+    {
+        if(_botsData.ActivBot.PowerEngine<50)
+        {
+            switch (_botsData.ActivBot.TypeBot)
+            {
+                case ETypeBot.LBT: _botsData.ActivBot.PowerEngine = 60; break;
+                case ETypeBot.SBT: _botsData.ActivBot.PowerEngine = 80; break;
+                case ETypeBot.LT: _botsData.ActivBot.PowerEngine = 150; break;
+                case ETypeBot.TT: _botsData.ActivBot.PowerEngine = 400; break;
+            }
+        }
     }
 }

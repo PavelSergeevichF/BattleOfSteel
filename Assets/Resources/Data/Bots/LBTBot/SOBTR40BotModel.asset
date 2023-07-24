@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: SOBTR40BotModel
   m_EditorClassIdentifier: 
   NameBot: "\u0411\u0422\u042040"
-  MassBot: 0
+  MassBotFinish: 0.2775
+  MassBotPart:
+    MassArmor: 0
+    MassEngine: 0.2775
+    MassGun: 0
+    MassMachineGun: 0
+    MassAmmunition: 0
   MassPrototype: 5,3
   SizeBot:
     _longBody: 5
@@ -23,7 +29,7 @@ MonoBehaviour:
     _heightTower: 0.24
     _widthTower: 1
     _groundClearance: 0.4
-  PowerEngine: 0
+  PowerEngine: 60
   IDBot: 0
   MaxSpeedBot: 0
   SpeedBot: 0
@@ -52,63 +58,66 @@ MonoBehaviour:
           Silver: 0
           Copper: 12
       - PlanName: 2
-        MM: 13
-        Cost:
-          Gold: 1
-          Silver: 7
-          Copper: 13
-      - PlanName: 3
-        MM: 9
-        Cost:
-          Gold: 0
-          Silver: 3
-          Copper: 9
-      - PlanName: 4
-        MM: 6
+        MM: 5
         Cost:
           Gold: 0
           Silver: 0
-          Copper: 12
+          Copper: 5
+      - PlanName: 3
+        MM: 5
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 5
+      - PlanName: 4
+        MM: 5
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 10
     ArmorBody:
       _planSurfaceShow:
       - PlanName: 0
-        MM: 1
+        MM: 5
         Cost:
           Gold: 0
           Silver: 0
           Copper: 17
       - PlanName: 1
-        MM: 4
+        MM: 5
         Cost:
           Gold: 0
           Silver: 0
           Copper: 17
       - PlanName: 2
-        MM: 15
-        Cost:
-          Gold: 0
-          Silver: 8
-          Copper: 20
-      - PlanName: 3
-        MM: 7
-        Cost:
-          Gold: 0
-          Silver: 2
-          Copper: 14
-      - PlanName: 4
-        MM: 9
+        MM: 5
         Cost:
           Gold: 0
           Silver: 0
-          Copper: 18
+          Copper: 10
+      - PlanName: 3
+        MM: 5
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 10
+      - PlanName: 4
+        MM: 5
+        Cost:
+          Gold: 0
+          Silver: 0
+          Copper: 15
     ArmorMass: 0
     ETypeArmor: 0
-  Gun: 0
-  CaliberGun: 20
-  LongGun: 200
-  MachineGun: 0
-  CaliberMachineGun: 5
-  LongMachineGun: 100
+  GunModel:
+    Gun: 0
+    CaliberGun: 0
+    LongGun: 0
+    FiringRateGun: 0
+    MachineGun: 0
+    CaliberMachineGun: 0
+    LongMachineGun: 0
+    FiringRateMachineGun: 0
   ShellNum: 10
   BulletNum: 100
   TransformTarget: {fileID: 0}

@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelGunsController
 {
     private bool _workingWithCannon;
-
     private float _caliberData;
+    private float _glowTime;
     private int _longData;
     private int _speedData;
 
@@ -21,11 +18,18 @@ public class PanelGunsController
 
     private PanelGunsView _panelGunsView;
     private PanelAmmunitionController _panelAmmunitionController;
+    private EconomyController _economyController;
+    private CurrencyModel _finishCost = new CurrencyModel();
+
+    public ActivePanelAmmunition ActivePanelAmmunition;
 
     public PanelGunsController(PanelAmmunitionController panelAmmunitionController)
     {
         _panelAmmunitionController = panelAmmunitionController;
         _panelGunsView= panelAmmunitionController.GunsPanel.GetComponent<PanelGunsView>();
+        _economyController = panelAmmunitionController.EconomyController;
+        ActivePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
+        _glowTime = panelAmmunitionController.GlowTime;
 
         _caliberText = _panelGunsView.CaliberText;
         _longText = _panelGunsView.LongText;
@@ -33,6 +37,7 @@ public class PanelGunsController
 
         _panelGunsView.GunSelect.onClick.AddListener(WorkingWithCannon);
         _panelGunsView.MachinGunSelect.onClick.AddListener(WorkingWithMachinGun);
+        panelAmmunitionController.PanelAmmunitionView.Aply.onClick.AddListener(BayWeapon);
 
         _gunRawImage = _panelGunsView.GunRawImage;
         _machinGunRawImage = _panelGunsView.MachinGunRawImage;
@@ -74,7 +79,10 @@ public class PanelGunsController
             UpDate();
         }
     }
-    private void UpDate() { }
+    private void UpDate() 
+    {
+        SetPrice();
+    }
     private void WorkingWithCannon()
     {
         _workingWithCannon=true;
@@ -149,6 +157,18 @@ public class PanelGunsController
         }
     }
     
+    private void SetPrice()
+    {
+        //_finishCost
+    }
+    private void BayWeapon()
+    { 
+        if(CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Engine)
+        {
+            Debug.Log($"Типо купил");//
+        }
+    }
+    private bool CheckIsCanBay() => _economyController.CheckIsCanBay(_finishCost, _glowTime);
     private float SetMaxCaliber()
     {
         float maxCaliber = 0;
@@ -172,46 +192,5 @@ public class PanelGunsController
             case ETypeBot.TT: minCaliber = 30f; break;
         }
         return minCaliber;
-    }
-}
-
-[Serializable]
-public struct GunModel
-{
-    public bool Gun;
-    public float CaliberGun;
-    public int LongGun;
-    public int FiringRateGun;
-
-    public bool MachineGun;
-    public float CaliberMachineGun;
-    public int LongMachineGun;
-    public int FiringRateMachineGun;
-
-    public GunModel(bool setGun, bool setMachineGun)
-    {
-        Gun = setGun;
-        CaliberGun = 20;
-        LongGun = 200;
-        FiringRateGun = 6;
-
-        MachineGun = setMachineGun;
-        CaliberMachineGun = 5;
-        LongMachineGun = 100;
-        FiringRateMachineGun = 300;
-    }
-
-    public void SetGun(int Long, float Caliber, int FiringRate)
-    {
-        LongGun = Long;
-        CaliberGun = Caliber;
-        FiringRateGun = FiringRate;
-    }
-
-    public void SetMachineGun(int Long, float Caliber, int FiringRate)
-    {
-        LongMachineGun = Long;
-        CaliberMachineGun = Caliber;
-        FiringRateMachineGun = FiringRate;
     }
 }
