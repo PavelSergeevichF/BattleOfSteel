@@ -60,6 +60,7 @@ public class EconomyController : IExecute
     public void Execute()
     {
         SetEconomyData();
+        WorkErrorBay();
     }
 
     private void SetEconomyData()

@@ -11,6 +11,7 @@ public class StartScenGameControllerView : MonoBehaviour
     [SerializeField] private EconomyView _economyView;
     [SerializeField] private LicenseView _licenseView;
     [SerializeField] private SOUserData _sOUserData;
+    [SerializeField] private InfoHelpPanelView _infoHelpView;
     [SerializeField] private SelectAuthorizationOrRegistrationView _selectAuthorizationOrRegistrationView;
 
     private StartScenControllers _startScenControllers;
@@ -24,6 +25,7 @@ public class StartScenGameControllerView : MonoBehaviour
     public EconomyView EconomyView => _economyView;
     public LicenseView LicenseView => _licenseView;
     public SOUserData SOUserData => _sOUserData;
+    public InfoHelpPanelView InfoHelpView => _infoHelpView;
     public SelectAuthorizationOrRegistrationView SelectAuthorizationOrRegistrationView => _selectAuthorizationOrRegistrationView;
 
     private void Awake()

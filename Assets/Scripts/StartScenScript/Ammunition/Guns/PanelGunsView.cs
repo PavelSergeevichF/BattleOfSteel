@@ -21,6 +21,7 @@ public class PanelGunsView : AmmunitionsElement
     public Text CaliberText;
     public Text LongText;
     public Text SpeedText;
+    public Text ButtonSelectText;
 
     [Header("Gun barrel")]
     [SerializeField] private GameObject _gunBarrel;

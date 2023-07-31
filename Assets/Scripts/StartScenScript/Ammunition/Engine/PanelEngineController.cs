@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using static UnityEditor.ShaderData;
 
-public class PanelEngineController
+public class PanelEngineController : AmmunitionControllers
 {
     private bool _firstStart = true;
     private int _tempSliderVolue = 0;
@@ -17,8 +17,6 @@ public class PanelEngineController
     private CurrencyUserController _currencyUserController;
     private EconomyController _economyController;
     private MassController _massController;
-
-    public ActivePanelAmmunition ActivePanelAmmunition;
 
     public PanelEngineController(PanelAmmunitionController panelAmmunitionController)
     {
@@ -38,18 +36,21 @@ public class PanelEngineController
 
     public void Execute()
     {
-        if(_firstStart)
+        if (ActivePanelAmmunition == ActivePanelAmmunition.Engine)
         {
-            _firstStart = false;
-            CheckOnNull();
-        }
-        if (_tempSliderVolue != (int)_panelEngineView.EnginePowerSlider.value)
-        {
-            _tempSliderVolue = (int)_panelEngineView.EnginePowerSlider.value;
-            _enginePowerText.text = _tempSliderVolue.ToString();
-            SetCost();
-            SetMassEngine();
-            ShowCost();
+            if (_firstStart)
+            {
+                _firstStart = false;
+                CheckOnNull();
+            }
+            if (_tempSliderVolue != (int)_panelEngineView.EnginePowerSlider.value)
+            {
+                _tempSliderVolue = (int)_panelEngineView.EnginePowerSlider.value;
+                _enginePowerText.text = _tempSliderVolue.ToString();
+                SetCost();
+                SetMassEngine();
+                ShowCost();
+            }
         }
     }
 

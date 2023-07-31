@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class PanelArmorController
+public class PanelArmorController : AmmunitionControllers
 {
     private bool _firstStart = true;
     private int _tempSliderVolue = 0;
@@ -27,13 +27,11 @@ public class PanelArmorController
     private EconomyController _economyController;
     private MassController _massController;
 
-    public ActivePanelAmmunition ActivePanelAmmunition;
 
 
     public PanelArmorController(PanelAmmunitionController panelAmmunitionController)
     {
         _panelArmorView = panelAmmunitionController.ArmorPanel.GetComponent<PanelArmorView>();
-        //_armorPanel = panelAmmunitionController.ArmorPanel;
         _currencyUserController = panelAmmunitionController.CurrencyUserController;
         _botsData = panelAmmunitionController.BotsData;
         _economy = panelAmmunitionController.Economy;
@@ -90,18 +88,20 @@ public class PanelArmorController
     }
     public void Execute()
     {
-        _costArmor.Execute();
-        if(_firstStart)
+        if (ActivePanelAmmunition == ActivePanelAmmunition.Armor)
         {
-            _firstStart = false;
-            InitData();
-        }
-        if (_tempSliderVolue != (int)_panelArmorView.ArmorThicknessSlider.value)
-        {
-            _tempSliderVolue = (int)_panelArmorView.ArmorThicknessSlider.value;
-            SetData();
-            _economyController.WorkErrorBay();
-            SetMassArmor();
+            _costArmor.Execute();
+            if (_firstStart)
+            {
+                _firstStart = false;
+                InitData();
+            }
+            if (_tempSliderVolue != (int)_panelArmorView.ArmorThicknessSlider.value)
+            {
+                _tempSliderVolue = (int)_panelArmorView.ArmorThicknessSlider.value;
+                SetData();
+                SetMassArmor();
+            }
         }
     }
 
@@ -302,4 +302,6 @@ public class PanelArmorController
         armorPart.PlanSurfaces.Add(ePlanName.Back, new PlanSurface(ePlanName.Back, minArmor, new CurrencyModel()));
         armorPart.PlanSurfaces.Add(ePlanName.Flank, new PlanSurface(ePlanName.Flank, minArmor, new CurrencyModel()));
     }
+
+    
 }

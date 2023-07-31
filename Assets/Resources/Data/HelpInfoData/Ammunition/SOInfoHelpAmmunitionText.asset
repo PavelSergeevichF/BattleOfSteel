@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a12112cc3129c94a808aac4e8502a4c, type: 3}
+  m_Name: SOInfoHelpAmmunitionText
+  m_EditorClassIdentifier: 
+  ArmorInfo: {fileID: 0}
+  EngineInfo: {fileID: 0}
+  GunsInfo: {fileID: 0}
+  CantInstallTwoInfo: {fileID: 11400000, guid: 7132bb7d18477934ca91db1a0f0f30fc, type: 2}
+  ImpossibleWithoutWeapons: {fileID: 11400000, guid: 96ff027cdefe40f4cb1f727c1af5d1d9,
+    type: 2}
+  EquipmentInfo: []
+  AmmunitionInfo: {fileID: 0}

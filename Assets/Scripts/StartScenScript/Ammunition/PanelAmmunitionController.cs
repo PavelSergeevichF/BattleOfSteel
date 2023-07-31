@@ -27,6 +27,9 @@ public class PanelAmmunitionController : IExecute
     private CurrencyUserController _currencyUserController;
     private EconomyController _economyController;
     private MassController _massController;
+    private InfoHelpPanelController _infoHelpPanelController;
+
+    private List<IAmmunitionController> _iAmmunitionController;
 
     //private PanelArmorController _panelArmorController;
     private PanelInformController _panelInformController;
@@ -43,14 +46,18 @@ public class PanelAmmunitionController : IExecute
     public GameObject EquipmentPanel => _equipmentPanel;
     public GameObject AmmunitionPanel => _ammunitionPanel;
     public GameObject InfoBotPanel => _infoBotPanel;
+    public InfoHelpPanelController InfoHelpPanelController => _infoHelpPanelController;
 
     public SOBotsData BotsData => _botsData;
     public SOEconomyData Economy => _economy;
 
     public ActivePanelAmmunition ActivePanelAmmunition =>_activePanelAmmunition;
 
-    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, StartScenButtonPanelController startScenButtonPanelController, CurrencyUserController currencyUserController, EconomyController economyController, MassController massController)
+    public PanelAmmunitionController(PanelAmmunitionView panelAmmunitionView, SOUserData sOUserData, 
+        StartScenButtonPanelController startScenButtonPanelController, CurrencyUserController currencyUserController,
+        EconomyController economyController, MassController massController, InfoHelpPanelController infoHelpPanelController)
     {
+        _iAmmunitionController = new List<IAmmunitionController>();
         _panelAmmunitionView = panelAmmunitionView;
         _armorPanel          = panelAmmunitionView.ArmorPanel;
         _enginePanel         = panelAmmunitionView.EnginePanel;
@@ -69,11 +76,15 @@ public class PanelAmmunitionController : IExecute
         _economy = sOUserData.Economy;
         _economyController = economyController;
         _massController = massController;
+        _infoHelpPanelController = infoHelpPanelController;
 
         _panelArmorController = new PanelArmorController(this);
         _panelEngineController = new PanelEngineController(this);
         _panelGunsController = new PanelGunsController(this);
         _panelInformController = new PanelInformController(_botsData, _panelAmmunitionView.InfoBotPanel.GetComponent<PanelInformView>());
+        _iAmmunitionController.Add(_panelArmorController);
+        _iAmmunitionController.Add(_panelEngineController);
+        _iAmmunitionController.Add(_panelGunsController);
 
         panelAmmunitionView.Armor     .onClick.AddListener(ArmorPanelActive);
         panelAmmunitionView.Engine    .onClick.AddListener(EnginePanelActive);
@@ -108,22 +119,21 @@ public class PanelAmmunitionController : IExecute
         ClearPanel();
         _panelArmorController.SetMaxArmor();
         _armorPanel.SetActive(true);
-        //_activePanelAmmunition = ActivePanelAmmunition.Armor;
-        SetTypePanel(ActivePanelAmmunition.Armor);
+        _iAmmunitionController?.ForEach(x => x.SetTypePanel(ActivePanelAmmunition.Armor));
     }
 
     private void EnginePanelActive() 
     { 
         ClearPanel(); 
         _enginePanel.SetActive(true);
-        //_activePanelAmmunition = ActivePanelAmmunition.Engine;
-        SetTypePanel(ActivePanelAmmunition.Engine);
+        _iAmmunitionController?.ForEach(x => x.SetTypePanel(ActivePanelAmmunition.Engine));
         _panelEngineController.ChenchBot();
     }
 
     private void GunsPanelActive() 
     { 
-        ClearPanel();  
+        ClearPanel();
+        _iAmmunitionController?.ForEach(x => x.SetTypePanel(ActivePanelAmmunition.Gans));
         _gunsPanel.SetActive(true);
 
     }
@@ -145,12 +155,6 @@ public class PanelAmmunitionController : IExecute
         ClearPanel();
         _panelInformController.UpdateInform();
         _infoBotPanel.SetActive(true);
-    }
-
-    private void SetTypePanel(ActivePanelAmmunition activePanel)
-    {
-        _panelArmorController.ActivePanelAmmunition = activePanel;
-        _panelEngineController.ActivePanelAmmunition = activePanel;
     }
 
     private void IApply()

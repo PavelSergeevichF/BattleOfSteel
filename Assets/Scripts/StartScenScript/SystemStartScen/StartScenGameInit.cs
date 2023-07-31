@@ -11,6 +11,9 @@ internal sealed class StartScenGameInit
         LicenseController _licenseController = new LicenseController(mainController.LicenseView);
         controllers.Add(_licenseController);
 
+        InfoHelpPanelController _infoHelpPanelController = new InfoHelpPanelController(mainController.InfoHelpView);
+        controllers.Add(_infoHelpPanelController);
+
         StartScenButtonPanelController _startScenButtonPanelController = new StartScenButtonPanelController(mainController.MainButtonPanelView);
         controllers.Add(_startScenButtonPanelController);
 
@@ -37,7 +40,7 @@ internal sealed class StartScenGameInit
         MassController _massController = new MassController(mainController.SOUserData);
         controllers.Add(_massController);
 
-        PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData, _startScenButtonPanelController, _currencyUserController, _economyController, _massController);
+        PanelAmmunitionController _panelAmmunitionController = new PanelAmmunitionController(mainController.PanelAmmunitionView, mainController.SOUserData, _startScenButtonPanelController, _currencyUserController, _economyController, _massController, _infoHelpPanelController);
         controllers.Add(_panelAmmunitionController);
 
     }
