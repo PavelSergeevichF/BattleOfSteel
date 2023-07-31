@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class PanelGunsController : AmmunitionControllers
     private string _setWeapon = "Установить";
     private string _remoweWeapon = "Удалить";
 
+
     private Text _caliberText;
     private Text _longText;
     private Text _speedText;
@@ -24,6 +26,7 @@ public class PanelGunsController : AmmunitionControllers
     private PanelAmmunitionController _panelAmmunitionController;
     private CurrencyUserController _currencyUserController;
     private EconomyController _economyController;
+    private MassController _massController;
     private CurrencyModel _finishCost = new CurrencyModel();
 
     private SOEconomyData _economy;
@@ -35,6 +38,7 @@ public class PanelGunsController : AmmunitionControllers
         _economyController = panelAmmunitionController.EconomyController;
         ActivePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
         _glowTime = panelAmmunitionController.GlowTime;
+        _massController = panelAmmunitionController.MassController;
         _economy = panelAmmunitionController.Economy;
         _currencyUserController = panelAmmunitionController.CurrencyUserController;
 
@@ -84,7 +88,16 @@ public class PanelGunsController : AmmunitionControllers
             SetTempCannon(_caliberData);
             string _caliberDataStr = _caliberData.ToString("#.##");
             _panelGunsView.CaliberText.text = _caliberDataStr;
+            if (_caliberData < 50)
+            {
+                _panelGunsView.LongSlider.maxValue = (int)(_caliberData * 110);
+            }
+            else
+            {
+                _panelGunsView.LongSlider.maxValue = (int)(_caliberData * 60);
+            }
             UpDate();
+            ShowMassWeapon();
         }
         if (_longData != (int)_panelGunsView.LongSlider.value)
         {
@@ -93,6 +106,7 @@ public class PanelGunsController : AmmunitionControllers
             string _caliberDataStr = _longData.ToString();
             _panelGunsView.LongText.text = _caliberDataStr;
             UpDate();
+            ShowMassWeapon();
         }
         if (_speedData != (int)_panelGunsView.SpeedSlider.value)
         {
@@ -115,7 +129,15 @@ public class PanelGunsController : AmmunitionControllers
         _panelGunsView.CaliberSlider.minValue = SetMinCaliber();
         _panelGunsView.LongSlider.value = _panelAmmunitionController.BotsData.ActivBot.GunModel.LongGun;
         _panelGunsView.LongSlider.minValue = 200;
-        _panelGunsView.LongSlider.maxValue = (int)(_panelGunsView.CaliberSlider.value * 40);
+        if (_caliberData < 50)
+        {
+            _panelGunsView.LongSlider.maxValue = (int)(_caliberData * 110);
+        }
+        else 
+        {
+            _panelGunsView.LongSlider.maxValue = (int)(_caliberData * 60);
+        }
+        
         _panelGunsView.SpeedSlider.value = _panelAmmunitionController.BotsData.ActivBot.GunModel.FiringRateGun;
         SetTempCannon(_panelGunsView.CaliberSlider.value);
         _gunRawImage.SetActive(true);
@@ -368,6 +390,8 @@ public class PanelGunsController : AmmunitionControllers
                 if(!_currencyUserController.Bay(_finishCost.Gold, _finishCost.Silver, _finishCost.Copper, out error))
                 {
                     SaveDataWeapon();
+                    MassWeapon();
+                    _massController.SetMass();
                 }
                 else 
                 {
@@ -384,6 +408,64 @@ public class PanelGunsController : AmmunitionControllers
                         (_panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.ImpossibleWithoutWeapons);
             }
         }
+    }
+    private void MassWeapon()
+    {
+        if (_workingWithCannon)
+        {
+            _panelAmmunitionController.BotsData.ActivBot.MassBotPart.MassGun =
+            MathMassGun(_panelAmmunitionController.BotsData.ActivBot.GunModel.CaliberGun);
+        }
+        else
+        {
+            _panelAmmunitionController.BotsData.ActivBot.MassBotPart.MassMachineGun =
+           MathMassMachineGun(_panelAmmunitionController.BotsData.ActivBot.GunModel.CaliberMachineGun);
+        }
+        ShowMassWeapon();
+    }
+    private void ShowMassWeapon()
+    {
+        float massW = 0;
+        if (_workingWithCannon)
+        {
+            massW = MathMassGun(_caliberData);
+            string str = "";
+            if (massW < 1)
+            {
+                str = $"0{massW.ToString("#.###")}";
+            }
+            else
+            {
+                str = massW.ToString("#.###");
+            }
+            _panelGunsView.PraceView.Mass.text = str;
+        }
+        else
+        {
+            massW = MathMassMachineGun(_caliberData);
+            string str = "";
+            if (massW < 1)
+            {
+                str = $"0{massW.ToString("#.###")}";
+            }
+            else
+            {
+                str = massW.ToString("#.###");
+            }
+            _panelGunsView.PraceView.Mass.text = str;
+        }
+    }
+    private float MathMassMachineGun(float data)
+    {
+        float tmpCalibr = data - 5f;
+        return tmpCalibr * 0.008f;
+    }
+    private float MathMassGun(float data)
+    {
+        float rad = data / 2;
+        float V = rad * rad * (float)Math.PI * _longData;
+        float coeff = data / 30;
+        return V * 0.00000013f/ coeff;
     }
     private void SaveDataWeapon()
     { 
@@ -457,7 +539,7 @@ public class PanelGunsController : AmmunitionControllers
             case ETypeBot.LBT: maxCaliber = 50f; break;
             case ETypeBot.SBT: maxCaliber = 100f; break;
             case ETypeBot.LT: maxCaliber = 130f; break;
-            case ETypeBot.TT: maxCaliber = 210f; break;
+            case ETypeBot.TT: maxCaliber = 240f; break;
         }
         return maxCaliber;
     }

@@ -80,7 +80,16 @@ public class PanelEngineController : AmmunitionControllers
         }
         mass = _tempSliderVolue * Coefficient;
         _tempMass = mass / 1000;
-        _panelEngineView.PraceView.Mass.text = (mass / 1000).ToString();
+        string str = "";
+        if(_tempMass<1)
+        {
+            str = $"0{_tempMass.ToString("#.###")}";
+        }
+        else 
+        {
+            str = _tempMass.ToString("#.###");
+        }
+        _panelEngineView.PraceView.Mass.text = str;
     }
 
     private void ShowCost()
