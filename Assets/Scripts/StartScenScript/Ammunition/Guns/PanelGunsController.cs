@@ -22,6 +22,7 @@ public class PanelGunsController : AmmunitionControllers
 
     private PanelGunsView _panelGunsView;
     private PanelAmmunitionController _panelAmmunitionController;
+    private CurrencyUserController _currencyUserController;
     private EconomyController _economyController;
     private CurrencyModel _finishCost = new CurrencyModel();
 
@@ -35,6 +36,7 @@ public class PanelGunsController : AmmunitionControllers
         ActivePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
         _glowTime = panelAmmunitionController.GlowTime;
         _economy = panelAmmunitionController.Economy;
+        _currencyUserController = panelAmmunitionController.CurrencyUserController;
 
         _caliberText = _panelGunsView.CaliberText;
         _longText = _panelGunsView.LongText;
@@ -360,15 +362,42 @@ public class PanelGunsController : AmmunitionControllers
     { 
         if(CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Gans)
         {
-            if(_panelAmmunitionController.BotsData.ActivBot.GunModel.MachineGun || _panelAmmunitionController.BotsData.ActivBot.GunModel.Gun)
+            string error = "";
+            if (_panelAmmunitionController.BotsData.ActivBot.GunModel.MachineGun || _panelAmmunitionController.BotsData.ActivBot.GunModel.Gun )
             {
-                Debug.Log($"Типо купил");//
+                if(!_currencyUserController.Bay(_finishCost.Gold, _finishCost.Silver, _finishCost.Copper, out error))
+                {
+                    SaveDataWeapon();
+                }
+                else 
+                {
+                    _panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo.HelpTextBody = error;
+                    _panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo.HelpTextHead = "Ошибка сети";
+                    _panelAmmunitionController.InfoHelpPanelController.SetInform
+                        (_panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo);
+
+                }
             }
             else 
             {
                 _panelAmmunitionController.InfoHelpPanelController.SetInform
                         (_panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.ImpossibleWithoutWeapons);
             }
+        }
+    }
+    private void SaveDataWeapon()
+    { 
+        if(_workingWithCannon)
+        {
+            _panelAmmunitionController.BotsData.ActivBot.GunModel.CaliberGun = _caliberData;
+            _panelAmmunitionController.BotsData.ActivBot.GunModel.LongGun = _longData;
+            _panelAmmunitionController.BotsData.ActivBot.GunModel.FiringRateGun = _speedData;
+        }
+        else 
+        {
+            _panelAmmunitionController.BotsData.ActivBot.GunModel.CaliberMachineGun = _caliberData;
+            _panelAmmunitionController.BotsData.ActivBot.GunModel.LongMachineGun = _longData;
+            _panelAmmunitionController.BotsData.ActivBot.GunModel.FiringRateMachineGun = _speedData;
         }
     }
     private void SetStokWeapon()

@@ -16,6 +16,7 @@ public class PanelArmorController : AmmunitionControllers
     private CurrencyUserController _currencyUserController;
     private CostArmor _costArmor;
     private SetMassArmorController _setMassArmorController;
+    PanelAmmunitionController _panelAmmunitionController;
 
     private ArmorDataModel _armorDataModel;
     private ePartBotName _ePartBotName= ePartBotName.Body;
@@ -38,6 +39,7 @@ public class PanelArmorController : AmmunitionControllers
         _economyController = panelAmmunitionController.EconomyController;
         _massController = panelAmmunitionController.MassController;
         ActivePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
+        _panelAmmunitionController = panelAmmunitionController;
 
         _panelArmorView.CastArmor.onClick.AddListener(CastArmorClick);
         _panelArmorView.RolledArmor.onClick.AddListener(RolledArmorClick);
@@ -185,12 +187,23 @@ public class PanelArmorController : AmmunitionControllers
     {
         if (CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Armor)
         {
-            _currencyUserController.Bay(_costArmor.FinishCost.Gold, _costArmor.FinishCost.Silver, _costArmor.FinishCost.Copper);
-            SetBotArmor();
-            ShowCost();
-            SetMassArmor();
-            _botsData.ActivBot.MassBotPart.MassArmor = _setMassArmorController.SetDataMassArmor(_costArmor.GetArmorDataModel().ArmorBody, _costArmor.GetArmorDataModel().ArmorTower);
-            _massController.SetMass();
+            string error = "";
+            if (!_currencyUserController.Bay(_costArmor.FinishCost.Gold, _costArmor.FinishCost.Silver, _costArmor.FinishCost.Copper, out error))
+            {
+                SetBotArmor();
+                ShowCost();
+                SetMassArmor();
+                _botsData.ActivBot.MassBotPart.MassArmor = _setMassArmorController.SetDataMassArmor(_costArmor.GetArmorDataModel().ArmorBody, _costArmor.GetArmorDataModel().ArmorTower);
+                _massController.SetMass();
+            }
+            else 
+            {
+                _panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo.HelpTextBody = error;
+                _panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo.HelpTextHead = "Ошибка сети";
+                _panelAmmunitionController.InfoHelpPanelController.SetInform
+                    (_panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo);
+
+            }
         }
     }
     private void SetMassArmor()

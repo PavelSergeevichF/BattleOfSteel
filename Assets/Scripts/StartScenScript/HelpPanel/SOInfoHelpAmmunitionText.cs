@@ -10,4 +10,6 @@ public class SOInfoHelpAmmunitionText : ScriptableObject
     public SOInfoHelpText ImpossibleWithoutWeapons;
     public System.Collections.Generic.List<SOInfoHelpText> EquipmentInfo;
     public SOInfoHelpText AmmunitionInfo;
+    public SOInfoHelpText TempInfo;
+
 }

@@ -17,6 +17,7 @@ public class PanelEngineController : AmmunitionControllers
     private CurrencyUserController _currencyUserController;
     private EconomyController _economyController;
     private MassController _massController;
+    PanelAmmunitionController _panelAmmunitionController;
 
     public PanelEngineController(PanelAmmunitionController panelAmmunitionController)
     {
@@ -29,6 +30,7 @@ public class PanelEngineController : AmmunitionControllers
         _enginePowerText = _panelEngineView.EnginePowerText;
         _glowTime = panelAmmunitionController.GlowTime;
         ActivePanelAmmunition = panelAmmunitionController.ActivePanelAmmunition;
+        _panelAmmunitionController = panelAmmunitionController;
 
         panelAmmunitionController.PanelAmmunitionView.Aply.onClick.AddListener(BayEngine);
         SetSlider();
@@ -114,12 +116,22 @@ public class PanelEngineController : AmmunitionControllers
     {
         if (CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Engine)
         {
-            _currencyUserController.Bay(_finishCost.Gold, _finishCost.Silver, _finishCost.Copper);
-            _botsData.ActivBot.MassBotPart.MassEngine = _tempMass;
-            _massController.SetMass();
-            SetBotEngine();
-            ShowCost();
-            SetMassEngine();
+            string error = "";
+            if (!_currencyUserController.Bay(_finishCost.Gold, _finishCost.Silver, _finishCost.Copper, out error))
+            {
+                _botsData.ActivBot.MassBotPart.MassEngine = _tempMass;
+                _massController.SetMass();
+                SetBotEngine();
+                ShowCost();
+                SetMassEngine();
+            }
+            else 
+            {
+                _panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo.HelpTextBody = error;
+                _panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo.HelpTextHead = "Ошибка сети";
+                _panelAmmunitionController.InfoHelpPanelController.SetInform
+                    (_panelAmmunitionController.InfoHelpPanelController.SOInfoHelpTexts.AmmunitionHelp.TempInfo);
+            }
         }
     }
     private void SetBotEngine()

@@ -9,6 +9,8 @@ using UnityEditor.PackageManager.Requests;
 
 public class CurrencyUserController : IInitialization
 {
+    private bool _error = false;
+    private string _errorStr = "";
     private CurrencyUserView _currencyUserView;
     private SOUserData _sOUserData;
     private ConversionController _conversionController;
@@ -86,11 +88,14 @@ public class CurrencyUserController : IInitialization
         if (cost.Silver > _sOUserData.Economy.CurrencyModel.Silver) { canBay = false; needS = true; }
         if (cost.Copper > _sOUserData.Economy.CurrencyModel.Copper) { canBay = false; needC = true; }
     }
-    public void Bay(int g, int s, int c)
+    public bool Bay(int g, int s, int c, out string error)
     {
-        ReductionCurrency(g, SelectCurrency.Gold);
-        ReductionCurrency(s, SelectCurrency.Silver);
-        ReductionCurrency(c, SelectCurrency.Copper);
+        _errorStr = "";
+        bool errorGold = ReductionCurrency(g, SelectCurrency.Gold);
+        bool errorSilver = ReductionCurrency(s, SelectCurrency.Silver);
+        bool errorCopper = ReductionCurrency(c, SelectCurrency.Copper);
+        error = _errorStr;
+        return errorGold || errorSilver || errorCopper;
     }
 
     private void AddCurrency(int volue, SelectCurrency selectCurrency) // добавление
@@ -116,10 +121,11 @@ public class CurrencyUserController : IInitialization
             VirtualCurrency = currencyType,
             Amount = volue
         };
+        _error = false;
         PlayFabClientAPI.AddUserVirtualCurrency(request, OnGrantVirtualCurrencySuccess, Failure);
     }
 
-    public void ReductionCurrency(int volue, SelectCurrency selectCurrency)//убывание
+    public bool ReductionCurrency(int volue, SelectCurrency selectCurrency)//убывание
     {
         string currencyType = "EX";
         switch (selectCurrency)
@@ -144,8 +150,10 @@ public class CurrencyUserController : IInitialization
                 VirtualCurrency = currencyType,
                 Amount = volue
             };
+            _error = false;
             PlayFabClientAPI.SubtractUserVirtualCurrency(request, OnGrantVirtualCurrencySuccess, Failure);
         }
+        return _error;
     }
 
     private void OnGrantVirtualCurrencySuccess(ModifyUserVirtualCurrencyResult result)
@@ -177,6 +185,8 @@ public class CurrencyUserController : IInitialization
     }
     private void Failure(PlayFabError error)
     {
+        _error = true;
         Debug.LogError(error.GenerateErrorReport());
+        _errorStr = error.GenerateErrorReport();
     }
 }
