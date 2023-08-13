@@ -83,7 +83,6 @@ public class CurrencyUserController : IInitialization
         needG = false;
         needS = false;
         needC = false;
-        GetDataUserCurrency();
         if (cost.Gold > _sOUserData.Economy.CurrencyModel.Gold) { canBay = false; needG = true; }
         if (cost.Silver > _sOUserData.Economy.CurrencyModel.Silver) { canBay = false; needS = true; }
         if (cost.Copper > _sOUserData.Economy.CurrencyModel.Copper) { canBay = false; needC = true; }

@@ -23,6 +23,7 @@ public class PanelAmmunitionController : IExecute
     private PanelArmorController _panelArmorController;
     private PanelEngineController _panelEngineController;
     private PanelGunsController _panelGunsController;
+    private PanelEquipmentController _panelEquipmentController;
     private StartScenButtonPanelController _startScenButtonPanelController;
     private CurrencyUserController _currencyUserController;
     private EconomyController _economyController;
@@ -31,7 +32,6 @@ public class PanelAmmunitionController : IExecute
 
     private List<IAmmunitionController> _iAmmunitionController;
 
-    //private PanelArmorController _panelArmorController;
     private PanelInformController _panelInformController;
 
 
@@ -78,9 +78,12 @@ public class PanelAmmunitionController : IExecute
         _massController = massController;
         _infoHelpPanelController = infoHelpPanelController;
 
+        _economyController.GetDataUserCurrency();
+
         _panelArmorController = new PanelArmorController(this);
         _panelEngineController = new PanelEngineController(this);
         _panelGunsController = new PanelGunsController(this);
+        _panelEquipmentController = new PanelEquipmentController(this);
         _panelInformController = new PanelInformController(_botsData, _panelAmmunitionView.InfoBotPanel.GetComponent<PanelInformView>());
         _iAmmunitionController.Add(_panelArmorController);
         _iAmmunitionController.Add(_panelEngineController);

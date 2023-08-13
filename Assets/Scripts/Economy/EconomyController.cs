@@ -160,6 +160,7 @@ public class EconomyController : IExecute
         SilverRepair = silverRepair.ToString();
         CopperRepair = copperRepair.ToString();
     }
+    public void GetDataUserCurrency() => _currencyUserController.GetDataUserCurrency();
     public bool CheckIsCanBay(CurrencyModel finishCost, float glowTime)
     {
         bool canBay;

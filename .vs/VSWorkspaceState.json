@@ -1,16 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Assets",
-    "\\Assets\\Scripts",
-    "\\Assets\\Scripts\\ScensScript",
-    "\\Assets\\Scripts\\ScensScript\\BotScripts",
-    "\\Assets\\Scripts\\ScensScript\\BotScripts\\Controller",
-    "\\Assets\\Scripts\\ScensScript\\BotScripts\\SOBot",
-    "\\Assets\\Scripts\\ScensScript\\BotScripts\\View",
-    "\\Assets\\Scripts\\ScensScript\\Camera",
-    "\\Assets\\Scripts\\ScensScript\\Camera\\ControllerCamera"
+    ""
   ],
-  "SelectedNode": "\\Assets\\Scripts\\ScensScript\\BotScripts\\Controller\\BotMoveController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -185,6 +185,7 @@ public class PanelArmorController : AmmunitionControllers
     
     private void BayArmorr()
     {
+        _economyController.GetDataUserCurrency();
         if (CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Armor)
         {
             string error = "";

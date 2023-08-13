@@ -12,6 +12,15 @@ public class PanelEquipmentView : AmmunitionsElement
     [SerializeField] private Button _enhancedChargeInformation;
     [SerializeField] private Button _uraniumShellsInformation;
     [SerializeField] private Button _tungstenCartridgesInformation;
+
+    [Header("Toggles")]
+    [SerializeField] private Toggle _muzzleBrakeToggle;
+    [SerializeField] private Toggle _automaticChargingToggle;
+    [SerializeField] private Toggle _improvedOpticsToggle;
+    [SerializeField] private Toggle _reinforcedBrakesToggle;
+    [SerializeField] private Toggle _fuelAdditivesToggle;
+    [SerializeField] private Toggle _enhancedChargeToggle;
+
     public Button MuzzleBrakeInformation => _muzzleBrakeInformation;
     public Button AutomaticChargingInformation => _automaticChargingInformation;
     public Button ImprovedOpticsInformation => _improvedOpticsInformation;
@@ -21,13 +30,10 @@ public class PanelEquipmentView : AmmunitionsElement
     public Button UraniumShellsInformation => _uraniumShellsInformation;
     public Button TungstenCartridgesInformation => _tungstenCartridgesInformation;
 
-    [Header("Buttons")]
-    public Toggle MuzzleBrakeToggle;
-    public Toggle AutomaticChargingToggle;
-    public Toggle ImprovedOpticsToggle;
-    public Toggle ReinforcedBrakesToggle;
-    public Toggle FuelAdditivesToggle;
-    public Toggle EnhancedChargeToggle;
-    public Toggle UraniumShellsToggle;
-    public Toggle TungstenCartridgesToggle;
+    public Toggle MuzzleBrakeToggle => _muzzleBrakeToggle;
+    public Toggle AutomaticChargingToggle => _automaticChargingToggle;
+    public Toggle ImprovedOpticsToggle => _improvedOpticsToggle;
+    public Toggle ReinforcedBrakesToggle => _reinforcedBrakesToggle;
+    public Toggle FuelAdditivesToggle => _fuelAdditivesToggle;
+    public Toggle EnhancedChargeToggle => _enhancedChargeToggle;
 }

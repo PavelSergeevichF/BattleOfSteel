@@ -42,11 +42,16 @@ public class BotModel : ScriptableObject
     public GunModel GunModel= new GunModel();
 
     [Header("AmmunitionData")]
-    public int ShellNum = 10;
-    public int BulletNum = 100;
+    public BotShellModel BotShellModel = new BotShellModel();
 
     [Header("OtherData")]
     public Transform TransformTarget;
     public GameObject BotGameObject;
     public Sprite BotLabel;
+
+    [Header("EquipmentData")]
+    public bool[] Equipment = new bool[6];
+
+    //[Header("EquipmentData")]
+
 }

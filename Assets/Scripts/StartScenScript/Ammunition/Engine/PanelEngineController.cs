@@ -123,6 +123,7 @@ public class PanelEngineController : AmmunitionControllers
     }
     private void BayEngine()
     {
+        _economyController.GetDataUserCurrency();
         if (CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Engine)
         {
             string error = "";
@@ -196,3 +197,4 @@ public class PanelEngineController : AmmunitionControllers
         }
     }
 }
+

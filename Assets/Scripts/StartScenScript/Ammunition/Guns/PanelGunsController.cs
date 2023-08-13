@@ -381,8 +381,9 @@ public class PanelGunsController : AmmunitionControllers
         return cost;
     }
     private void BayWeapon()
-    { 
-        if(CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Gans)
+    {
+        _economyController.GetDataUserCurrency();
+        if (CheckIsCanBay() && ActivePanelAmmunition == ActivePanelAmmunition.Gans)
         {
             string error = "";
             if (_panelAmmunitionController.BotsData.ActivBot.GunModel.MachineGun || _panelAmmunitionController.BotsData.ActivBot.GunModel.Gun )
